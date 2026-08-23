@@ -33,11 +33,13 @@ copper region or long return path turns it into an antenna. The feedback divider
 controls average voltage, while the downstream resistor/capacitor filters reduce
 switching ripple at the SiPM.
 
-The divider calculation predicts only a nominal voltage. Feedback-reference and
-resistor tolerances are real, so the meter reading—not the equation or trimmer
-position—sets the bias. Shutdown stops switching but does not put a series switch
-between input and output; the output can retain charge or sit near the input
-through the inductor and diode.
+The divider was chosen so specified feedback-reference/current and resistor
+tolerances impose a conservative 28.55 V normal-operation ceiling over the
+initial 0-40 deg C range. That limit assumes an intact feedback path; it is not
+single-fault protection. The meter reading—not the equation or trimmer
+position—still sets the 27.2 V operating bias. Shutdown stops switching but does
+not put a series switch between input and output; the output can retain charge
+or sit near the input through the inductor and diode.
 
 The SiPM pulse is AC-coupled into a TPH2502 amplifier. AC coupling removes the
 sensor's DC operating point, and the buffered `VBASE` places the amplifier near
@@ -84,10 +86,12 @@ small, high-impedance SiPM and amplifier nodes stay on the head.
 
 The 100 ohm trigger resistor is source damping. It absorbs the initial mismatch
 of a practical cable and reduces ringing at the far end. The FPGA-side pulldown
-defines a safe low state when a head is disconnected. The detector and Cora
-must share ground, but tying their independent 3.3 V regulators together could
-create reverse current or a power-up conflict, so the Pmod supply pins remain
-open.
+defines a safe low state when a head is disconnected. The detector uses a
+floating Class II 5 V adapter. Connecting the Pmod ground then creates its one
+intended DC reference to the Cora. Tying their independent 3.3 V regulators
+together could create reverse current or a power-up conflict, so the Pmod
+supply pins remain open. An earth-referenced scope can add another ground bond
+during testing and must be connected deliberately.
 
 ## Coincidence and background rejection
 
@@ -141,10 +145,6 @@ The useful proof sequence is:
 
 ## Primary sources
 
-- [onsemi C-Series SiPM datasheet](https://www.onsemi.com/pdf/datasheet/microc-series-d.pdf)
-- [onsemi SiPM bias and readout note](https://www.onsemi.com/download/application-notes/pdf/and9782-d.pdf)
-- [Analog Devices MAX5025-MAX5028 datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf)
-- [3PEAK TPH2502 datasheet](https://static.3peak.com/res/doc/ds/Datasheet_TPH2501-TPH2502-TPH2503-TPH2504.pdf)
-- [TI TLV3502 datasheet](https://www.ti.com/lit/gpn/TLV3502)
-- [CosmicWatch v3X paper](https://arxiv.org/html/2508.12111)
-- [Luxium BC-408 product information](https://luxiumsolutions.com/radiation-detection-scintillators/plastic-scintillators/bc400-bc404-bc408-bc412-bc416)
+Part sources and local copies are indexed in
+[`docs/datasheets/README.md`](datasheets/README.md). The system-level comparison
+is the [CosmicWatch v3X paper](https://arxiv.org/html/2508.12111).

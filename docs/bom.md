@@ -5,10 +5,16 @@ stock, marketplace listings, shipping, tariffs, and tax can change. Recheck the
 manufacturer number, package, lifecycle, and stock on the order date. The KiCad-
 generated BOM must be reconciled to this document before fabrication.
 
+Every selected manufacturer number is mapped to an archived primary document
+in [`docs/datasheets/README.md`](datasheets/README.md). Distributor links below
+are for availability and ordering; the archived manufacturer document controls
+electrical and mechanical design.
+
 Quantities assemble two identical detector heads and one power/interface board.
 PCB quantities assume five of each design are fabricated, but only two heads and
-one central board are initially populated. The Cora Z7, lab power supply,
-oscilloscope, soldering equipment, ESD supplies, and ordinary tools are excluded.
+one central board are initially populated. The already-owned Cora Z7-07S, lab
+power supply, oscilloscope, soldering equipment, ESD supplies, and ordinary tools
+are excluded.
 
 ## Critical and active parts
 
@@ -55,7 +61,7 @@ hand assembly is not stopped by a lost part.
 | 330 kohm external hysteresis, DNP | Yageo `RC0805FR-07330KL` | 0 (2 footprints) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07330KL) |
 | 1 Mohm bias bleeder | Yageo `RC0805FR-071ML` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071ML) |
 | 147 kohm boost feedback, 0.1% | Panasonic `ERA-6AEB1473V` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=ERA-6AEB1473V) |
-| 6.65 kohm boost feedback, 0.1% | Panasonic `ERA-6AEB6651V` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=ERA-6AEB6651V) |
+| 6.98 kohm boost feedback, 0.1% | Panasonic `ERA-6AEB6981V` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=ERA-6AEB6981V) |
 
 Buy two 10.0 ohm `RC0805FR-0710RL` resistors as alternate head stuffing parts;
 do not install them silently on only one channel.
@@ -68,11 +74,11 @@ solely because its printed nominal capacitance matches.
 
 | Value and dielectric | Recommended part | Design qty | Buy qty | Source |
 |---|---|---:|---:|---|
-| 100 nF, 50 V, X7R, 0805 | Murata `GRM21BR71H104KA01L` | 10 | 20 | [DigiKey](https://www.digikey.com/en/products?keywords=GRM21BR71H104KA01L) |
-| 1 uF, 16 V, X7R, 0805 | Murata `GRM21BR71C105KA01L` | 6 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=GRM21BR71C105KA01L) |
-| 4.7 uF, 16 V, X7R, 0805 | Murata `GRM21BR71C475KA73L` | 3 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=GRM21BR71C475KA73L) |
-| 10 uF, 10 V, X7R, 1206 | Murata `GRM31CR71A106KA01L` | 1 | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=GRM31CR71A106KA01L) |
-| 1 uF, 50 V, X7R, 1206 | Murata `GRM31CR71H105KA61L` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=GRM31CR71H105KA61L) |
+| 100 nF, 50 V, X7R, 0805 | KEMET `C0805C104K5RACTU` | 10 | 20 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C104K5RACTU) |
+| 1 uF, 16 V, X7R, 0805 | KEMET `C0805C105K4RACTU` | 6 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C105K4RACTU) |
+| 4.7 uF, 16 V, X7R, 0805 | KEMET `C0805C475K4RACTU` | 3 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C475K4RACTU) |
+| 10 uF, 10 V, X7R, 1206 | KEMET `C1206C106K8RACTU` | 1 | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=C1206C106K8RACTU) |
+| 1 uF, 50 V, X7R, 1206 | KEMET `C1206C105K5RACTU` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C1206C105K5RACTU) |
 | 10 nF, 100 V, C0G, 0805 | KEMET `C0805C103J1GACTU` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C103J1GACTU) |
 | 2.2 pF, 50 V, C0G, 0805, DNP | KEMET `C0805C229C5GACTU` | 0 (2 footprints) | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C229C5GACTU) |
 
@@ -90,17 +96,17 @@ pin-numbered continuity test on every finished cable.
 | 8-pin board headers, two central and two heads | JST `B8B-XH-A(LF)(SN)` | 4 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B8B-XH-A/1651049) | $0.65 |
 | 8-pin cable housings | JST `XHP-8` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=XHP-8) | $0.20 |
 | 12-inch XH-to-XH 22 AWG precrimp lead | JST `ASXHSXH22K305` | 16 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASXHSXH22K305/6684932) | $0.80 |
-| 2-pin 5 V board header | JST `B2B-XH-A(LF)(SN)` | 1 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B2B-XH-A/1651045) | $0.30 |
-| 2-pin 5 V cable housing | JST `XHP-2` | 1 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/XHP-2/555485) | $0.10 |
-| 12-inch 5 V precrimp leads | JST `ASXHSXH22K305` | 2 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASXHSXH22K305/6684932) | $0.80 |
+| 5 V center-positive board jack | Same Sky `PJ-102AH` | 1 | [DigiKey](https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PJ-102AH/408448) | $1.30 |
+| Regulated 5 V, 1 A Class II wall adapter | Phihong `PSAC05A-050L6-R` | 1 | [DigiKey](https://www.digikey.com/en/products/detail/phihong-usa/PSAC05A-050L6-R/5418482) | $5.40 |
 | Right-angle 2x6 Pmod header | Samtec `TSW-106-08-G-D-RA` | 1 | [Mouser](https://www.mouser.com/ProductDetail/Samtec/TSW-106-08-G-D-RA) | $2.11 |
-| Breakaway 2.54 mm header for inject/jumpers | Sullins `PRPC040SAAN-RC` | 1 strip | [DigiKey](https://www.digikey.com/en/products?keywords=PRPC040SAAN-RC) | $1.50 |
+| 6-inch 2x6 Pmod cable with gender changer | Digilent `240-109` | 1 | [Digilent](https://digilent.com/shop/2x6-pin-pmod-cable/) | $5.00 |
+| Breakaway 2.54 mm header for inject/jumpers | Samtec `TSW-120-07-G-S` | 1 strip | [DigiKey](https://www.digikey.com/en/products/detail/samtec-inc/TSW-120-07-G-S/1101307) | $2.99 |
 | 2.54 mm shorting shunts | Samtec `SNT-100-BK-G` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=SNT-100-BK-G) | $0.35 |
 
-The remote end of the 5 V pigtail must be terminated for the chosen protected
-supply—never operated as exposed contacts. If the central board cannot plug
-directly into JA with rigid support, use the [Digilent 2x6 Pmod cable](https://digilent.com/shop/2x6-pin-pmod-cable/)
-($5 planning price), map it by continuity, and add polarization/support.
+The selected adapter removes the exposed-contact and remote-end ambiguity of a
+power pigtail. Before first use, verify center-positive polarity and voltage at
+the board jack. Continuity-map the unkeyed Pmod cable and gender changer, label
+pin 1 at both ends, and strain-relieve the central board.
 
 Use PCB-integrated probe pads plus fitted ground loops rather than purchasing a
 large number of generic test-point terminals.
@@ -133,13 +139,13 @@ range:
 | Two scintillators | $98 |
 | Critical semiconductors, power parts, and trimmers | $74 |
 | Passives including order-quantity margin | $20-25 |
-| Connectors, precrimp leads, and headers | $20-25 |
+| Power adapter, connectors, precrimp leads, and headers | $30-35 |
 | Optical compound and wrapping | $26.50 |
 | PCBs and optional stencil allowance | $35-55 |
 | Frame and fasteners | $10-25 |
-| **Parts subtotal before shipping/tax** | **about $284-329** |
+| **Parts subtotal before shipping/tax** | **about $294-339** |
 
-A realistic delivered total is roughly **$315-380**, depending mainly on PCB
+A realistic delivered total is roughly **$325-390**, depending mainly on PCB
 shipping, frame stock, and whether consumables are already available. Staying
 under $300 is possible only with the $49 scintillators, existing consumables and
 frame material, low fabrication shipping, and no spare SiPM. The traceable round

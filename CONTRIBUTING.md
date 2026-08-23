@@ -18,6 +18,9 @@ hardware/power_interface/power_interface.kicad_pro
 - Keep custom symbols, footprints, and 3D models under `hardware/libraries/`.
   Commit `sym-lib-table` and `fp-lib-table` with project-relative
   `${KIPRJMOD}` paths.
+- Archive each selected part's available primary documentation under
+  `docs/datasheets/` and update its exact-part/source entry in the directory
+  index when the part changes.
 - Open the affected design in KiCad for review. A textual Git diff is useful
   history, not a sufficient electrical or layout review.
 - Never run a formatter or scripted rewrite over KiCad source.

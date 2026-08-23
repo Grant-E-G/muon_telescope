@@ -10,9 +10,12 @@ than creating a separate form for every test.
 - [ ] Confirm each marketplace scintillator is actually approximately
   50 mm x 50 mm x 10 mm; the listing title alone is ambiguous.
 - [ ] Measure or obtain the breakdown-voltage marking/data for each SiPM.
-- [ ] Confirm the Cora Z7 is 07S or 10 and review its matching master XDC.
+- [x] Purchased board confirmed as Cora Z7-07S; use and review the archived 07S
+  master XDC.
 - [ ] Verify every BOM line against stock, lifecycle, package, and distributor
   listing on the purchase day.
+- [ ] Confirm every selected BOM part is mapped to its current primary document
+  in `docs/datasheets/README.md`; replace stale local copies when parts change.
 - [ ] Create both KiCad 10.0.5 projects and project-local library tables.
 - [ ] Check the SiPM symbol, footprint, orientation, and no-solder center paddle
   independently against the current datasheet and physical part.
@@ -47,16 +50,18 @@ a detector cable is connected.
 
 Assemble by functional island so a bad rail cannot damage every IC.
 
-1. Fit connector, PTC, reverse diode, input capacitors, and current link. Apply
-   current-limited 5 V and verify polarity, `+5VA`, input current, and heating.
+1. Fit the barrel jack, PTC, reverse diode, input capacitors, and current link.
+   Before plugging it in, verify the adapter is center-positive and 4.75-5.25 V.
+   Apply current-limited 5 V and verify `+5VA`, input current, and heating.
 2. Fit the LDO and its capacitors. Verify 3.3 V at no load and with a temporary
    30 mA load.
 3. Fit the MAX5026 island without installing either SiPM. Set the 500 ohm trim
    to maximum bottom resistance, leave `SHDN` low, and inspect resistance/diode
    orientation before power.
-4. Enable bias with a conservative current limit. Set `BIAS_27V` to 27.0 V with
-   a high-impedance meter; verify the complete adjustment range without leaving
-   the safe limit for the lowest-breakdown sensor.
+4. Enable bias with a 100 mA initial input limit. Set `BIAS_27V` to 27.2 V with
+   a high-impedance meter. Verify the complete approximate 25.8-27.6 V nominal
+   adjustment range and confirm the measured maximum remains below 28.55 V,
+   without exceeding breakdown plus 5.0 V for the lowest-breakdown sensor.
 5. Measure startup, shutdown, `HV_RAW` ripple, filtered bias ripple, bleeder
    discharge, and residual disabled voltage. Do not assume "disabled" is 0 V.
 6. With the Cora off, detector on, verify no Pmod supply pin is driven. Repeat
@@ -143,11 +148,12 @@ the ringing it appears to diagnose.
 
 | Symptom | Check first | Likely failure and action |
 |---|---|---|
+| No input power or immediate PTC trip | Unplug; verify adapter voltage, center polarity, and jack contacts | Wrong adapter, barrel-size/contact mismatch, reversed polarity, or board short; do not bypass the PTC |
 | No `+5VA` | Input polarity, PTC drop, SS14 orientation | Reversed connector/diode, tripped PTC, or short; remove power and resistance-check rails |
 | Excess input current | Rail resistance and thermal image/finger-safe inspection | Solder bridge, reversed IC, fighting 3.3 V sources; isolate one functional island |
 | 3.3 V wrong | LDO pinout, input/output capacitors, unloaded rail | Wrong footprint orientation, short, unstable/incorrect capacitor |
 | No high-voltage bias | `+5VA`, `SHDN`, LX, diode, FB | Disabled converter, reversed diode, open feedback, wrong MAX5026 pinout |
-| Bias high or trim reversed | Power off; measure feedback bottom end-to-end and wiper | Trimmer wired incorrectly or wrong resistor; never "trim through" an unexplained overvoltage |
+| Bias high, above 28.55 V, or trim reversed | Power off; measure 147k, 6.98k, trimmer end-to-end, and wiper | Wrong value, open feedback, or reversed trimmer; never "trim through" an unexplained overvoltage |
 | Bias remains near 5 V when disabled | Compare to input and watch discharge | Normal path through inductor/diode plus stored charge; shutdown is not isolation |
 | Large 500 kHz bias ripple | Compare `HV_RAW`, bus, and head cathode with short ground | Poor switch loop/filter return, misplaced capacitor, MLCC DC derating, or probe pickup |
 | Rail changes when a head is plugged in | Verify all eight cable positions before retry | Mirrored/offset JST housing, connector view error, head short |
@@ -193,6 +199,8 @@ Schematic and libraries:
 
 - [ ] `docs/design.md`, schematic values, net names, and BOM agree.
 - [ ] Every IC pin and connector mating view matches a current primary source.
+- [ ] Every selected part has its available primary documentation and exact-MPN
+  mapping under `docs/datasheets/`.
 - [ ] SiPM pin 2 has no-connect/no trace and pin 5 has no copper/paste/solder.
 - [ ] Unused IC channels, Pmod inputs, `SHDN`, and trimmer failure state are
   defined.

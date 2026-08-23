@@ -32,7 +32,7 @@ has been reviewed against that specification.
 ## Repository layout
 
 ```text
-docs/                       Design, theory, BOM, build, and debug records
+docs/                       Design, theory, BOM, build, debug, and datasheets
 hardware/detector_head/     One KiCad design, assembled twice
 hardware/power_interface/   Central power and Cora Z7 interface KiCad design
 hardware/libraries/         Project symbols, footprints, and electrical 3D models
@@ -46,8 +46,9 @@ scripts/                    Repeatable project checks
 
 Keep source files near the subsystem they describe. Do not create another
 directory or README unless it removes a real ambiguity. Large raw captures and
-third-party source archives do not belong in Git; record their source and a
-checksum instead.
+third-party source archives do not belong in Git; part datasheets are the
+intentional exception and live in `docs/datasheets/`. For large raw captures,
+record their external source and a checksum instead.
 
 ## Toolchain and routine checks
 

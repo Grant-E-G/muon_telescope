@@ -15,26 +15,30 @@ Power and bias:
 - [x] Use `MAX5026`, not `MAX5028`: both accept 3-11 V, but the MAX5026 has an
   externally adjustable output while the MAX5028 has an internal divider for a
   fixed nominal 30 V output. Device-specific SiPM bias must be adjustable.
-- [ ] Define what `BIAS_ENABLE = off` must mean. Recommendation for revision A:
-  accept a rail near the 5 V input while detector power remains on because it is
-  safely below SiPM breakdown; require removal of detector 5 V plus the bleeder
-  and a meter check before handling. If true 0 V is required while the analog
-  rails remain powered, add a default-off input switch that disconnects both
-  MAX5026 `VCC` and the inductor branch.
-- [ ] Recalculate the feedback-divider and trimmer endpoints using MAX5026
-  reference, resistor, and trimmer worst cases. Decide whether measured setup is
-  sufficient or whether the component values must impose a conservative
-  worst-case upper bound.
-- [ ] Select the actual protected 5 V source and remote-end connector, then
-  define its tolerance, current limit, polarity, and grounding.
-- [ ] Decide whether SiPM pin 4 is grounded or floating; use the same choice on
-  both heads and document the layout reason.
+- [x] `BIAS_ENABLE = off` may leave the bias rail near the 5 V input while
+  detector power remains on; this is safely below SiPM breakdown. Before
+  handling a head, remove detector 5 V, wait for the bleeder, and verify the
+  rail with a meter. True 0 V with the analog rails powered is out of scope.
+- [x] Use 147 kohm over 6.98 kohm plus a 500 ohm trim. With the specified
+  reference, feedback-current, resistor-tolerance, and 0-40 deg C temperature
+  cases, an intact divider holds the normal upper bound below 28.55 V. Set and
+  verify 27.2 V with a meter; this bound is not single-fault protection.
+- [x] Power the detector from a regulated, floating/Class II, center-positive
+  5 V adapter rated at least 0.5 A through a board-mounted barrel jack. Revision
+  A selects `PSAC05A-050L6-R` and `PJ-102AH`; retain the on-board 500 mA PTC.
+- [ ] Decide whether SiPM pin 4 is grounded or floating. Recommendation: solder
+  it to quiet local analog ground with a short thermal-relief connection, not a
+  switching return. onsemi permits either connection and reports no dark-noise
+  difference; grounding gives the unused metal a defined potential, while
+  floating minimizes parasitic coupling and return-current paths.
 
 Interface and firmware:
 
-- [ ] Confirm the exact Cora Z7 variant and lock the matching constraints.
-- [ ] Choose direct Pmod mating or a cable, including connector mating view,
-  pin-1 convention, polarization, strain relief, and central-board support.
+- [x] Target the purchased Cora Z7-07S (`XC7Z007S-1CLG400C`) and use the archived
+  Cora Z7-07S master XDC as the constraint source.
+- [x] Use the Digilent `240-109` 2x6 Pmod cable and included gender changer so
+  the Cora remains reusable. Continuity-map it, mark pin 1 and both mating
+  orientations, provide strain relief, and leave Pmod 3.3 V pins 6/12 open.
 - [ ] Decide the short-pulse contingency before freezing the head schematic:
   characterize an equivalent front end, add an unpopulated pulse-stretcher
   option, or explicitly accept a board rework if `TRIG_OUT` is under 24 ns.
@@ -59,7 +63,7 @@ coincidences over misaligned and delayed controls?
 ```text
 protected 5 V input
   +-- local 3.3 V regulator ------------------------+-- both heads
-  +-- adjustable 27-29 V nominal SiPM bias --------+-- both heads
+  +-- adjustable 25.8-27.6 V nominal SiPM bias ----+-- both heads
   +-- diode-protected analog supply ----------------+-- both heads
 
 head A: scintillator -> SiPM -> gain -> comparator -> 3.3 V trigger A
@@ -92,7 +96,7 @@ current manufacturer package drawing and a 1:1 print against the physical part.
 | 1, anode | `SIPM_RAW` |
 | 2, fast output | No connect and no routed trace |
 | 3, cathode | `BIAS_LOCAL` |
-| 4, no connect | Soldered pad; ground or leave floating consistently |
+| 4, no connect | Soldered pad; pending decision above, same choice on both heads |
 | 5, center paddle | Mechanical clearance only; no copper, paste, or solder |
 
 The standard-output network is:
@@ -180,17 +184,42 @@ Provide labeled probe points for `BIAS_27V`, `BIAS_LOCAL`, `+5VA`,
 
 ### Power rails
 
-Use a separate, current-limited 5 V source through:
+The 5 V rail is required: it directly powers all four TPH2502 amplifier
+channels and the MAX5026 bias converter, and it feeds the TLV75533 regulator
+that powers all four TLV3502 comparator channels. The approximate normal load
+is 42 mA. A conservative design budget is 100 mA, including analog quiescent
+current, the bias converter, dividers, tolerance, and bring-up margin.
+
+| Load from the 5 V input | Typical | Conservative component allowance |
+|---|---:|---:|
+| Four TPH2502 amplifier channels | 26 mA | 48 mA |
+| Four TLV3502 comparator channels, through the LDO | 12.8 mA | 20 mA |
+| MAX5026, bias load, LDO, and dividers | about 3 mA | 15 mA |
+| **Expected / allocated total** | **about 42 mA** | **83 mA; use 100 mA budget** |
+
+Use a regulated Phihong `PSAC05A-050L6-R` 5 V, 1 A, Class II wall adapter and a
+Same Sky `PJ-102AH` board jack. The connection is center-positive; the adapter's
+5.5 x 2.1 mm plug mates with the jack's nominal 2.0 mm center pin. Feed it
+through:
 
 ```text
 5 V input -> 500 mA resettable fuse -> SS14 Schottky -> +5VA
 ```
 
-Use `B2B-XH-A`/`XHP-2` for input power. Put 10 uF and 100 nF at `+5VA`; include
-a clearly marked current link if space permits. A `TLV75533PDBVR`, with its
-datasheet capacitors, generates `+3V3_LOCAL`. Expected total load is comfortably
-below its 500 mA rating, but verify temperature and quiescent current on the
-assembled system.
+The adapter is specified at 5 V +/-5%; require 4.75-5.25 V at the jack under
+load. Put 10 uF and 100 nF at `+5VA`; include a clearly marked current link if
+space permits. A `TLV75533PDBVR`, with its datasheet capacitors, generates
+`+3V3_LOCAL`. The adapter's 1 A capability does not replace the on-board 500 mA
+PTC. For bench bring-up, begin with a 100 mA current limit and increase it only
+when measured load justifies doing so.
+
+Use a mostly unbroken ground plane on each PCB. The Class II detector supply is
+floating until the detector is connected to the Cora; Pmod pins 5 and 11 then
+provide the one intentional DC reference between detector ground and Cora
+ground. The several head-cable ground wires are nearby returns on that same net,
+not separately named grounds. Do not create split planes. An earth-referenced
+oscilloscope can introduce another ground bond during testing, so connect its
+ground deliberately and keep probe loops short.
 
 Do not allow either board to back-power the other through the Pmod. Test with
 the Cora off and detector on, then detector off and Cora on.
@@ -214,16 +243,38 @@ margin after the input Schottky diode and 5 V source tolerance.)
 | Boost diode | 60 V Schottky, >=0.5 A pulse capability |
 | Raw output | 2 x 1 uF / 50 V X7R, preferably 1206 |
 | Feedback top | 147 kohm, 0.1% |
-| Feedback bottom | 6.65 kohm, 0.1%, plus 500 ohm 10-turn rheostat |
+| Feedback bottom | 6.98 kohm, 0.1%, 25 ppm/deg C, plus 500 ohm 10-turn rheostat |
 | Distribution filter | 100 ohm, then 1 uF / 50 V and 10 nF / 100 V |
 | Discharge | 1 Mohm from filtered bias to ground |
 
 Tie the trimmer wiper to one end so a lost wiper does not open the feedback path.
-At the typical 1.25 V reference, the nominal span is about 27.0 V at 7.15 kohm
-and 28.9 V at 6.65 kohm. This is **not a hardware voltage clamp**: IC reference,
-resistor, and trimmer tolerances can move both endpoints. Start at maximum bottom
-resistance and set the output using a high-impedance meter. Never exceed the
-part's measured breakdown voltage plus 5.0 V.
+The MAX5026 relation, including feedback-pin current, is approximately:
+
+```text
+VOUT = VFB * (1 + RTOP / RBOTTOM) + IFB * RTOP
+```
+
+With 147 kohm and 6.98 kohm, the nominal span is about 25.83 V at 500 ohm trim
+and 27.59 V at zero trim, using typical 1.25 V `VFB` and 110 nA `IFB`. A 27.2 V
+setpoint requires approximately 105 ohm of trim using typical feedback current,
+before measurement corrections.
+
+For the normal-operation upper bound, use `VFB = 1.288 V`, `IFB = 310 nA`, the
+147 kohm resistor at +0.1%, the 6.98 kohm resistor at -0.1%, and opposing
+25 ppm/deg C temperature drift from 21 deg C to the specified 0 deg C lower
+limit. Treat the trimmer as 0 ohm in this maximum-output case; its resistance
+and tolerance can only lower the output while its wiper remains intact. The
+result is 28.54 V; use **28.55 V** as the documented bound over 0-40 deg C. At
+0 deg C, a minimum specified 24.2 V breakdown shifted by the 21.5 mV/deg C
+coefficient is about 23.75 V, leaving about 0.21 V below the recommended 5 V
+maximum overvoltage.
+
+This is a component-tolerance bound with the feedback path intact, not a clamp
+or a single-fault guarantee. An open or shorted feedback part can still produce
+an unsafe voltage. Start at maximum bottom resistance, measure with a
+high-impedance meter, and set 27.2 V. Do not operate below 0 deg C without
+recalculating the limit or lowering the measured bias, and never exceed the
+individual part's measured breakdown plus 5.0 V.
 
 Pull `SHDN` low with 100 kohm and use a labeled jumper or switch to connect it
 to `+5VA`. Shutdown stops switching but does not isolate the output; the
@@ -264,9 +315,10 @@ finished instrument.
 
 ### Cora Z7 interface
 
-Connect to JA with an independently supported 2x6, 2.54 mm Pmod-compatible
-right-angle male header or a fully continuity-mapped cable. JA is unkeyed, so
-the mating view and pin-1 marking are release-critical.
+Connect to JA using the Digilent `240-109` 6-inch 2x6 Pmod cable and its included
+gender changer, with a 2x6, 2.54 mm male header on the power/interface board.
+JA is unkeyed, so the continuity map, both mating views, pin-1 marking, and cable
+strain relief are release-critical. Do not use loose flywires.
 
 | Pmod pin | Connection |
 |---:|---|
@@ -304,9 +356,9 @@ that local 3.3 V is open-circuit to Pmod pins 6 and 12.
 
 ## FPGA and data path
 
-The direct Cora Z7 PL clock is 125 MHz on H16. For Cora Z7-07S and 10, official
-constraints map JA[0] to Y18 and JA[1] to Y19; nevertheless confirm the exact
-board variant and connector before synthesis.
+The purchased Cora Z7-07S uses `XC7Z007S-1CLG400C`. Its direct PL clock is
+125 MHz on H16, and its official constraints map JA[0] to Y18 and JA[1] to Y19.
+Use the archived 07S master XDC; do not substitute the Cora Z7-10 constraints.
 
 ```tcl
 set_property -dict { PACKAGE_PIN H16 IOSTANDARD LVCMOS33 } [get_ports { clk }]
@@ -390,16 +442,8 @@ waveforms are not representative there.
 
 ## Primary sources
 
-- [onsemi C-Series SiPM datasheet](https://www.onsemi.com/pdf/datasheet/microc-series-d.pdf)
-  and [bias/readout note AND9782/D](https://www.onsemi.com/download/application-notes/pdf/and9782-d.pdf)
-- [Analog Devices MAX5025-MAX5028 datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf)
-- [3PEAK TPH2502 product page](https://www.3peak.com/high-speed-op-amps/tph2502)
-  and [datasheet](https://static.3peak.com/res/doc/ds/Datasheet_TPH2501-TPH2502-TPH2503-TPH2504.pdf)
-- [TI TLV3502 datasheet](https://www.ti.com/lit/gpn/TLV3502) and
-  [TLV755P datasheet](https://www.ti.com/lit/gpn/TLV755P)
-- [Digilent Cora Z7-07S constraints](https://github.com/Digilent/digilent-xdc/blob/master/Cora-Z7-07S-Master.xdc),
-  [Cora Z7-10 constraints](https://github.com/Digilent/digilent-xdc/blob/master/Cora-Z7-10-Master.xdc),
-  and [Pmod interface specification](https://digilent.com/reference/_media/reference/pmod/pmod-interface-specification-1_3_0.pdf)
-- [CosmicWatch v3X paper](https://arxiv.org/html/2508.12111) and
-  [reference repository](https://github.com/spenceraxani/CosmicWatch-Desktop-Muon-Detector-v3X)
-- [KiCad 10.0 CLI documentation](https://docs.kicad.org/10.0/en/cli/cli.html)
+Part, connector, and board documentation is archived and mapped to exact
+manufacturer numbers in [`docs/datasheets/README.md`](datasheets/README.md).
+Background references remain the [CosmicWatch v3X paper](https://arxiv.org/html/2508.12111)
+and [reference repository](https://github.com/spenceraxani/CosmicWatch-Desktop-Muon-Detector-v3X).
+Tool behavior follows the [KiCad 10.0 CLI documentation](https://docs.kicad.org/10.0/en/cli/cli.html).
