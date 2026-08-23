@@ -1,0 +1,17 @@
+*.kicad_pro text eol=lf
+*.kicad_sch text eol=lf
+*.kicad_pcb text eol=lf
+*.kicad_sym text eol=lf
+*.kicad_mod text eol=lf
+*.kicad_dru text eol=lf
+*.step binary
+*.stp binary
+*.wrl binary
+*.stl binary
+*.3mf binary
+*.FCStd binary
+*.blend binary
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary

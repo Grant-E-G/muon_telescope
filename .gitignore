@@ -1,9 +1,44 @@
+# Secrets and local configuration
 .env
 .env.*
-*.log
+
+# Editors and operating systems
 .DS_Store
+*.swp
+*.tmp
+*~
+
+# Python, Rust, and general build products
 __pycache__/
+*.py[cod]
 .venv/
+.mypy_cache/
+.pytest_cache/
+target/
 node_modules/
 dist/
-build/
+/build/
+*.log
+
+# Vivado generated state and implementation output
+.Xil/
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+
+# KiCad local state, locks, autosave, and unreviewed generated output
+*.kicad_prl
+fp-info-cache
+*-backups/
+~*.lck
+_autosave-*
+*.kicad_wks-bak
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.lps
+
+# Large local measurements; curated files can live directly under data/
+/data/local/
