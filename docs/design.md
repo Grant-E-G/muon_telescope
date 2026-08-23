@@ -4,6 +4,52 @@ Status: **engineering prototype; not released for fabrication**. This document
 is the reviewed design intent. Values are defaults for the first PCB unless a
 measured result and review change them here and in KiCad together.
 
+## Pre-KiCad decision checklist
+
+These decisions affect connectivity, footprints, or board geometry. Resolve
+them here before schematic capture; do not leave them as annotations to fix
+during layout.
+
+Power and bias:
+
+- [x] Use `MAX5026`, not `MAX5028`: both accept 3-11 V, but the MAX5026 has an
+  externally adjustable output while the MAX5028 has an internal divider for a
+  fixed nominal 30 V output. Device-specific SiPM bias must be adjustable.
+- [ ] Define what `BIAS_ENABLE = off` must mean. Recommendation for revision A:
+  accept a rail near the 5 V input while detector power remains on because it is
+  safely below SiPM breakdown; require removal of detector 5 V plus the bleeder
+  and a meter check before handling. If true 0 V is required while the analog
+  rails remain powered, add a default-off input switch that disconnects both
+  MAX5026 `VCC` and the inductor branch.
+- [ ] Recalculate the feedback-divider and trimmer endpoints using MAX5026
+  reference, resistor, and trimmer worst cases. Decide whether measured setup is
+  sufficient or whether the component values must impose a conservative
+  worst-case upper bound.
+- [ ] Select the actual protected 5 V source and remote-end connector, then
+  define its tolerance, current limit, polarity, and grounding.
+- [ ] Decide whether SiPM pin 4 is grounded or floating; use the same choice on
+  both heads and document the layout reason.
+
+Interface and firmware:
+
+- [ ] Confirm the exact Cora Z7 variant and lock the matching constraints.
+- [ ] Choose direct Pmod mating or a cable, including connector mating view,
+  pin-1 convention, polarization, strain relief, and central-board support.
+- [ ] Decide the short-pulse contingency before freezing the head schematic:
+  characterize an equivalent front end, add an unpopulated pulse-stretcher
+  option, or explicitly accept a board rework if `TRIG_OUT` is under 24 ns.
+- [ ] Freeze the minimum logged counter/register map and the delayed-coincidence
+  method so host logging and RTL agree before detector data is collected.
+
+Physical and procurement inputs:
+
+- [ ] Confirm the scintillator material, all three dimensions, edge finish, and
+  optical-coupling face with the seller.
+- [ ] Freeze head and central board outlines, mounting holes, optical pressure
+  method, cable exits, and the adjustable-frame interfaces.
+- [ ] Obtain or print-check physical samples of the SiPM, trimmers, JST headers,
+  Pmod header, and other unusual footprints before PCB release.
+
 ## Scope and architecture
 
 Revision A answers a narrow question: can two small scintillators produce stable
@@ -153,6 +199,14 @@ the Cora off and detector on, then detector off and Cora on.
 
 Use `MAX5026EUT+T` in the manufacturer's adjustable step-up topology.
 
+`MAX5028` is not an equivalent fixed-value simplification. It replaces the
+external feedback divider with an internal nominal 30 V setting, specified at
+approximately 29-31 V. That can exceed the recommended 5 V overvoltage for a
+24.2 V-breakdown SiPM and cannot be tuned for device or temperature variation.
+The `MAX5026` retains the same 3-11 V input range but exposes the 1.25 V feedback
+node. (`MAX5025` is also adjustable, but its 4.5 V minimum input gives less
+margin after the input Schottky diode and 5 V source tolerance.)
+
 | Function | Revision A value |
 |---|---|
 | Input bypass | 4.7 uF / 16 V X7R plus 100 nF |
@@ -175,6 +229,14 @@ Pull `SHDN` low with 100 kohm and use a labeled jumper or switch to connect it
 to `+5VA`. Shutdown stops switching but does not isolate the output; the
 inductor and diode can leave the output near the input voltage. Always measure
 the rail and wait for the bleeder before handling it.
+
+The 1 Mohm bleeder discharges stored charge after the boost branch loses input
+power; it does not eliminate diode feed-through while `+5VA` is present. At
+27 V it draws only 27 uA, and at a fed-through 5 V it draws only 5 uA—far too
+little to pull down a source that can deliver milliamps. With roughly 3-5 uF of
+distributed nominal bias capacitance, the first-order discharge time constant
+is roughly 3-5 seconds, subject to MLCC DC derating and connected heads. Measure
+the real time to the chosen handling threshold.
 
 Expose `HV_RAW`, `BIAS_27V`, `FB`, `SHDN`, and adjacent grounds. Keep the IC,
 inductor, diode, and first output capacitor in a very small switching loop. Keep

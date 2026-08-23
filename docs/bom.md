@@ -17,7 +17,7 @@ oscilloscope, soldering equipment, ESD supplies, and ordinary tools are excluded
 | 6 mm, 35 um SiPM | onsemi `MICROFC-60035-SMT-TR` | custom SMT | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/onsemi/MICROFC-60035-SMT-TR/9742618), [datasheet](https://www.onsemi.com/pdf/datasheet/microc-series-d.pdf) | $24.25 |
 | Dual high-speed amplifier | 3PEAK `TPH2502-SR` | SOP-8 | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/3peak/TPH2502-SR/22229182), [datasheet](https://static.3peak.com/res/doc/ds/Datasheet_TPH2501-TPH2502-TPH2503-TPH2504.pdf) | $1.12 |
 | Dual fast comparator | TI `TLV3502AIDR` | SOIC-8 | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TLV3502AIDR/1669430), [datasheet](https://www.ti.com/lit/gpn/TLV3502) | $5.15 |
-| Adjustable boost controller | ADI/Maxim `MAX5026EUT+T` | SOT-23-6 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/analog-devices-inc-maxim-integrated/MAX5026EUT-T/1516355), [datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf) | $1.95 |
+| Adjustable boost controller | ADI/Maxim `MAX5026EUT+T`; DigiKey cut-tape SKU `MAX5026EUT+TCT-ND` | SOT-23-6 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/analog-devices-inc-maxim-integrated/MAX5026EUT-T/1516355), [datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf) | $1.95 |
 | 3.3 V, 500 mA LDO | TI `TLV75533PDBVR` | SOT-23-5 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TLV75533PDBVR/9356541), [datasheet](https://www.ti.com/lit/gpn/TLV755P) | $0.75 |
 | 47 uH shielded inductor | Bourns `SRN6045-470M` | 6 x 6 mm SMT | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/bourns-inc/SRN6045-470M/2756124) | $0.60 |
 | 60 V boost Schottky | onsemi `SS16HE` | SMA | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/onsemi/SS16HE/6009714) | $0.59 |
@@ -29,6 +29,9 @@ oscilloscope, soldering equipment, ESD supplies, and ordinary tools are excluded
 
 The two DNP clamps are optional prototypes, not default assembly. If budget
 allows, a third SiPM adds $24.25 and is the most useful active-part spare.
+Distributor suffixes describe packaging, not different silicon: `CT-ND` is
+DigiKey cut tape, `TR-ND` is the full tape-and-reel option, and `DKR-ND` is a
+Digi-Reel. Keep `MAX5026EUT+T` as the manufacturer number in KiCad.
 
 ## Resistors
 
