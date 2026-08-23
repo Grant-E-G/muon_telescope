@@ -5,17 +5,22 @@ stages depend on earlier measurements. Record instrument serials, board/firmware
 commit, actual voltages, scope settings, and photographs in the run notes rather
 than creating a separate form for every test.
 
-## Before buying or ordering boards
+## Before buying remaining parts or ordering boards
 
-- [ ] Confirm each marketplace scintillator is actually approximately
-  50 mm x 50 mm x 10 mm; the listing title alone is ambiguous.
+- [x] Purchased two seller-cut BC-408 blocks, approximately 50 x 50 x 10 mm,
+  seller model `BC408-505010-1FP`, with one 50 x 50 mm face polished.
+- [x] Provenance concern resolved: the seller describes these as virgin BC-408
+  water-saw cut from a large block rather than reclaimed material.
+- [ ] On receipt, verify two matched, undamaged 50 x 50 x 10 mm blocks; identify
+  the polished face; photograph their condition; and resolve a material,
+  geometry, or finish mismatch before assembly.
 - [ ] Measure or obtain the breakdown-voltage marking/data for each SiPM.
 - [x] Purchased board confirmed as Cora Z7-07S; use and review the archived 07S
   master XDC.
 - [ ] Verify every BOM line against stock, lifecycle, package, and distributor
   listing on the purchase day.
-- [ ] Confirm every selected BOM part is mapped to its current primary document
-  in `docs/datasheets/README.md`; replace stale local copies when parts change.
+- [x] Every currently selected planning-BOM part is mapped to its primary
+  document in `docs/datasheets/README.md`; recheck when any part changes.
 - [ ] Create both KiCad 10.0.5 projects and project-local library tables.
 - [ ] Check the SiPM symbol, footprint, orientation, and no-solder center paddle
   independently against the current datasheet and physical part.
@@ -40,7 +45,13 @@ Use a scope-verified 0-3.3 V pulse source; never put 5 V logic on JA.
   relative delay.
 - [ ] Confirm singles equal source pulses and a long input produces one edge.
 - [ ] Confirm the 504 ns bring-up and 104 ns normal window boundaries.
+- [ ] Verify a 13-cycle edge separation is accepted, 14 is rejected, and the
+  prompt and delayed engines have independent 125-cycle lockouts.
+- [ ] Verify the 125,000-clock read-before-write delay memory, its 1 ms valid
+  transition, reset/refill behavior, and comparison against a software model.
 - [ ] Confirm coherent AXI-Lite snapshots and one-second host CSV output.
+- [ ] Exercise every documented register, rejected configuration writes,
+  sticky-error clearing, atomic 64-bit rollover snapshots, and sequence changes.
 - [ ] Leave both inputs low when disconnected; investigate any idle counts.
 
 Gate: the logged counts must agree with generator counts and timing cases before
@@ -72,8 +83,9 @@ discharge time must be recorded before attaching a head.
 
 ## Stage 3: each detector head without a SiPM
 
-Fit power, TPH2502, TLV3502, passive networks, headers, and test points. Leave
-the SiPM and optional DNP parts absent.
+Fit power, TPH2502, TLV3502, SN74LVC1G123, passive networks, headers, and test
+points. Fit `R_STRETCH` and leave `R_DIRECT`, the SiPM, and other DNP parts
+absent.
 
 - [ ] Continuity-map the head cable pin 1 to pin 1 and verify adjacent ground
   returns. Label that cable; do not rely on wire color alone.
@@ -85,7 +97,7 @@ the SiPM and optional DNP parts absent.
   comparator output, and the far end of the trigger cable using short probe
   grounds.
 - [ ] Confirm gain, polarity, threshold behavior, hysteresis, trigger amplitude,
-  ringing, and pulse width. Target at least 24 ns trigger-high time.
+  and ringing. Confirm `COMP_RAW` is at least 3 ns and `TRIG_OUT` is 150-250 ns.
 - [ ] Confirm the Cora counts injected singles and coincidences through each
   complete head/cable/channel path.
 
@@ -96,7 +108,8 @@ hysteresis parts unless measurements justify and document those changes.
 
 Handle the SiPM with ESD controls. Clean the footprint, inspect under
 magnification, align pin 1, solder only the allowed pads, and confirm that the
-pin 5 paddle has no solder bridge or paste.
+pin 4 terminal is soldered to ground and the pin 5 paddle has no solder bridge
+or paste.
 
 With the assembly dark and the bias disabled:
 
@@ -106,8 +119,9 @@ With the assembly dark and the bias disabled:
 - [ ] Enable at a conservative current limit while watching supply current.
 - [ ] Observe dark pulses at `SIPM_RAW` and `AMP_OUT`; illuminate only weakly and
   briefly to confirm the response direction.
-- [ ] Couple the sensor with a thin, bubble-free grease layer and gentle,
-  repeatable pressure. Add reflective wrap, then a fully opaque layer.
+- [ ] Couple the sensor at the center of the polished 50 x 50 mm face with a thin,
+  bubble-free grease layer. Verify the compliant clamp's hard stops provide
+  gentle, repeatable pressure. Add reflective wrap, then a fully opaque layer.
 - [ ] Compare a covered dark rate before and after pressing, wrapping, and cable
   movement; mechanical motion must not create an apparent detector signal.
 
@@ -165,14 +179,17 @@ the ringing it appears to diagnose.
 | Comparator always high | Compare `AMP_OUT` baseline to measured `VTH` | Threshold below baseline or comparator inputs reversed |
 | Comparator never fires | Lower `VTH` safely and probe comparator pins | Wrong polarity, missing supply, insufficient gain, clamped input, wrong package orientation |
 | Multiple trigger edges per pulse | Observe analog and digital together | Threshold chatter/ringing; fix layout/noise before optional external hysteresis |
+| `COMP_RAW` works but `TRIG_OUT` does not | Check one-shot supply, A low, CLR high, B input, timing parts, and selection links | Wrong DCT pinout, missing 2k/27pF, `R_STRETCH` open, or both selection links fitted |
+| Stretched trigger outside 150-250 ns | Measure 2k and 27pF; probe one-shot timing pins with low capacitance | Wrong timing value, excessive probe capacitance, solder fault, or incorrect footprint |
 | Trigger good at head, bad at Cora | Scope both cable ends; continuity-map pins | Cable mapping, missing common ground, Pmod rotation, connector ringing |
 | FPGA counts an unplugged input | Measure pulldown and actual JA pin | Missing 10k pulldown, wrong constraint, EMI, floating ground |
-| FPGA misses visible pulses | Measure high time at Pmod against 8 ns clock | Pulse too narrow for synchronous capture; stretch it or review asynchronous capture |
+| FPGA misses visible pulses | Measure `COMP_RAW`, `TRIG_OUT`, and both Pmod ends against the 8 ns clock | One-shot not selected, trigger below 150 ns, cable fault, wrong pin constraint, or synchronizer/edge-detector bug |
 | One physical pulse counts repeatedly | Compare synchronized level and edge pulse | Level counting instead of rising-edge counting, bad synchronizer, or clear logic |
 | False event at reset/clear | Simulate and observe input level during command | Edge detector history not reset coherently or clear applied while high |
 | Singles work, no injected coincidence | Split one source, use 504 ns window, inspect timestamps | Channel swap, window boundary bug, lockout bug, unequal path delay |
 | Injected coincidence works, cosmic does not | Threshold, optical coupling, geometry, sensor response | Misalignment, light collection, window too short, excessive threshold |
 | Prompt equals delayed | Verify delay implementation, raise threshold, reduce noise | Accidentals dominate, light leak, delayed samples overlap, or no real common events |
+| Delayed count invalid or discontinuous | Check delay-valid status, snapshot baseline, reset history, and sticky errors | Logging started before the 1 ms fill, delay memory is not read-before-write, or configuration changed while enabled |
 | Rate follows room light | Move flashlight over every seam | Incomplete opaque wrap or light through cable/PCB opening |
 | Rate changes with temperature | Record temperature and measured bias | SiPM breakdown/gain drift; compare equal-temperature runs or add future compensation |
 | Two heads differ strongly | Swap complete head cables at central board | If fault follows head: optics/analog; if it stays: cable/central/FPGA channel |
@@ -201,9 +218,12 @@ Schematic and libraries:
 - [ ] Every IC pin and connector mating view matches a current primary source.
 - [ ] Every selected part has its available primary documentation and exact-MPN
   mapping under `docs/datasheets/`.
-- [ ] SiPM pin 2 has no-connect/no trace and pin 5 has no copper/paste/solder.
+- [ ] SiPM pin 2 has no-connect/no trace, pin 4 has its short ground connection,
+  and pin 5 has no copper/paste/solder.
 - [ ] Unused IC channels, Pmod inputs, `SHDN`, and trimmer failure state are
   defined.
+- [ ] Each head has `R_STRETCH` fitted and `R_DIRECT` absent; the one-shot timing
+  path and its test points match `docs/design.md`.
 - [ ] Power flags and intentional ERC exceptions are reviewed and documented.
 - [ ] Test points support every staged measurement above.
 

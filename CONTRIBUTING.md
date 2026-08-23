@@ -27,8 +27,9 @@ hardware/power_interface/power_interface.kicad_pro
 
 The custom SiPM footprint is release-critical. Verify its pad numbers against
 the current onsemi package drawing, print it at 1:1, and check the physical
-part. Pin 4 is soldered, pin 2 is the unused fast output, and the center paddle
-(pin 5) must receive neither solder nor paste.
+part. Pin 2 is the unused fast output, pin 4 is soldered to the shared ground
+plane through a short thermal relief, and the center paddle (pin 5) receives
+neither solder nor paste. Do not create a separate analog-ground island.
 
 ## Git workflow
 

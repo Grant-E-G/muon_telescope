@@ -26,11 +26,10 @@ Power and bias:
 - [x] Power the detector from a regulated, floating/Class II, center-positive
   5 V adapter rated at least 0.5 A through a board-mounted barrel jack. Revision
   A selects `PSAC05A-050L6-R` and `PJ-102AH`; retain the on-board 500 mA PTC.
-- [ ] Decide whether SiPM pin 4 is grounded or floating. Recommendation: solder
-  it to quiet local analog ground with a short thermal-relief connection, not a
-  switching return. onsemi permits either connection and reports no dark-noise
-  difference; grounding gives the unused metal a defined potential, while
-  floating minimizes parasitic coupling and return-current paths.
+- [x] Solder SiPM pin 4 to the shared ground plane through a short thermal-relief
+  connection. This is the same ground net used by the sense resistor and head
+  connector, not a separate analog-ground island. Keep switching and digital
+  return currents away from the sensor by placement.
 
 Interface and firmware:
 
@@ -39,18 +38,29 @@ Interface and firmware:
 - [x] Use the Digilent `240-109` 2x6 Pmod cable and included gender changer so
   the Cora remains reusable. Continuity-map it, mark pin 1 and both mating
   orientations, provide strain relief, and leave Pmod 3.3 V pins 6/12 open.
-- [ ] Decide the short-pulse contingency before freezing the head schematic:
-  characterize an equivalent front end, add an unpopulated pulse-stretcher
-  option, or explicitly accept a board rework if `TRIG_OUT` is under 24 ns.
-- [ ] Freeze the minimum logged counter/register map and the delayed-coincidence
-  method so host logging and RTL agree before detector data is collected.
+- [x] Populate a `SN74LVC1G123DCTR` one-shot after each comparator, nominally
+  stretching every trigger to about 200 ns. Provide mutually exclusive 0 ohm
+  selection links for stretched (default) or direct comparator output. This
+  removes the need for a pre-PCB equivalent-front-end characterization.
+- [x] Use the register map and logger sequence specified below. Implement the
+  delayed coincidence in PL by delaying channel B exactly 125,000 clocks (1 ms) in
+  a one-bit circular memory and applying the same coincidence algorithm and
+  independent lockout used for prompt events.
 
 Physical and procurement inputs:
 
-- [ ] Confirm the scintillator material, all three dimensions, edge finish, and
-  optical-coupling face with the seller.
-- [ ] Freeze head and central board outlines, mounting holes, optical pressure
-  method, cable exits, and the adjustable-frame interfaces.
+- [x] Use the purchased pair of seller-cut BC-408 blocks, each approximately
+  50 x 50 x 10 mm (`BC408-505010-1FP`). The listing specifies one polished
+  50 x 50 mm face; the opposite face and sides are smooth water-saw cuts.
+- [x] The scintillator provenance decision is resolved. The seller describes
+  these blocks as virgin material water-saw cut from a large BC-408 block, not
+  reclaimed pieces. Inspect the delivered parts against the listing before
+  removing the option to return or report a mismatch.
+- [x] Couple the 6 mm SiPM at the center of the polished 50 x 50 mm face with a
+  thin grease layer. Use a compliant clamp with hard stops so pressure is
+  repeatable and the sensor package is not the structural stop.
+- [ ] Freeze head and central board outlines, mounting holes, cable exits, and
+  adjustable-frame interfaces around that coupling arrangement.
 - [ ] Obtain or print-check physical samples of the SiPM, trimmers, JST headers,
   Pmod header, and other unusual footprints before PCB release.
 
@@ -66,8 +76,8 @@ protected 5 V input
   +-- adjustable 25.8-27.6 V nominal SiPM bias ----+-- both heads
   +-- diode-protected analog supply ----------------+-- both heads
 
-head A: scintillator -> SiPM -> gain -> comparator -> 3.3 V trigger A
-head B: scintillator -> SiPM -> gain -> comparator -> 3.3 V trigger B
+head A: scintillator -> SiPM -> gain -> comparator -> one-shot -> trigger A
+head B: scintillator -> SiPM -> gain -> comparator -> one-shot -> trigger B
 triggers -> Cora Z7 JA -> synchronization -> coincidence -> PS/USB log
 ```
 
@@ -84,7 +94,7 @@ through a broad geometric aperture.
 ## Detector-head circuit
 
 Build two copies around an onsemi `MICROFC-60035-SMT-TR`, one dual
-`TPH2502-SR`, and one dual `TLV3502AIDR`.
+`TPH2502-SR`, one dual `TLV3502AIDR`, and one `SN74LVC1G123DCTR`.
 
 ### SiPM footprint and bias
 
@@ -96,7 +106,7 @@ current manufacturer package drawing and a 1:1 print against the physical part.
 | 1, anode | `SIPM_RAW` |
 | 2, fast output | No connect and no routed trace |
 | 3, cathode | `BIAS_LOCAL` |
-| 4, no connect | Soldered pad; pending decision above, same choice on both heads |
+| 4, no connect | Soldered to the shared ground plane through a thermal relief |
 | 5, center paddle | Mechanical clearance only; no copper, paste, or solder |
 
 The standard-output network is:
@@ -108,9 +118,14 @@ BIAS_27V -- 100 ohm --+-- pin 3
 
 pin 1 -- SIPM_RAW -- 49.9 ohm -- GND
                   +-- 100 nF -- amplifier input
+
+pin 4 -- short thermal relief -- shared GND plane
 ```
 
 The 49.9 ohm sense resistor favors pulse amplitude in this low-rate instrument.
+Do not short pin 1 directly to the plane: its voltage across this resistor is
+the standard-output signal. Pin 4, by contrast, is the package's no-connect
+terminal and is grounded directly only to give it a defined potential.
 onsemi typically shows 10 ohm for the 6 mm device to improve recovery; preserve
 a documented 10.0 ohm stuffing option. Leave the unused fast output physically
 short and floating. Put the 10 nF cathode capacitor and its return immediately
@@ -144,12 +159,21 @@ and 4.7 uF nearby. The feedback loop must be compact.
 
 ### Threshold and trigger
 
-Power the TLV3502 from `+3V3_LOCAL`:
+Power the TLV3502 and trigger one-shot from `+3V3_LOCAL`:
 
 ```text
 AMP_OUT -- 1.00 kohm -- comparator A non-inverting input
 VTH ------------------ comparator A inverting input
-comparator A output -- 100 ohm -- TRIG_OUT
+comparator A output ------------------------------ COMP_RAW
+
+COMP_RAW -- SN74LVC1G123 B input
+GND -------------------------------- A input
++3V3_LOCAL -------------------------- CLR input
++3V3_LOCAL -- 2.00 kohm --+---------- Rext/Cext
+                           +-- 27 pF -- Cext
+
+SN74LVC1G123 Q -- 0 ohm R_STRETCH (fitted) --+-- 100 ohm -- TRIG_OUT
+COMP_RAW -------- 0 ohm R_DIRECT (DNP) ------+
 ```
 
 The 1 kohm input resistor limits current when the amplifier exceeds the
@@ -158,6 +182,18 @@ unless testing justifies their added capacitance. The TLV3502 already provides
 about 6 mV internal hysteresis. Include a DNP 330 kohm positive-feedback
 footprint only for measured chatter. Hold the unused comparator in a defined
 state: non-inverting input to ground, inverting input to 3.3 V, output open.
+
+Use TI `SN74LVC1G123DCTR` in its 8-pin DCT/SM8 package with 100 nF local
+decoupling. TI characterizes 170-200 ns output pulses at 3.3 V with 2 kohm and
+28 pF over -40 to 125 deg C; the selected stocked 27 pF C0G part gives a similar
+nominal pulse. Accept 150-250 ns at `TRIG_OUT` during bring-up. The B input has a
+3 ns minimum trigger-pulse requirement at 3.3 V. Preserve test access to
+`COMP_RAW` so that requirement can be checked on the real board.
+
+`R_STRETCH` and `R_DIRECT` are mutually exclusive. Populate only
+`R_STRETCH` for revision A. The direct path may be selected later only after
+measuring `COMP_RAW` at 24 ns or longer; never populate both links because the
+comparator and one-shot outputs would contend.
 
 Generate an adjustable threshold of approximately 0-0.53 V:
 
@@ -177,7 +213,7 @@ Provide a two-pin injection header: generator signal through 499 ohm to
 level and polarity on a scope before connecting it to a biased sensor.
 
 Provide labeled probe points for `BIAS_27V`, `BIAS_LOCAL`, `+5VA`,
-`+3V3_LOCAL`, `VBASE`, `SIPM_RAW`, `AMP_OUT`, `VTH`, comparator output,
+`+3V3_LOCAL`, `VBASE`, `SIPM_RAW`, `AMP_OUT`, `VTH`, `COMP_RAW`,
 `TRIG_OUT`, and close ground loops at both analog nodes.
 
 ## Power/interface circuit
@@ -186,16 +222,18 @@ Provide labeled probe points for `BIAS_27V`, `BIAS_LOCAL`, `+5VA`,
 
 The 5 V rail is required: it directly powers all four TPH2502 amplifier
 channels and the MAX5026 bias converter, and it feeds the TLV75533 regulator
-that powers all four TLV3502 comparator channels. The approximate normal load
-is 42 mA. A conservative design budget is 100 mA, including analog quiescent
-current, the bias converter, dividers, tolerance, and bring-up margin.
+that powers all four TLV3502 comparator channels and both trigger one-shots.
+The approximate normal load remains about 43 mA. A conservative design budget
+is 100 mA, including analog quiescent current, the bias converter, dividers,
+tolerance, and bring-up margin.
 
 | Load from the 5 V input | Typical | Conservative component allowance |
 |---|---:|---:|
 | Four TPH2502 amplifier channels | 26 mA | 48 mA |
 | Four TLV3502 comparator channels, through the LDO | 12.8 mA | 20 mA |
+| Two SN74LVC1G123 one-shots, through the LDO | under 0.1 mA idle | 1 mA active allowance |
 | MAX5026, bias load, LDO, and dividers | about 3 mA | 15 mA |
-| **Expected / allocated total** | **about 42 mA** | **83 mA; use 100 mA budget** |
+| **Expected / allocated total** | **about 43 mA** | **84 mA; use 100 mA budget** |
 
 Use a regulated Phihong `PSAC05A-050L6-R` 5 V, 1 A, Class II wall adapter and a
 Same Sky `PJ-102AH` board jack. The connection is center-positive; the adapter's
@@ -345,9 +383,10 @@ that local 3.3 V is open-circuit to Pmod pins 6 and 12.
   clearance around the bias rail and keep flux residue out of its feedback path.
 - Stop layout review for an ambiguous connector view, crossed ground return,
   long amplifier feedback path, large switch node, or unverified footprint.
-- Couple the 6 mm active area near the center of one polished 10 mm x 50 mm edge
-  of a 50 mm x 50 mm x 10 mm plastic scintillator. Use a thin, bubble-free
-  optical-grease layer and gentle compliant pressure. Wrap the other surfaces
+- Design for the selected 50 x 50 x 10 mm block. Center the 6 mm SiPM on its
+  polished 50 x 50 mm face with a thin, bubble-free optical-grease
+  layer. Use a compliant clamp and hard stops for gentle, repeatable pressure;
+  do not make the SiPM package the structural stop. Wrap the other surfaces
   first in reflective material, then in a fully opaque layer; electrically
   insulate conductive foil from the PCB. Do not rely on tape tension to load
   the package.
@@ -368,12 +407,13 @@ set_property -dict { PACKAGE_PIN Y19 IOSTANDARD LVCMOS33 } [get_ports { pulse_b_
 ```
 
 Each input needs a two-flop `ASYNC_REG` synchronizer followed by rising-edge
-detection. Count 64-bit A singles, B singles, prompt coincidences, and live
-ticks. A first edge opens a one-sided window in which the other edge is accepted;
-simultaneous edges count once. A 13-cycle starting window is 104 ns at 125 MHz.
-Use 63 cycles (504 ns) for first hardware tests, then shorten it after measuring
-the comparator pulse and relative latency. An accepted coincidence starts a
-125-cycle (1 us) lockout; singles continue counting.
+detection. Count 64-bit A singles, B singles, prompt and delayed coincidences,
+free-running FPGA ticks, and enabled live ticks. A first edge opens a one-sided
+window in which the other edge is accepted; simultaneous edges count once. The
+default maximum edge separation is 13 cycles, or 104 ns at 125 MHz. Use 63
+cycles (504 ns) for first hardware tests, then shorten it after measuring the
+relative path latency. An accepted coincidence starts a 125-cycle lockout;
+singles continue counting.
 
 Compute timing without 32-bit overflow or truncation:
 
@@ -391,9 +431,9 @@ localparam longint unsigned WINDOW_CYCLES = ns_to_cycles(WINDOW_NS);
 Assert that derived counts are nonzero. Simulate A-only, B-only, simultaneous,
 both window boundaries, lockout, long pulses, counter clear, reset release, and
 counter rollover/snapshot behavior. A two-flop synchronizer does not guarantee
-capture of a pulse shorter than one destination clock; measure the comparator
-pulse and require at least 24 ns for comfortable bring-up. If it is shorter,
-stretch it in hardware or use a reviewed asynchronous capture scheme.
+capture of a pulse shorter than one destination clock. The populated one-shot
+therefore targets 150-250 ns at `TRIG_OUT`; the 24 ns requirement applies only
+if the direct-output assembly option is deliberately selected later.
 
 The minimum useful data path is not just RTL counters:
 
@@ -402,15 +442,70 @@ The minimum useful data path is not just RTL counters:
 3. Emit a one-second CSV summary over the existing USB/UART connection.
 4. Add an event FIFO only if timestamp-level analysis is later justified.
 
-One-second records contain `utc_time`, `fpga_ticks`, `singles_a`, `singles_b`,
-`prompt_coinc`, `delayed_coinc`, and `live_ticks`. Leave `delayed_coinc` empty—not
-zero—until a validated offset mode exists. That mode may use a timestamp queue in
-PL or an event stream analyzed by software; it must not overlap the prompt
-sample. Run metadata records board and firmware revisions, actual
-clock/window/lockout, measured bias and thresholds, temperature, paddle
-separation and angle, location label, and notes. Bias, threshold, temperature,
-angle, and separation are manually measured in revision A; do not present them
-as FPGA telemetry.
+### AXI-Lite register contract
+
+Use a 32-bit, word-aligned AXI-Lite slave. Multiword counters are coherent
+because software reads only the latched snapshot bank, low word first. Reserved
+bits read zero and writes to them have no effect.
+
+| Offset | Access | Register and revision A behavior |
+|---:|:---:|---|
+| `0x00` | RO | `DESIGN_ID = 0x4D554F4E` (`MUON`) |
+| `0x04` | RO | `VERSION = 0x00010000` (major 1, minor 0) |
+| `0x08` | RW | `CONTROL`: bit 0 `ENABLE` |
+| `0x0C` | WO | `COMMAND`: bit 0 `SNAPSHOT`, bit 1 `CLEAR`; write-one pulses |
+| `0x10` | RO | `STATUS`: bit 0 enabled, bit 1 delay valid, bit 2 snapshot valid, bit 3 configuration error |
+| `0x14` | RW | `WINDOW_CYCLES`, default 13; valid 1-65535 while disabled |
+| `0x18` | RW | `LOCKOUT_CYCLES`, default 125; valid 0-65535 while disabled |
+| `0x1C` | RO | `DELAY_CYCLES = 125000` |
+| `0x20` | RO | `SNAPSHOT_SEQ`, increments after each atomic snapshot |
+| `0x28/2C` | RO | snapshot `FPGA_TICKS`, low/high; free-running from PL reset |
+| `0x30/34` | RO | snapshot `LIVE_TICKS`, low/high; increments while enabled |
+| `0x38/3C` | RO | snapshot `SINGLES_A`, low/high |
+| `0x40/44` | RO | snapshot `SINGLES_B`, low/high |
+| `0x48/4C` | RO | snapshot `PROMPT_COINC`, low/high |
+| `0x50/54` | RO | snapshot `DELAYED_COINC`, low/high |
+| `0x58` | RW1C | `ERROR_FLAGS`: bit 0 rejected command or configuration write |
+
+All event and live counters are unsigned 64-bit wrapping counters. `CLEAR` is
+accepted only while disabled; it clears those counters, snapshot state, and
+delayed history, but not `FPGA_TICKS`. Configuration writes while enabled or
+out of range are ignored and set the sticky error bit. A `SNAPSHOT` command
+copies all counters on one clock edge and then increments `SNAPSHOT_SEQ`.
+
+Define the prompt window by edge separation: with `WINDOW_CYCLES = 13`, two
+edges separated by 0 through 13 clocks are accepted and 14 clocks is rejected.
+After an accepted pair, each coincidence engine rejects new pairs for the next
+`LOCKOUT_CYCLES` complete clocks. Singles counting continues during lockout.
+
+### Delayed coincidence and logging
+
+Implement a 125,000-bit circular memory clocked at 125 MHz with explicit
+read-before-write behavior. Each enabled clock writes the synchronized channel-B
+edge bit and reads the bit written exactly 125,000 clocks earlier. After the
+1 ms fill interval, that bit becomes
+`B_DELAYED`. Compare channel A with `B_DELAYED` using a second copy of the same
+window logic and its own lockout. This fixed-memory method has no timestamp-FIFO
+overflow mode. The 1 ms offset is much larger than the prompt window, so the
+delayed pairs cannot be physical prompt partners.
+
+For each run, software performs this fixed sequence:
+
+1. Disable, clear, configure the window and lockout, then enable.
+2. Wait for `STATUS.delay_valid`, take an atomic baseline snapshot, and discard
+   counts before that baseline.
+3. Once per second, request a snapshot, wait for `SNAPSHOT_SEQ` to change, and
+   compute unsigned modulo-64-bit deltas from the preceding snapshot.
+4. Stop on a sticky error or an unexpected reset/version/sequence change.
+
+The CSV columns are `utc_time`, `snapshot_seq`, `fpga_ticks`, `live_ticks`,
+`singles_a`, `singles_b`, `prompt_coinc`, and `delayed_coinc`. `utc_time` is the
+host's ISO-8601 UTC time at the end of the interval; `fpga_ticks` is the absolute
+snapshot value; the remaining counters are interval deltas. Run metadata records
+board and firmware revisions, actual clock/window/lockout/delay, measured bias
+and thresholds, temperature, paddle separation and angle, location label, and
+notes. Bias, threshold, temperature, angle, and separation are manually measured
+in revision A; do not present them as FPGA telemetry.
 
 For asynchronous singles rates `R_A` and `R_B`, the initial accidental estimate
 for a one-sided window `tau` is `R_acc ~= 2 R_A R_B tau`; prefer a delayed-window
@@ -421,8 +516,9 @@ measurement made with the same window width.
 The local analog front end, 3.3 V push-pull triggers, and 125 MHz coincidence
 logic form a feasible low-rate prototype. Expected current is far below the
 500 mA input protection and LDO rating. A close-geometry CosmicWatch v3X system
-measured roughly 0.315 coincidences/s, but geometry, threshold, optical coupling,
-and overburden make that a comparison—not a guaranteed rate. Begin at 50 mm
+using the same 50 x 50 x 10 mm scintillator geometry measured roughly 0.315
+coincidences/s, but threshold, optical coupling, separation, and overburden all
+differ. Treat that rate as a comparison, not a guarantee. Begin at 50 mm
 separation and plan hours, not minutes, for controlled comparisons.
 
 The design is not ready to order until all of these are resolved in KiCad and
@@ -432,7 +528,8 @@ bench/review evidence:
 - boost switch-loop and feedback layout;
 - connector mating views, cable map, and Pmod mechanical support;
 - detector/Cora off-state and back-power behavior;
-- comparator pulse width and FPGA capture margin; and
+- raw comparator input width, stretched trigger width, and FPGA capture margin;
+  and
 - a working PS-to-host summary logger with coherent counter snapshots.
 
 Solderless breadboard tests are appropriate for the threshold divider,

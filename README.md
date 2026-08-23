@@ -5,10 +5,11 @@ muon telescope: electronics, FPGA firmware, host software, mechanical CAD,
 manufacturing releases, and measurement records.
 
 The first build is an engineering prototype. It uses two identical
-50 mm x 50 mm x 10 mm plastic-scintillator detector heads and a central
-power/interface board connected to a Digilent Cora Z7. It is intended to count
-single-channel events and two-layer coincidences. It is **not** an energy
-spectrometer, position tracker, or scattering-tomography system.
+50 x 50 x 10 mm BC-408 plastic-scintillator blocks and a central power/interface
+board connected to a Digilent Cora Z7. The instrument is
+intended to count single-channel events and two-layer coincidences. It is
+**not** an energy spectrometer, position tracker, or scattering-tomography
+system.
 
 No PCB is approved for ordering yet. The current design and its remaining
 release gates are recorded in [docs/design.md](docs/design.md) and

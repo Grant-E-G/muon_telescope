@@ -18,6 +18,7 @@ references, not substitutes for electrical or mechanical documentation.
 | onsemi `MICROFC-60035-SMT-TR` | [C-Series datasheet](onsemi-microc-series.pdf); [bias/readout note AND9782/D](onsemi-and9782-sipm-bias-readout.pdf) | [onsemi datasheet](https://www.onsemi.com/pdf/datasheet/microc-series-d.pdf); [onsemi application note](https://www.onsemi.com/download/application-notes/pdf/and9782-d.pdf) |
 | 3PEAK `TPH2502-SR` | [TPH2501-TPH2504 datasheet](3peak-tph2501-tph2504.pdf) | [3PEAK](https://static.3peak.com/res/doc/ds/Datasheet_TPH2501-TPH2502-TPH2503-TPH2504.pdf) |
 | TI `TLV3502AIDR` | [TLV3501/TLV3502 datasheet](ti-tlv3501-tlv3502.pdf) | [TI](https://www.ti.com/lit/gpn/TLV3502) |
+| TI `SN74LVC1G123DCTR` | [SN74LVC1G123 datasheet](ti-sn74lvc1g123.pdf) | [TI](https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf) |
 | ADI/Maxim `MAX5026EUT+T` | [MAX5025-MAX5028 datasheet](adi-max5025-max5028.pdf) | [Analog Devices](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf) |
 | TI `TLV75533PDBVR` | [TLV755P datasheet](ti-tlv755p.pdf) | [TI](https://www.ti.com/lit/gpn/TLV755P) |
 | onsemi `SS16HE` | [SS13HE-SS16HE datasheet](onsemi-ss13he-ss16he.pdf) | [onsemi](https://www.onsemi.com/pdf/datasheet/ss13he-d.pdf) |
@@ -34,7 +35,7 @@ references, not substitutes for electrical or mechanical documentation.
 | Panasonic `ERA-6AEB1473V`, `ERA-6AEB6981V` | [ERA-A resistor datasheet](panasonic-era-a-resistors.pdf) | [Panasonic](https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C307.pdf) |
 | Yageo `RC0805JR-070RL`, `RC0805FR-0749R9L`, `RC0805FR-07100RL`, `RC0805FR-07499RL`, `RC0805FR-071KL`, `RC0805FR-072KL`, `RC0805FR-074K7L`, `RC0805FR-0710KL`, `RC0805FR-0712K4L`, `RC0805FR-07100KL`, `RC0805FR-07130KL`, `RC0805FR-07330KL`, `RC0805FR-071ML`, `RC0805FR-0710RL` | [RC_L resistor datasheet](yageo-rc-l-resistors.pdf) | [Yageo](https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L) |
 | KEMET `C0805C104K5RACTU`, `C0805C105K4RACTU`, `C0805C475K4RACTU`, `C1206C106K8RACTU`, `C1206C105K5RACTU` | [X7R MLCC datasheet](kemet-x7r-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD) |
-| KEMET `C0805C103J1GACTU`, `C0805C229C5GACTU` | [C0G MLCC datasheet](kemet-c0g-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1003_C0G_SMD) |
+| KEMET `C0805C103J1GACTU`, `C0805C270J5GACTU`, `C0805C229C5GACTU` | [C0G MLCC datasheet](kemet-c0g-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1003_C0G_SMD) |
 
 ## Connectors, cables, and external power
 
@@ -57,7 +58,7 @@ inspection requirement.
 
 | Selected item | Local document | Primary source |
 |---|---|---|
-| Luxium BC-408 scintillator | [BC-400/404/408/412/416 datasheet](luxium-bc400-bc416.pdf) | [Luxium](https://luxiumsolutions.com/files/1691/download) |
+| Bicron/Luxium BC-408; purchased seller-cut model `BC408-505010-1FP`, 50 x 50 x 10 mm, one face polished | [BC-400/404/408/412/416 datasheet](luxium-bc400-bc416.pdf) | [Luxium](https://luxiumsolutions.com/files/1691/download); [purchased cut-geometry listing](https://www.ebay.com/itm/254751779655) (no manufacturer drawing exists for the seller-cut geometry) |
 | Eljen `EJ-550` optical coupling compound | [EJ-550/EJ-552 datasheet](eljen-ej550-ej552.pdf) | [Eljen](https://eljentechnology.com/images/products/data_sheets/EJ-550_EJ-552.pdf) |
 | Digilent Cora Z7-07S | [schematic](digilent-cora-z7-schematic.pdf); [07S master XDC](digilent-cora-z7-07s-master.xdc); [Pmod interface specification](digilent-pmod-interface-specification-1.3.0.pdf) | [Digilent reference manual](https://digilent.com/reference/programmable-logic/cora-z7/reference-manual); [Digilent XDC repository](https://github.com/Digilent/digilent-xdc/blob/master/Cora-Z7-07S-Master.xdc); [Digilent product page](https://digilent.com/shop/cora-z7-zynq-7000-single-core-for-arm-fpga-soc-development/) |
 

@@ -71,6 +71,12 @@ also depends on pulse amplitude: a large pulse reaches threshold sooner than a
 small one. This time walk and unequal analog paths are why the coincidence
 window must be measured rather than chosen only from a simulation.
 
+A retriggerable one-shot converts each comparator edge into a nominally 200 ns
+logic pulse. This makes synchronous FPGA capture insensitive to the unknown raw
+comparator pulse width while preserving the leading-edge timing used for
+coincidence. A direct comparator-output path exists only as a mutually exclusive
+assembly option for later diagnostics.
+
 The amplifier can momentarily rise above the comparator's 3.3 V rail. A series
 resistor limits the comparator's protection current. Optional Schottky clamps
 are left unpopulated unless the bench shows they are needed, because diode
@@ -112,21 +118,29 @@ R_accidental ~= 2 R_A R_B tau
 
 where `tau` is the one-sided window. A delayed coincidence measurement is more
 trustworthy because it carries the instrument's real noise and threshold state.
-Lockout prevents one ringing or extended event from producing multiple
-coincidences, while singles counters remain useful diagnostics.
+Revision A delays channel B by exactly 1 ms in FPGA memory and applies a second
+copy of the prompt algorithm to channel A and delayed B. The offset is far too
+large for a physical muon pair, while both engines see the same thresholds and
+noise environment. Independent lockouts prevent one ringing or extended event
+from producing multiple coincidences, while singles counters remain useful
+diagnostics.
 
-At 125 MHz, one clock is 8 ns. A 13-cycle interval is 104 ns, but input
-synchronization adds latency and a pulse shorter than one clock can be missed
-entirely. The 504 ns bring-up window helps separate gross timing/connection
-faults from final-window tuning; it is not automatically the best scientific
-setting.
+At 125 MHz, one clock is 8 ns. A 13-cycle edge separation is 104 ns, and a
+two-flop synchronizer adds latency. The one-shot's 150-250 ns acceptance range
+ensures that the input remains present across several clocks. The 504 ns
+bring-up window helps separate gross timing/connection faults from final-window
+tuning; it is not automatically the best scientific setting.
 
 ## What a rate means
 
 Muon flux is directional, and two finite paddles accept only trajectories that
-cross both. Increasing separation narrows that geometric acceptance, lowering
-the rate while improving angular definition. Threshold, optical coupling,
-temperature, nearby material, and live-time handling also affect the result.
+cross both. Each selected 50 x 50 mm face has 2,500 mm2 projected area, matching
+the nominal CosmicWatch paddle geometry. A square accepts somewhat different
+maximum angles toward its corners than toward its edges, so its response is not
+perfectly azimuthally symmetric. Increasing separation narrows the geometric
+acceptance, lowering the rate while improving angular definition. Threshold,
+optical coupling, temperature, nearby material, and live-time handling also
+affect the result.
 
 For `N` independent counts in live time `T`, the measured rate is `N/T` and the
 counting-only relative uncertainty is approximately `1/sqrt(N)`. That is 10% at

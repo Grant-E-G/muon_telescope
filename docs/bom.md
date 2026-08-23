@@ -23,6 +23,7 @@ are excluded.
 | 6 mm, 35 um SiPM | onsemi `MICROFC-60035-SMT-TR` | custom SMT | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/onsemi/MICROFC-60035-SMT-TR/9742618), [datasheet](https://www.onsemi.com/pdf/datasheet/microc-series-d.pdf) | $24.25 |
 | Dual high-speed amplifier | 3PEAK `TPH2502-SR` | SOP-8 | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/3peak/TPH2502-SR/22229182), [datasheet](https://static.3peak.com/res/doc/ds/Datasheet_TPH2501-TPH2502-TPH2503-TPH2504.pdf) | $1.12 |
 | Dual fast comparator | TI `TLV3502AIDR` | SOIC-8 | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TLV3502AIDR/1669430), [datasheet](https://www.ti.com/lit/gpn/TLV3502) | $5.15 |
+| Trigger one-shot | TI `SN74LVC1G123DCTR`; DigiKey cut-tape SKU `296-18758-1-ND` | DCT/SM8 | 2 | 3 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G123DCTR/863597), [datasheet](https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf) | $1.73 |
 | Adjustable boost controller | ADI/Maxim `MAX5026EUT+T`; DigiKey cut-tape SKU `MAX5026EUT+TCT-ND` | SOT-23-6 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/analog-devices-inc-maxim-integrated/MAX5026EUT-T/1516355), [datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf) | $1.95 |
 | 3.3 V, 500 mA LDO | TI `TLV75533PDBVR` | SOT-23-5 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TLV75533PDBVR/9356541), [datasheet](https://www.ti.com/lit/gpn/TLV755P) | $0.75 |
 | 47 uH shielded inductor | Bourns `SRN6045-470M` | 6 x 6 mm SMT | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/bourns-inc/SRN6045-470M/2756124) | $0.60 |
@@ -47,12 +48,12 @@ hand assembly is not stopped by a lost part.
 
 | Value and role | Recommended part | Design qty | Source |
 |---|---|---:|---|
-| 0 ohm current link | Yageo `RC0805JR-070RL` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805JR-070RL) |
+| 0 ohm current and trigger-selection links | Yageo `RC0805JR-070RL` | 3 (plus 2 DNP footprints) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805JR-070RL) |
 | 49.9 ohm SiPM sense | Yageo `RC0805FR-0749R9L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0749R9L) |
 | 100 ohm bias filters and trigger damping | Yageo `RC0805FR-07100RL` | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07100RL) |
 | 499 ohm input bias and injection | Yageo `RC0805FR-07499RL` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07499RL) |
 | 1.00 kohm gain, comparator, threshold | Yageo `RC0805FR-071KL` | 6 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071KL) |
-| 2.00 kohm baseline divider | Yageo `RC0805FR-072KL` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-072KL) |
+| 2.00 kohm baseline dividers and one-shot timing | Yageo `RC0805FR-072KL` | 4 | [DigiKey](https://www.digikey.com/en/products/detail/yageo/RC0805FR-072KL/730611) |
 | 4.70 kohm threshold divider | Yageo `RC0805FR-074K7L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-074K7L) |
 | 10.0 kohm FPGA pulldown | Yageo `RC0805FR-0710KL` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0710KL) |
 | 12.4 kohm gain feedback | Yageo `RC0805FR-0712K4L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0712K4L) |
@@ -74,12 +75,13 @@ solely because its printed nominal capacitance matches.
 
 | Value and dielectric | Recommended part | Design qty | Buy qty | Source |
 |---|---|---:|---:|---|
-| 100 nF, 50 V, X7R, 0805 | KEMET `C0805C104K5RACTU` | 10 | 20 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C104K5RACTU) |
+| 100 nF, 50 V, X7R, 0805 | KEMET `C0805C104K5RACTU` | 12 | 20 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C104K5RACTU) |
 | 1 uF, 16 V, X7R, 0805 | KEMET `C0805C105K4RACTU` | 6 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C105K4RACTU) |
 | 4.7 uF, 16 V, X7R, 0805 | KEMET `C0805C475K4RACTU` | 3 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C475K4RACTU) |
 | 10 uF, 10 V, X7R, 1206 | KEMET `C1206C106K8RACTU` | 1 | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=C1206C106K8RACTU) |
 | 1 uF, 50 V, X7R, 1206 | KEMET `C1206C105K5RACTU` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C1206C105K5RACTU) |
 | 10 nF, 100 V, C0G, 0805 | KEMET `C0805C103J1GACTU` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C103J1GACTU) |
+| 27 pF, 50 V, C0G, 0805 | KEMET `C0805C270J5GACTU` | 2 | 5 | [DigiKey](https://www.digikey.com/en/products/detail/kemet/C0805C270J5GACTU/411113) |
 | 2.2 pF, 50 V, C0G, 0805, DNP | KEMET `C0805C229C5GACTU` | 0 (2 footprints) | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C229C5GACTU) |
 
 The TLV755 schematic must follow the selected regulator datasheet. The total
@@ -115,42 +117,41 @@ large number of generic test-point terminals.
 
 | Item | Qty | Checked source or requirement | Planning cost |
 |---|---:|---|---:|
-| BC-408 scintillator, approximately 50 x 50 x 10 mm | 2 | [Surplus listing](https://www.ebay.com/itm/267092512705), $49 each when checked; confirm all three dimensions and condition with seller before purchase. See [manufacturer BC-408 properties](https://luxiumsolutions.com/radiation-detection-scintillators/plastic-scintillators/bc400-bc404-bc408-bc412-bc416). | $98 |
-| Traceable but round alternative, 50 mm diameter x 10 mm | 2 | [EPIC Scintillator](https://www.epic-scintillator.com/diameter-50x10mm), $125 each when checked. This changes area/mechanics and is not a drop-in square substitute. | $250 |
+| Purchased BC-408 block, 50 x 50 x 10 mm, one face polished | 2 | [Purchased listing](https://www.ebay.com/itm/254751779655); seller model `BC408-505010-1FP`, $25 each or $22.50 each at quantity two when checked. The seller describes virgin BC-408 water-saw cut from a large block; one 50 x 50 mm face is polished and the other face and sides are smooth cut. See [manufacturer BC-408 properties](https://luxiumsolutions.com/radiation-detection-scintillators/plastic-scintillators/bc400-bc404-bc408-bc412-bc416). | $45 |
 | EJ-550 optical coupling compound | 1 | [Surplus listing](https://www.ebay.com/itm/157806378831), $16.50 when checked; [technical sheet](https://www-eng.lbl.gov/~shuman/NEXT/MATERIALS%26COMPONENTS/WLS_materials/optical-grease_EJ550.pdf) | $16.50 |
 | Reflective foil and opaque wrap/tape | 1 set | Local consumable; document the actual material used | $10 |
 | Rigid adjustable frame and fasteners | 1 | Design under `hardware/mechanical/`; use existing stock where practical | $10-25 |
 | Five detector-head plus five power/interface PCBs | 10 boards | Quote from the chosen fabricator after dimensions are known; [JLCPCB quote tool](https://jlcpcb.com/quote) is a planning reference, not a selected supplier | $35-55 |
 | Optional stainless stencil | 1 | Quote with fabrication package if it improves SiPM process control | $0-15 |
 
-The $49 scintillator source is a volatile marketplace listing and its title does
-not prove the square dimensions. Do not buy it without seller confirmation. A
-formal square BC-408 quote may cost substantially more than the prototype budget.
-Back up project-owned mechanical models in Git; link to third-party source and
-license rather than copying an unlicensed model.
+The scintillator geometry and provenance decisions are resolved. The seller
+identifies the purchased pieces as virgin material cut from a large BC-408 block
+with a water-cooled saw. Incoming inspection still verifies quantity,
+dimensions, damage, and which broad face is polished before optical or
+mechanical work begins. Back up project-owned mechanical models in Git; link to
+a third-party source and license rather than copying an unlicensed model.
 
 ## Cost reality
 
-Using the surplus square scintillators and assembling by hand gives this planning
-range:
+Using the purchased scintillator blocks and assembling by hand gives this
+planning range:
 
 | Category | Planning subtotal |
 |---|---:|
-| Two scintillators | $98 |
-| Critical semiconductors, power parts, and trimmers | $74 |
+| Two scintillators | $45 |
+| Critical semiconductors, power parts, and trimmers | $79 |
 | Passives including order-quantity margin | $20-25 |
 | Power adapter, connectors, precrimp leads, and headers | $30-35 |
 | Optical compound and wrapping | $26.50 |
 | PCBs and optional stencil allowance | $35-55 |
 | Frame and fasteners | $10-25 |
-| **Parts subtotal before shipping/tax** | **about $294-339** |
+| **Parts subtotal before shipping/tax** | **about $246-291** |
 
-A realistic delivered total is roughly **$325-390**, depending mainly on PCB
-shipping, frame stock, and whether consumables are already available. Staying
-under $300 is possible only with the $49 scintillators, existing consumables and
-frame material, low fabrication shipping, and no spare SiPM. The traceable round
-scintillator alternative adds $152 and also requires a geometry change. Do not
-use the optimistic subtotal as a purchase authorization.
+A realistic delivered total is roughly **$280-350**, depending mainly on PCB
+shipping, frame stock, and whether consumables are already available. The
+subtotal includes the purchased scintillators at their listing price but not
+tax or shipping. Do not use the optimistic subtotal as authorization for the
+remaining purchases.
 
 ## Release-time reconciliation
 
