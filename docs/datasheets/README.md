@@ -65,3 +65,42 @@ inspection requirement.
 The Cora reference manual is a maintained web document rather than a published
 downloadable file. The release-critical schematic, XDC, and interface
 specification are archived here; the current manual remains linked above.
+
+## Independent home PCB fabrication process
+
+These documents support the standalone workflow in
+`docs/home-pcb-fabrication/`; they are not telescope design-part selections.
+Files in the `home-pcb-fabrication/` subdirectory were retrieved 2026-08-25
+and are unmodified.
+
+| Selected manufacturer item | Local document | Primary source |
+|---|---|---|
+| MG Chemicals `415-1L` ferric chloride | [US/Canada SDS](home-pcb-fabrication/mg-415-ferric-chloride-sds-us-ca.pdf); [TDS](home-pcb-fabrication/mg-415-ferric-chloride-tds.pdf) | [SDS](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-415-l.pdf); [TDS](https://mgchemicals.com/downloads/tds/tds-415-l.pdf); [product](https://mgchemicals.com/products/circuit-board-design/copper-etchants/ferric-chloride-etching/) |
+| MG Chemicals `540` double-sided copper clad | [500-series TDS](home-pcb-fabrication/mg-500-series-copper-clad-tds.pdf) | [TDS](https://www.mgchemicals.com/downloads/tds/tds-500-series.pdf); [ordering page](https://www.digikey.com/en/products/detail/mg-chemicals/540/2177370) |
+| MG Chemicals `836LFNC-P` flux pen | [pen TDS](home-pcb-fabrication/mg-836lfnc-p-flux-tds.pdf); [exact Canada/USA SDS](home-pcb-fabrication/mg-836lfnc-p-flux-sds-us-ca.pdf) | [TDS](https://mgchemicals.com/downloads/tds/tds-836lfnc-p.pdf); [SDS](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-836lfnc-p.pdf); [product](https://mgchemicals.com/products/soldering-supplies/flux-pens/lead-free-flux-pen/) |
+| MG Chemicals `4900-18G` SAC305 solder wire | [family TDS](home-pcb-fabrication/mg-4900-solder-wire-tds.pdf); [exact Canada/USA SDS](home-pcb-fabrication/mg-4900-18g-solder-wire-sds-us-ca.pdf) | [TDS](https://www.mgchemicals.com/downloads/tds/tds-4900.pdf); [SDS](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-4900-18g.pdf); [product](https://mgchemicals.com/products/soldering-supplies/solder-wire/lead-free-solder/) |
+| Fortex PTH400/Favorit press, `Tool Set 0.60mm`, and `1000 x Rivets 0.60mm` ordering options | [PTH400 manual](home-pcb-fabrication/fortex-pth400-manual.pdf) | [Fortex product, dimensions, and ordering options](https://www.fortex.co.uk/product/favorit-through-hole-mechanical-plating/); [manual source](https://docs.rs-online.com/745a/A700000007404772.pdf) |
+| Existing WEN `4208T` drill press | [4208/4208T manual](home-pcb-fabrication/wen-4208t-manual.pdf) | [product](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press); [manual source](https://cdn.shopify.com/s/files/1/0012/0350/3168/files/4208T.manual.20220914.pdf?v=1664398265) |
+| 3M GoggleGear 500 `GG501SGAF` | [500-series TDS](home-pcb-fabrication/3m-gogglegear-500-tds.pdf) | [3M product](https://www.3m.com/3M/en_US/p/dc/v000244796/); [TDS](https://multimedia.3m.com/mws/media/2567231O/3m-gogglegear-protective-goggle-500-series.pdf?fn=tds-gogglegear-500-series-en.pdf) |
+| 3M `82783` H8A headgear with WP96 faceshield | [headgear/faceshield guide](home-pcb-fabrication/3m-h8a-wp96-headgear-faceshield-guide.pdf) | [3M product](https://www.3m.com/3M/en_US/p/d/v000153070/); [guide](https://multimedia.3m.com/mws/media/2103444O/3m-hard-hats-headgear-and-faceshields.pdf) |
+| 3M `62093` medium P100 kit (retail `62093HA1-C`), with `6200` facepiece and `7093` filters | [6000-series facepiece instructions](home-pcb-fabrication/3m-6000-series-respirator-instructions.pdf); [7093 filter instructions](home-pcb-fabrication/3m-7093-p100-filter-instructions.pdf) | [3M kit](https://www.3m.com/3M/en_US/p/d/b10013085/); [facepiece instructions](https://multimedia.3m.com/mws/media/96751O/3m-half-facepiece-respirator-6000-series-user-instructions.pdf); [filter instructions](https://multimedia.3m.com/mws/media/147257O/3m-particulate-filter-7093-p100-user-instructions.pdf) |
+| Thermo Scientific Nalgene `6320-0010` PP forceps | [instructions](home-pcb-fabrication/nalgene-6320-forceps-instructions.pdf) | [instructions](https://documents.thermofisher.com/TFS-Assets%2FLCD%2Fmanuals%2FNalgene-Forceps-EN-8-0400-14-1210.pdf); [product](https://www.fishersci.com/shop/products/nalgene-polypropylene-scissor-type-forceps/10309) |
+| Thermo Scientific PP/PPCO compatibility basis for `6910-0618` tray | [chemical-resistance guide](home-pcb-fabrication/thermo-plastics-chemical-resistance-guide.pdf) | [guide](https://assets.thermofisher.com/TFS-Assets/LCD/posters/LCD-Chemical-Resistance-Guide-GALSPCHEMRESPOSTER-EN.pdf); [tray product](https://www.thermofisher.com/order/catalog/product/jp/en/6910-0618PK) |
+| Dynalon `107334` welded PP secondary-containment tray | [manufacturer catalog](home-pcb-fabrication/dynalon-rectangular-trays-catalog.pdf) | [current product](https://www.dynalon.com/PublicStore/product/Rectangular-Tray-PP-and-HDPE%2C325.aspx?sku=709); [catalog source](https://www.dynalon.com/PublicStore/images/assets/Document/Dynalon2016_LR.pdf) |
+| CHEMSORB Acid Neutralizing Absorbent `SP60AN-LB2` | [SDS](home-pcb-fabrication/chemsorb-an-sds.pdf) | [product](https://chemsorb.com/products/chemsorb-acid-neutralizing-absorbent); [manufacturer SDS index](https://chemsorb.com/pages/sds) |
+| Hakko `FX888DX-010BY` 120 V soldering station | [English manual](home-pcb-fabrication/hakko-fx888dx-manual.pdf) | [product](https://hakkousa.com/products/soldering/fx-888dx.html); [manual source](https://www.hakko.com/english/support/doc/result.php?mode=download&seq=7293) |
+
+The following selected items have maintained manufacturer pages but no static
+public document was identified: Techniks Press-n-Peel Blue vendor SKU `TEK-5`
+([ordering page](https://aretronics.com/products/techniks-press-peel-pc-board-kit));
+Cricut EasyPress Mini ([product](https://cricut.com/en-us/cricut-heat-presses/cricut-easypress-mini/easypress-mini.html));
+MIPEC 0.8 and 0.9 mm drills ([0.8 mm](https://www.mipec.eu/pcb-drill-0-8-mm/),
+[0.9 mm](https://www.mipec.eu/pcb-drill-0-9-mm/)); Dustless Tools `D1606` and
+`D1351` ([product](https://dustlesstools.com/product/16-gal-hepa-wetdry-dustlessvac-with/));
+Southwire `14880004-6` GFCI tri-cord
+([product; manufacturer states no downloadable resources](https://www.southwire.com/power-management/extension-cords/6-ft-120v-15a-yel-12-3-cable-gfci-tri-cord/p/14880004-6));
+Ansell AlphaTec `02-100` gloves and `56-100` apron
+([gloves](https://www.ansell.com/us/en/products/alphatec-02-100),
+[apron](https://www.ansell.com/us/en/products/alphatec-56-100)); and Speakman
+`SE-582` eyewash
+([product](https://speakman.com/product/traditional-series-se-582-wall-mounted-eyewash-with-stainless-steel-bowl/)).
