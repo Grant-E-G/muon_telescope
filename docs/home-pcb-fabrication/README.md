@@ -1,438 +1,279 @@
 # Independent home PCB fabrication workflow
 
-Status: reviewed prototype draft; chemical work remains blocked by the listed
-safety gates and this is not a fabrication release
+Status: prototype process; independent of the telescope design and fabrication
+release
 
 Last reviewed: 2026-08-25
 
-This folder is intentionally independent of the telescope design, project BOM,
-and release workflow. It describes a small-batch toner-transfer process for
-experimental FR-4 boards. It does not approve any telescope board for use and
-does not change `docs/design.md` or `docs/build-and-debug.md`.
+This folder covers small, toner-transfer FR-4 boards etched with MG Chemicals
+`415` ferric chloride, drilled on the existing WEN `4208T` press, and joined
+with inexpensive 0.9 mm-OD hollow PCB rivets. The separately sourced items are in
+[bom.md](bom.md). This workflow does not approve a telescope PCB or modify its
+design record.
 
-The separately sourced equipment and consumables are in [bom.md](bom.md).
-Read the current safety data sheet (SDS) for every chemical before each run;
-the SDS and product label override this workflow.
+## Practical safety model
 
-## Safety decision
+The sensible setup is the open-air balcony, not an indoor room and not an
+airtight box. Put a small polypropylene working container inside an ordinary
+HDPE or polypropylene storage tub. A loose lid over the inner container is a
+useful splash shield, but it must retain a visible vent gap. Keep the whole
+etching and rinse operation outdoors.
 
-Do **not** etch in a sealed box or airtight bottle. The expected copper/ferric
-chloride etch reaction does not normally evolve hydrogen, but the commercial
-mixture also contains hydrochloric acid and its current SDS warns generally
-that metal contact can form flammable hydrogen and that prolonged metal contact
-in an enclosed space can produce explosive quantities. A closed reaction
-vessel is therefore outside the manufacturer's safety guidance and creates an
-avoidable pressure and ignition hazard.
+For one run:
 
-The accepted arrangement is:
+- use no more than 100 mL of room-temperature etchant;
+- use only plastic containers and tools around the etchant;
+- do not heat, spray, bubble, pump, or vigorously agitate it;
+- keep the stock bottle closed and outside the working tub when it is not being
+  poured;
+- stand upwind, keep your face out of the container, and keep doors and windows
+  closed nearby; and
+- exclude children, pets, food, rain, and any location where a spill could
+  reach another balcony, soil, or a drain.
 
-- perform the entire etch outdoors, not in a shared garage or room;
-- use a shallow PP/PPCO or HDPE working tray inside a larger compatible
-  secondary-containment tray;
-- place a loose, non-latching cover over the working tray as a splash shield,
-  leaving it vented at all times;
-- work at room temperature, with no heater, air bubbler, pump, atomizer, or
-  spray;
-- stay upwind and away from doors, windows, ignition sources, vehicles, metal
-  tools, soil, gutters, and storm drains; and
-- open, inspect, rinse, and transfer the board outdoors. Do not carry a tray of
-  reacting etchant through the house.
+Stay with the etch. If there is a sharp acid odor at the normal standing
+position, eye or throat irritation, visible mist, an unexpected reaction, or
+insufficient outdoor airflow, set the loose lid in place, move away upwind, and
+let the area clear. A lack of odor is not an exposure measurement.
 
-The original capped chemical bottle may be transported in clean secondary
-containment. That is different from sealing copper and etchant together.
+Use splash goggles, long sleeves and pants, closed shoes, and 13-inch reusable
+nitrile chemical gloves. Stage a 32 oz eyewash bottle for the immediate first
+flush and verify the unobstructed route to a household sink or shower before
+pouring. The bottle is finite and its own manufacturer calls it supplemental:
+after using it, continue flushing at the sink or shower for the etchant SDS's
+full 30 minutes and call Poison Control or a doctor. This removes the proposed
+$400 plumbed eyewash purchase without pretending one bottle can provide a
+30-minute rinse.
 
-Stop and outsource the PCB if any of these controls is unavailable:
+Secondary containment is the main spill control. For a small spill contained
+in the tub, keep it there, absorb any remaining free liquid with compatible
+inert absorbent, and package all residue for household hazardous waste (HHW).
+Do not add bleach, ammonia, solvents, or another cleaner. Baking soda may be
+kept for minor surface decontamination only; adding it can foam and heat, and
+does not make copper-bearing waste safe for a drain or trash.
 
-- immediate hands-free flushing water capable of at least 30 minutes of
-  continuous eye irrigation, as required by the selected etchant SDS, plus an
-  immediately available body-drench route;
-- a stable outdoor location with secondary containment;
-- confirmed chemical-resistant gloves, sealed splash goggles, protective
-  clothing, and a second adult aware of the emergency plan;
-- a legal household-hazardous-waste path for all etchant and contaminated
-  rinses; or
-- safe dust capture and a rigid drill setup.
+## HCl calculation
+
+The copper etch itself does **not** produce hydrogen chloride gas:
+
+```text
+Cu + 2 FeCl3 -> CuCl2 + 2 FeCl2
+```
+
+The stoichiometric HCl production is therefore zero. The current MG `415` SDS
+instead lists 1 wt% HCl already present in a solution with density
+1.38-1.49 g/mL. A 100 mL run consequently contains about 1.38-1.49 g HCl in
+total. That inventory is a deliberately unrealistic all-released bound, not a
+prediction of emissions.
+
+NOAA HAZMAT Report 93-3 gives HCl partial pressures over **2 wt% aqueous HCl**
+of 0.0207 Pa at 20 degrees C and 0.0627 Pa at 30 degrees C. Log interpolation
+at 25 degrees C gives:
+
+```text
+Pv = sqrt(0.0207 * 0.0627) = 0.0360 Pa
+surface-equilibrium concentration = Pv / 101325 * 1e6 = 0.356 ppm
+```
+
+This 2% aqueous comparison contains twice as much HCl as MG `415`, but it is not
+a measured value for the ferric-chloride matrix. Dissolved salt can change HCl
+activity, so it is a useful screening value rather than a guaranteed upper
+bound.
+
+Using NOAA's simple outdoor-puddle mass-transfer model,
+
+```text
+E = A * Km * MW * Pv / (R * T)
+Km = 0.0048 * U^0.78 * Z^-0.11 * Sc^-0.67
+```
+
+with a 0.030 m2 exposed surface, 1 m/s wind, 0.18 m along-wind dimension,
+Schmidt number 0.9, 25 degrees C, `MW = 0.03646 kg/mol`, and
+`R = 8.314 J/(mol K)`, the 2% comparison pressure gives
+`Km = 0.00622 m/s`, an HCl evaporation estimate of **0.36 mg/hour**, or
+**0.71 mg during a two-hour etch**. A deliberately crude 10x matrix/condition
+screen would be 3.6 mg/hour and 7.1 mg in two hours. The corresponding
+surface-equilibrium comparisons are 0.36 and 3.6 ppm; the open-air breathing
+zone should be lower because of dilution. The model assumes almost the entire
+inner surface is exposed, so it does not take credit for the loose cover. Those
+two-hour mass estimates are about 0.051% and 0.51%, respectively,
+of the approximately 1.4 g inventory.
+
+For context only, the OSHA and NIOSH occupational ceiling for HCl is 5 ppm.
+This calculation is not air monitoring or a compliance determination. Its
+uncertainty is why the process remains outdoors, cool, unsprayed, loosely
+covered, and small-volume. It also shows that splash, eye contact, and disposal
+are the dominant practical hazards here—not kilograms of newly generated HCl
+gas. MG's broader warning about hydrogen applies if the acidic solution contacts
+reactive metals, another reason to use plastic tools and never seal the setup.
 
 ## Expected quality
 
-This is a prototype process, not a substitute for plated-through,
-solder-masked, impedance-controlled commercial fabrication.
-
-| Feature | Realistic expectation |
+| Feature | Realistic result |
 |---|---|
-| 0805 and SOIC footprints | Reasonable after a passing process coupon |
-| 0.65 mm pitch | Possible, but must pass the exact printer/transfer/etch coupon |
-| Fine-pitch, QFN thermal pads, BGAs | Do not use this process |
-| Double-sided registration | Manual and variable; inspect every pad and hole |
-| Riveted vias | Mechanically useful but larger and less repeatable than plated vias |
-| Handheld household-drill holes | Poor position, angle, and diameter control; not accepted for rivets |
-| Existing WEN `4208T` press and vise | Better position and perpendicularity than a hand drill, but **not yet accepted for FR-4**; see the drilling gate below |
-| Purpose-built high-speed PCB drill | Best expected hole wall, registration, and bit life; still requires a process coupon |
+| 0805 and SOIC | Reasonable after a passing coupon |
+| 0.65 mm pitch | Possible, but printer/transfer/etch dependent |
+| QFN, BGA, controlled impedance | Use a commercial board |
+| Double-sided registration | Manual and variable |
+| WEN-drilled holes | Usable prototype quality; expect more burrs and bit wear |
+| Budget riveted vias | Functional after joining both sides, but mechanically crude and lot-dependent |
 
-The selected 0.8 and 0.9 mm carbide drills list recommended speeds of 60,000
-and 53,000 RPM respectively. The WEN `4208T` reaches only 3,140 RPM: about
-19 and 17 times slower. Its chuck does accept the drills' 3.175 mm shanks and
-the press/vise improve rigidity, but those facts do not resolve the speed
-mismatch. More importantly, the WEN manual describes the tool as designed for
-wood and metal and warns that drilling other materials can cause fire, injury,
-or tool damage. FR-4 is a glass-fiber/epoxy composite, not either listed
-material.
+Make a coupon first with the minimum trace/space, a measured 100 mm artwork
+dimension, front/back registration marks, ground-plane clearances, and several
+1.0 mm rivet holes. Do not populate a board until the coupon passes
+visual inspection and continuity.
 
-Do not use the `4208T` on FR-4 unless WEN confirms that exact use in writing
-and the drill manufacturer supplies a safe speed/feed recommendation at or
-below 3,140 RPM. If both confirmations are obtained, the result is still
-coupon-qualified prototype quality: reject chipped, delaminated, oversize,
-angled, rough, or misregistered holes. Otherwise have the holes or complete
-boards made commercially, or revise this workflow around a purpose-built
-PCB-rated high-speed drill. A successful-looking hole alone cannot override a
-manufacturer safety warning.
+## Layout for rivets
 
-Ask WEN at `techsupport@wenproducts.com` and MIPEC at `info@mipec.eu`. State
-the exact models, 1.6 mm copper-clad FR-4, 0.8/0.9 mm carbide drill diameters,
-3.175 mm shank, and the WEN's 3,140 RPM maximum; request permitted speed, feed,
-pecking, dust-control, and tool-life limits rather than a general assurance.
+1. Use rivets as dedicated vias; do not share a rivet with a component lead.
+2. Buy the exact `M0.9(d) x 2.5(L) mm` variant: nominal 0.9 mm shank OD and
+   2.5 mm length. Cheap listings disagree on whether the material is copper or
+   H59 brass and quote heads around 1.75-1.95 mm. Measure the delivered lot and
+   reject rivets that are split, plated, badly out of round, or too short for
+   the actual board.
+3. Start with a 2.5 mm pad on both sides; use 3.0 mm where space permits. Drill
+   a nominal 1.0 mm hole, intentionally 0.1 mm over the listed shank. The WEN's
+   runout may enlarge it further, so the coupon must confirm that the rivet
+   drops in without force but does not wobble excessively.
+4. Add bottom-plane antipads around every non-ground hole. A hole through an
+   unbroken ground plane is a short, whether or not it contains a rivet.
+5. Keep both rivet collars accessible for forming, inspection, and joining.
 
-## Layout gates before artwork
+## Workflow
 
-1. Use the rivets as dedicated vias. Do not share a rivet hole with a component
-   lead unless that exact stack-up is proven on the coupon.
-2. The selected 0.6 mm-ID rivet has a 0.8 mm OD and 1.3 mm head. Start with a
-   2.0 mm pad on both sides and validate it on the coupon before reducing it.
-3. Provide both 0.8 and 0.9 mm test holes. Fortex calls for a 0.8 mm hole and
-   separately notes a 0.1 mm oversize for CNC drilling. Home-tool runout is
-   unknown, so choose the smallest coupon hole that seats the rivet without
-   force and forms a sound flare.
-4. A solid, unetched bottom ground plane is safe only when **every** hole that
-   touches it is ground. Any non-ground rivet or through-hole in a solid bottom
-   plane is a short circuit. Either etch bottom-side antipads/clearances around
-   every non-ground hole or restrict all through-holes to ground and keep all
-   other circuitry surface-mount on top.
-5. Place rivets where both collars remain accessible for inspection and
-   soldering. Keep them clear of component bodies and probe areas.
-6. Add a coupon to the panel containing the minimum trace/space, smallest pad,
-   double-side registration marks, ground-plane antipads, and several rivet
-   holes of each candidate diameter.
+### 1. Artwork and copper
 
-## 1. Pre-run gate
+1. Generate top and bottom artwork at 1:1 with explicit mirror settings. Print
+   and measure the coupon before transferring a board.
+2. Prefer a pre-sized blank. Cutting or routing FR-4 creates much more dust than
+   drilling a few holes.
+3. Wet-clean copper with dish detergent and a dedicated fine nonmetallic pad.
+   Do not dry-sand or use steel wool. Capture the residue with the process
+   waste.
+4. Transfer toner using the transfer-medium instructions and an existing
+   household iron or laminator dedicated to workshop use. Keep this dry step
+   away from chemistry.
+5. Inspect under magnification. Reject smears, missing fine features, or poor
+   front/back registration.
 
-Do not start until every box is checked.
+### 2. Balcony etch and rinse
 
-- [ ] Current MG 415 SDS and emergency number are printed or available without
-  unlocking a phone.
-- [ ] Poison Control number is available: US 1-800-222-1222; call 911 for a
-  life-threatening emergency.
-- [ ] Hands-free flushing water has been activated and tested. It can run for
-  at least 30 minutes and is reachable immediately without doors or obstacles.
-  The body-drench route is also clear and working.
-- [ ] A second adult knows the chemical, location, first-aid steps, and how to
-  call for help. Do not do the chemical pour alone.
-- [ ] Weather is dry and calm enough to control splashes; the table is level
-  and cannot be bumped.
-- [ ] Children, pets, food, drinks, and unrelated work are excluded.
-- [ ] Working tray, loose cover, secondary tray, plastic forceps, waste
-  container, labels, absorbent, and water for captured rinsing are staged.
-- [ ] CHEMSORB has confirmed `SP60AN-LB2` compatibility with the exact current
-  MG 415 mixture. Its SDS says to test compatibility, warns that acid contact
-  forms carbon dioxide, and requires well-ventilated use. Do not count an
-  unconfirmed absorbent as a spill control.
-- [ ] The glove manufacturer has confirmed the selected glove model and
-  breakthrough/use time for the exact MG 415 mixture. The SDS explicitly says
-  it cannot recommend a glove material without this check.
-- [ ] Indirect-vent D3 splash goggles fit and seal. A face shield is worn over
-  them for pouring and board removal; it is not a substitute for goggles.
-- [ ] Chemical apron, long sleeves, long pants, and closed chemical-resistant
-  footwear are on. Contact lenses are removed.
-- [ ] Household-hazardous-waste acceptance and packaging instructions have
-  been confirmed before waste is generated.
-- [ ] Drilling will be outsourced, or written WEN approval for `4208T`/FR-4
-  use and written bit-maker guidance for no more than 3,140 RPM are filed.
-- [ ] The existing solder-fume extractor's exact model and consumable MPNs are
-  recorded, its current manual has been checked, and its source capture works.
+1. Place the PP working container in the larger #2 HDPE or #5 PP tub. Dry-fit
+   everything and confirm the tub can retain all liquid staged for the run.
+2. Put on gloves and splash goggles. Open the stock bottle outdoors below face
+   level and pour no more than 100 mL. Recap it immediately.
+3. Lower the board with plastic tongs and rest the lid loosely on the container
+   with a visible gap. Never snap, tape, gasket, or weight it shut.
+4. Keep the room-temperature etch attended. A slow, occasional gentle tilt is
+   acceptable if it does not splash; do not shake or use an air bubbler.
+5. When unwanted copper is gone, lift the board over the etchant and place it
+   directly into the first of two captured-rinse containers. Remove toner by
+   wet rubbing, without adding a solvent.
+6. Transfer spent etchant to a separate compatible screw-cap waste bottle only
+   after no metal remains and no reaction is visible. Label it with its actual
+   contents and date. Do not return spent etchant to the stock bottle.
 
-## 2. Process coupon
+### 3. Waste and cleanup
 
-Fabricate the coupon before any functional board. It must use the same board,
-printer, toner, transfer sheet, heat tool, artwork settings, etchant batch,
-drilling setup, and rivet tooling as the planned board.
+Fresh or spent etchant, copper-bearing rinses, failed boards, wipes, dust, and
+spill residue do not go into a sink, toilet, storm drain, soil, ordinary trash,
+or the shop vacuum. Keep liquids closed in compatible labeled containers and
+take them through the local HHW program. Confirm local packaging rules before
+the first run; San Mateo County's program is linked below.
 
-Record:
+Clean reusable plastic tools over the captured-rinse container. Damp-wipe dry
+work surfaces. Store the original etchant bottle upright, tightly closed, in a
+plastic tub away from bases, metals, heat, food, children, and pets.
 
-- printer model, toner cartridge MPN, driver, density, scaling, and measured
-  100 mm artwork dimension;
-- copper-clad MPN and measured thickness;
-- heat-tool model/setting, transfer time, and pressure method;
-- outdoor temperature, etchant lot, reuse count, volume, and etch time;
-- drill model, written material/speed approvals, indicated speed, bit size,
-  bit use count, vise, backer, and shroud;
-- solder-fume extractor model, filter and nozzle/hose MPNs, filter condition,
-  and source-capture check;
-- hole measurements, chosen rivet hole, press depth-stop setting, and
-  resistance before and after soldering; and
-- macro photographs of transfer, etch, holes, and both rivet collars.
+### 4. Drill on the existing WEN press
 
-The coupon passes only if:
+The WEN `4208T` is not an ideal PCB drill: its 3,140 RPM maximum is far below
+the selected 1.0 mm MIPEC bit's 48,000 RPM starting recommendation. It will still make
+prototype holes when the setup is rigid. Expect slower work, greater thrust,
+more exit burr/chip-out, shorter carbide-bit life, and less consistent diameter
+than a purpose-built high-speed spindle. The coupon decides whether that
+quality is acceptable.
 
-- there are no opens, copper whiskers, bridged spaces, lifted pads, or
-  undercut traces under magnification;
-- the printed scale error is acceptable for every footprint;
-- front/back registration keeps every drill inside both annular rings;
-- the chosen hole accepts the rivet without splitting or slop;
-- the formed collars are concentric, seated, and free of board damage; and
-- each soldered rivet is below 0.1 ohm after subtracting probe-lead resistance,
-  and remains continuous during gentle board flexing.
+1. Work outdoors. Clamp the vise to the press table and support the complete
+   PCB flat on a clean sacrificial backer. Never hand-hold the board.
+2. Use a new 3.175 mm-shank 1.0 mm solid-carbide bit and the highest
+   speed, 3,140 RPM. Tighten the chuck at all three key positions and remove
+   the key.
+3. Position a shop-vac hood immediately beside and partly around the drill
+   point. Start the vacuum before the spindle.
+4. Feed vertically with very light pressure and brief pecks. Do not side-load
+   or force the brittle bit. Stop for chatter, heating, smoke, excessive force,
+   delamination, or a moving board.
+5. Inspect the coupon for diameter, registration, burrs, glass breakout, and
+   rivet fit before drilling the real board.
+6. Vacuum the board, backer, vise, shroud, and table, then damp-wipe them. Do not
+   use compressed air or dry sweeping.
 
-Failing any item means adjust the process and make a new coupon.
+Wear impact-rated eye protection, tie back hair, and remove jewelry and loose
+clothing. Do not wear gloves near the rotating spindle.
 
-## 3. Artwork and copper preparation
+#### Shop-vac and printed holder
 
-1. Generate top and bottom artwork at 1:1 scale with explicit mirror settings.
-   Print the dimensioned coupon first and measure it; never assume printer
-   scaling is exact.
-2. Cut the pre-sized blank only if unavoidable. Prefer buying a blank already
-   near final size because sawing or routing FR-4 creates much more dust than
-   drilling.
-3. Wet-clean the copper with water, a small amount of dish detergent, and a
-   dedicated nonmetallic fine abrasive pad. Do not dry-sand. Capture the wash
-   water and residue for HHW with the other process waste.
-4. Rinse with captured clean water, dry with a lint-free wipe, and handle only
-   by the edges. Do not use steel wool: fragments can rust or short traces.
-5. Transfer the toner in a ventilated nonliving workspace using a dedicated
-   dry heat tool and the transfer-medium instructions. Keep this electrical
-   step completely separate from the etchant station.
-6. Inspect under magnification. Repair only isolated pinholes with a known
-   etch-resistant marker. Reject broad smears, wrinkles, missing fine features,
-   or uncertain double-side registration.
+A 3D-printed holder is enough **as the close-capture hood** for a few small
+outdoor prototype boards if it is rigid, close to the hole, and paired with a
+working dry-dust vacuum setup. It is not a filter by itself and does not make a
+generic vacuum a certified HEPA machine.
 
-Do not add acetone, lacquer thinner, photoresist chemistry, immersion tin, or
-DIY solder mask to this workflow. They add hazards without solving the main
-process-control limits. Remove toner later by wet mechanical rubbing.
+Use the existing shop vac with its manufacturer's compatible dry collection
+bag and best available high-efficiency/HEPA cartridge. Inspect the hose, lid,
+and filter seals and direct the exhaust away from people, doors, and windows.
+The print must clear the bit, chuck, quill, vise, and full travel; stay fixed
+without a hand holding it; and be dry-run with the press unplugged. A small
+opening close to the bit is more effective than a large nozzle several inches
+away. Stop and improve the hood if a bright side light shows a dust plume.
 
-## 4. Outdoor etching
+For this limited outdoor use, buying a $600 certified extractor is not
+proportionate. A disposable N95 is reasonable secondary protection if one is
+already available or many holes are planned, but source capture and outdoor
+work remain the primary controls. The exact replacement bag and cartridge are
+shop-vac-model-specific and should be sourced only after reading the vac's
+model plate and manual.
 
-1. Put the shallow PP/PPCO working tray inside the larger secondary tray. The
-   secondary tray must hold more than the entire working volume.
-2. Place only nonmetallic tools in the containment area. Keep all flames,
-   sparks, heaters, switches that may arc, and soldering equipment away.
-3. Put on the verified PPE. Open the original MG 415 bottle outdoors, upwind,
-   and below face level.
-4. Pour only enough room-temperature etchant to cover the copper when the board
-   lies flat. Close the original bottle immediately.
-5. Lower the board with polypropylene forceps. Slide or tilt the tray cover so
-   it blocks direct splashes but retains a visible, unobstructed vent gap. Do
-   not latch, gasket, tape, weight, or otherwise seal it.
-6. Keep the tray level in secondary containment and continuously attended. Do
-   not shake, rock, spray, bubble, pump, or heat the solution. If a stationary,
-   room-temperature etch is too slow to preserve the artwork, stop and use a
-   commercial fabricator instead of adding agitation or heat to this process.
-7. Lift one edge of the loose cover while standing upwind to inspect. Keep face
-   and body out of the opening. Replace the loose cover between checks.
-8. As soon as unwanted copper is gone, use polypropylene forceps to lift the
-   board. Drain it over the working tray without shaking.
-9. Move it directly into a first captured-rinse tray, then a second captured
-   rinse. A squeeze bottle may rinse the **board** over the waste tray; it is
-   not an emergency eyewash.
-10. Keeping all residue wet and over a captured-rinse tray, remove toner by
-    gentle mechanical rubbing. Do not dry-sand or introduce a solvent. Capture
-    the toner debris and rinse, then let the board dry completely before it
-    approaches the drill station.
-11. Leave the original stock bottle closed. After removing the board, make sure
-    no metal remains in the working tray and no reaction or gas generation is
-    continuing. Following MG and local HHW instructions, transfer spent etchant
-    outdoors into a separate compatible, labeled container; do not return it to
-    unused stock. Do not close a waste container while it is reacting or
-    off-gassing, and never improvise a food or beverage container.
+### 5. Form and verify rivets
 
-Do not assume a lack of visible fumes means a lack of exposure. MG 415 contains
-hydrogen chloride, has pH below 2, causes serious eye damage, irritates skin and
-airways, and is corrosive to metal.
+1. Deburr the 1.0 mm coupon hole and insert one delivered rivet without force.
+2. Put the factory flange down on a clean, flat steel backing block. Support
+   the board around the rivet; do not bridge it across vise jaws.
+3. Set an adjustable automatic center punch to minimum force, center its point
+   in the hollow tail, and fire one stroke at a time. Increase only enough to
+   produce a small, even flare that retains the rivet. Do not use a hammer or
+   try to flatten the tail into a second factory-looking head.
+4. Reject a split tail, cracked or lifted pad, tilted rivet, loose fit, or
+   deformed board. Cheap punched rivets provide retention, not a dependable
+   electrical joint by themselves.
+5. Join both collars using the existing assembly equipment. Excessive dwell can
+   loosen a marginal rivet or lift a pad.
+6. Inspect both sides under magnification and measure continuity. On the coupon,
+   require less than 0.1 ohm after subtracting lead resistance and no
+   intermittence during gentle flexing.
 
-## 5. Waste and cleanup
+## Emergency summary
 
-- Never pour fresh or spent etchant, copper-bearing rinse water, neutralized
-  sludge, or cleanup water into a sink, toilet, street drain, soil, or trash.
-- Do not neutralize waste as a disposal method. Neutralization can heat,
-  splatter, and create a second handling step; the current SDS still directs
-  hazardous-waste disposal.
-- Capture all rinses, used wipes, failed boards, contaminated absorbent, toner
-  debris, and spent etchant in compatible, closed, clearly labeled containers
-  accepted by the local HHW program. Do not mix unrelated wastes.
-- In San Mateo County, labeled corrosive household waste is illegal in trash or
-  drains. Confirm an appointment and packaging with the HHW program at
-  650-372-6200 or hhw@smcgov.org before the run.
-- For a small spill, keep people away, wear PPE, prevent entry to drains, and
-  use the confirmed neutralizing absorbent exactly as its instructions direct.
-  Neutralization can heat the mixture, and the selected candidate releases
-  carbon dioxide on acid contact. Work outdoors, keep the reaction vented, and
-  let it finish and cool before collecting the residue as hazardous waste. Do
-  not use it on bleach or hydrofluoric acid, or mix the residue with other
-  waste. For a spill outside the staged secondary tray, an exposure, unknown
-  reaction, or anything the prepared supplies cannot contain, leave the area
-  and call emergency services/chemical emergency support.
-- Store the original tightly closed bottle upright in compatible secondary
-  containment, dry and away from bases, oxidizers, metals, heat, children, and
-  pets. Retain the original label and SDS.
+- **Eyes:** flush immediately with the staged bottle, then continue with
+  running water for at least 30 minutes. Remove contacts if easy and call
+  Poison Control/doctor without delaying the rinse.
+- **Skin:** remove contaminated clothing and rinse with plenty of water.
+- **Inhalation:** move to fresh air and seek advice if symptoms persist.
+- **Swallowing:** rinse the mouth, do not induce vomiting, and call Poison
+  Control.
+- **Uncontrolled spill or unusual gas/reaction:** move away and call emergency
+  services rather than attempting an improvised cleanup.
 
-## 6. Drilling and FR-4 dust control
+US Poison Control: 1-800-222-1222. Call 911 for a life-threatening emergency.
 
-FR-4 machining releases glass-fiber/resin dust that can irritate eyes, skin,
-nose, throat, and lungs. Dust control is an engineering-control problem, not
-just a mask choice.
+## Primary sources
 
-### Conditional drill setup
-
-This setup becomes accepted only after the material and speed confirmations
-above are filed with the run record. Without them, outsource drilling.
-
-1. Work outdoors in dry weather, upwind of the vacuum exhaust and away from
-   doors/windows. Outdoor work remains required even with HEPA capture.
-2. Use grounded, intact cords and a GFCI-protected supply. Test the GFCI before
-   use, keep plugs and connections dry and elevated, and use only outdoor-rated
-   extensions. Check the drill and extractor nameplates and starting loads;
-   never exceed a receptacle, GFCI, cord, or branch-circuit rating. Use separate
-   suitable circuits if necessary rather than overloading a three-way outlet.
-3. Bolt the WEN press to a stable bench and bolt or clamp the vise to the table.
-   Square the table to the spindle. Support the PCB flat on a sacrificial
-   backer and clamp the board/backer sandwich without bending it; a vise merely
-   pinching the PCB edge is not adequate. Never hand-hold either piece.
-4. With the press unplugged, install a new, undamaged solid-carbide PCB bit with
-   a 3.175 mm shank, center it, tighten all three chuck-key positions, and
-   remove the key. Check runout, bit clearance, backer support, vise security,
-   and alignment before power-up.
-5. Put a rigid shroud around the bit/board contact point and connect it to a
-   sealed HEPA dust extractor with its specified fleece/fine-dust bag. Start
-   extraction before drilling and leave it on through cleanup.
-6. Wear impact-rated eye protection. Carbide bits are brittle and can shatter.
-   Tie hair, remove jewelry and loose clothing, and keep hands clear. Do not
-   wear gloves near the rotating spindle.
-7. Set any approved spindle speed with the press unplugged and the belt cover
-   closed afterward. Let the spindle reach full speed before feeding. Use only
-   the written bit-maker feed guidance; never compensate for insufficient
-   speed with force, side load, or hand wobbling. Stop at chatter, heat, smoke,
-   excessive thrust, bit slip, or any board damage.
-8. Do not blow dust with compressed air or sweep it dry. Vacuum the board,
-   backer, shroud, vise, table, and bench, then damp-wipe them. Bag the wipe and
-   spent backer.
-9. Remove the vacuum bag outdoors following the extractor instructions. Seal
-   it before bringing the extractor inside. Never use the dust extractor for
-   etchant, rinse water, or any other liquid.
-
-### Is a 3D-printed shop-vac holder enough?
-
-It can be enough **as the hood-positioning part**, but not as the dust-control
-system. Capture falls rapidly as a nozzle moves away from the source. The print
-must:
-
-- be rigidly fixed independently of the operator and unable to touch the bit,
-  chuck, quill, vise, workpiece, or any point in the full press travel;
-- surround as much of the drilling point as practical, with the opening only
-  large enough for board movement and clear viewing;
-- keep the pickup immediately adjacent to the bit without creating a pinch or
-  snag hazard;
-- fit the hose without a leak or a reducer so small that airflow collapses; and
-- survive a full dry run at maximum spindle speed before a bit is installed.
-
-An ordinary shop vacuum with a retrofit cartridge can leak fine dust around
-the lid, hose, or filter and may re-emit it through the exhaust. A label on the
-filter alone does not certify the whole vacuum. The preferred system is a
-manufacturer-specified HEPA extractor, fleece bag, filter, hose, and adapter.
-
-If the existing shop vacuum is used for a low-cost outdoor trial, install both
-the manufacturer's finest dry-dust bag and compatible high-efficiency filter,
-inspect every seal, direct exhaust away from people/buildings, use a well-fitted
-N95 or P100 as secondary protection, and drill only a coupon. This is a
-lower-confidence outdoor control, not approval for indoor use. Stop if a bright
-sidelight shows a plume or contrasting paper around the fixture collects dust;
-absence of visible dust is necessary but does not prove complete capture.
-
-The BOM's P100 setup is particulate protection for drilling only. Do not treat
-it as permission to etch indoors or as protection from ferric-chloride/hydrogen-
-chloride vapor. Respirator selection does not replace the outdoor, vented etch
-arrangement.
-
-## 7. Forming and soldering rivets
-
-1. Select 0.8 or 0.9 mm from the passing coupon; do not mix sizes in a run.
-2. Deburr only with a gentle wet method or a purpose-made deburring tool under
-   extraction. Do not enlarge a bad carbide-drilled hole by hand wobbling.
-3. Insert the 0.6 mm-ID copper rivet with its factory head fully seated.
-4. Install the matching Fortex 0.60 mm upper/lower tooling. Adjust the depth
-   stop on scrap, then form the collar squarely. Excess force can crush FR-4 or
-   split the pad; too little leaves a loose connection.
-5. Inspect both collars under magnification. Reject cracks, tilt, pad lift,
-   loose fit, or incomplete flare.
-6. For durable electrical continuity, solder both collars with minimal dwell
-   after forming, then clean only if residue interferes with inspection. Rivet
-   manuals warn that soldering heat can loosen a marginal mechanical joint.
-7. Measure continuity and gently flex-test as specified for the coupon. Record
-   every failure; do not rework a damaged via into acceptance.
-
-## 8. Assembly and final inspection
-
-- Before assembly, record the exact manufacturer/model of the existing
-  solder-fume extractor and every filter, hose, and nozzle. Check its current
-  manual, correct filter installation, filter-change indication, hose/seal
-  condition, and airflow. Do not proceed unless the manufacturer rates it for
-  solder fume and a trial joint's plume is captured before it crosses the
-  breathing zone.
-- Put its source-capture nozzle close to and slightly behind the joint. Start
-  extraction before heating and leave it on until visible fume clears. Follow
-  the unit's filter indicator and current manual; do not bypass or wash filters
-  unless the manufacturer explicitly instructs that maintenance.
-- Use the selected SAC305 wire in a ventilated soldering area. The separate
-  836LFNC-P pen is rosin/resin-free, but the selected 4900 solder wire contains
-  REL0 resin flux. The complete process is therefore **not** rosin-free.
-- Do not use supplemental liquid flux unless the coupon demonstrates that the
-  resin-cored wire alone is inadequate. The 836LFNC-P pen is highly flammable
-  and can cause eye irritation and drowsiness/dizziness. In a separate dry,
-  ventilated location with the iron and every ignition source absent, apply the
-  minimum amount, cap and remove the pen, and wait until its alcohol carrier is
-  completely evaporated before moving to the soldering station or applying
-  heat.
-- Keep the existing solder-fume system dedicated to soldering. Unless its exact
-  current manual explicitly permits another material, never use it for wet
-  flux carrier, etchant, corrosive gas, drilling dust, or chemical-spill
-  cleanup, and never use the drilling vacuum for solder fume.
-- Lead-free does not mean fume-free. The current Canada/USA `4900-18G` SDS
-  classifies the rosin-containing wire as a skin and respiratory sensitizer
-  and warns that repeated exposure to rosin flux fumes can cause asthma.
-  Capture fumes at the joint, avoid skin contact, and wash hands after
-  handling boards and solder. Stop exposure and obtain medical advice for a
-  rash, wheezing, breathing difficulty, or asthma-like symptoms.
-- Bare copper oxidizes. Assemble promptly and store finished boards dry; do not
-  add immersion-tin chemistry to this workflow.
-- Inspect every trace/space, pad, antipad, hole, and rivet under magnification.
-  Check for shorts to the bottom plane before fitting components.
-- Power only through a current-limited bench supply and the finished board's
-  separately reviewed bring-up plan. This fabrication document does not define
-  an electrical release.
-
-## Emergency first aid summary
-
-Follow the current product SDS and emergency personnel, not this summary.
-
-- **Eyes:** begin water irrigation immediately and continue for at least 30
-  minutes. Remove contacts if easy while rinsing. Call Poison Control/doctor
-  immediately; do not delay rinsing to make the call.
-- **Skin:** remove contaminated clothing and rinse with plenty of water. Obtain
-  medical advice for irritation or burns.
-- **Inhalation:** move to fresh air and call Poison Control/doctor if unwell.
-- **Swallowing:** rinse mouth, do not induce vomiting, and call Poison Control.
-- **Fire or suspected gas buildup:** do not operate switches or approach with
-  an ignition source. Leave the area and call 911.
-
-## Primary safety and process sources
-
-- [MG Chemicals 415 ferric chloride product page](https://mgchemicals.com/products/circuit-board-design/copper-etchants/ferric-chloride-etching/)
-- [MG Chemicals 415 US/Canada SDS, issue 2026-01-26](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-415-l.pdf)
-- [MG Chemicals 836LFNC-P product page](https://mgchemicals.com/products/soldering-supplies/flux-pens/lead-free-flux-pen/)
-- [MG Chemicals 836LFNC-P Canada/USA SDS](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-836lfnc-p.pdf)
-- [MG Chemicals 4900 solder-wire product page](https://mgchemicals.com/products/soldering-supplies/solder-wire/lead-free-solder/)
-- [MG Chemicals 4900-18G Canada/USA SDS](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-4900-18g.pdf)
-- [Fortex PTH400 system and rivet dimensions](https://www.fortex.co.uk/product/favorit-through-hole-mechanical-plating/)
-- [MIPEC 0.8 mm PCB drill parameters](https://www.mipec.eu/pcb-drill-0-8-mm/)
-- [MIPEC 0.9 mm PCB drill parameters](https://www.mipec.eu/pcb-drill-0-9-mm/)
-- [WEN 4208T product page and linked manual](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press)
-- [NIOSH fibrous-glass-dust guidance](https://www.cdc.gov/niosh/npg/npgd0288.html)
+- [MG Chemicals 415 product page](https://mgchemicals.com/products/circuit-board-design/copper-etchants/ferric-chloride-etching/)
+- [MG Chemicals 415 US/Canada SDS](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-415-l.pdf)
+- [NOAA HAZMAT Report 93-3, hydrochloric-acid evaporation model](https://library.oarcloud.noaa.gov/noaa_documents.lib/NOS/HMRA/HAZMAT_report_93-3.pdf)
+- [NIOSH hydrogen-chloride limits](https://www.cdc.gov/niosh/npg/npgd0332.html)
+- [MIPEC 1.0 mm drill page](https://www.mipec.eu/pcb-drill-1-0-mm/)
+- [WEN 4208T product and manual](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press)
 - [NIOSH local-exhaust hood proximity guidance](https://www.cdc.gov/niosh/engcontrols/ecd/detail39.html)
-- [OSHA immediate flushing requirement for corrosives](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.151)
+- [Honeywell Eyesaline personal-bottle data](https://ppe.honeywell.com/us/en/shop/first-aid/eyesaline-personal-eyewash-bottles/personal-sterile-saline-eyewash-bottles-12-pack)
 - [San Mateo County household hazardous waste](https://www.smchealth.org/hhw)
