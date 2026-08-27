@@ -77,25 +77,33 @@ and are unmodified.
 |---|---|---|
 | MG Chemicals `415-1L` ferric chloride | [US/Canada SDS](home-pcb-fabrication/mg-415-ferric-chloride-sds-us-ca.pdf); [TDS](home-pcb-fabrication/mg-415-ferric-chloride-tds.pdf) | [SDS](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-415-l.pdf); [TDS](https://mgchemicals.com/downloads/tds/tds-415-l.pdf); [product](https://mgchemicals.com/products/circuit-board-design/copper-etchants/ferric-chloride-etching/) |
 | MG Chemicals `540` double-sided copper clad | [500-series TDS](home-pcb-fabrication/mg-500-series-copper-clad-tds.pdf) | [TDS](https://www.mgchemicals.com/downloads/tds/tds-500-series.pdf); [ordering page](https://www.digikey.com/en/products/detail/mg-chemicals/540/2177370) |
+| Existing Brother `HL-L2370DW` monochrome laser printer | [online user's guide](home-pcb-fabrication/brother-hl-l2370dw-online-user-guide.pdf) | [specifications](https://support.brother.com/g/b/spec.aspx?c=us_ot&lang=en&prod=hll2370dw_us); [manuals](https://support.brother.com/g/b/manualtop.aspx?c=us&lang=en&prod=hll2370dw_us) |
 | Existing WEN `4208T` drill press | [4208/4208T manual](home-pcb-fabrication/wen-4208t-manual.pdf) | [product](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press); [manual source](https://cdn.shopify.com/s/files/1/0012/0350/3168/files/4208T.manual.20220914.pdf?v=1664398265) |
 | Pyramex `G205` chemical splash goggles | [product sheet](home-pcb-fabrication/pyramex-g205-product-sheet.pdf) | [product](https://www.pyramex.com/products/chemical-splash-goggle-d3); [product sheet](https://www.pyramex.com/cdn/shop/files/G205_Series_ANSI_HiRes_46cc9b24-3b11-4b06-b8bc-a10efec43877.pdf?v=8244389949847197997) |
 | SHOWA `730-[size]` reusable nitrile gloves | [2026 retail catalog](home-pcb-fabrication/showa-2026-retail-catalog.pdf) | [product](https://www.showagroup.com/us-en/shop/730/); [catalog](https://www.showagroup.com/wp-content/uploads/2024/02/SHOWA-RetailCatalog_EN-2026-NEW-REV-DIGITAL-1.pdf) |
-| Honeywell Eyesaline `32-000455-0000` 32 oz personal eyewash bottle (retail suffix `-H5`) | [product-family sheet](home-pcb-fabrication/honeywell-eyesaline-personal-bottles.pdf) | [product](https://ppe.honeywell.com/us/en/shop/first-aid/eyesaline-personal-eyewash-bottles/personal-sterile-saline-eyewash-bottles-12-pack); [product-family sheet](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/his/en-us/products/first-aid/documents/HS_eyesaline_personal_eyewash_bottles_eyesaline-personal-eyewash-bottles.pdf?download=false) |
+| First Aid Only `24-202-001` single 32 oz eye-flush station | [product sheet](home-pcb-fabrication/first-aid-only-eyewash-product-sheet.pdf) | [product sheet](https://externalassets.unilogcorp.com/ASSETS/DOCUMENTS/ITEMS/EN/First_Aid_Only_24-308_User_Manual.pdf); [single-unit clearance source](https://blackboxsafety.com/products/first-aid-only-eyewash-station-24-202-001) |
 | PP/HDPE material-compatibility basis | [Thermo Scientific chemical-resistance guide](home-pcb-fabrication/thermo-plastics-chemical-resistance-guide.pdf) | [guide](https://assets.thermofisher.com/TFS-Assets/LCD/posters/LCD-Chemical-Resistance-Guide-GALSPCHEMRESPOSTER-EN.pdf) |
 | NOAA HAZMAT Report 93-3 HCl partial-pressure and evaporation model | [report](home-pcb-fabrication/noaa-hazmat-93-3-hcl-properties.pdf) | [NOAA](https://library.oarcloud.noaa.gov/noaa_documents.lib/NOS/HMRA/HAZMAT_report_93-3.pdf) |
 
-The following selected items have maintained manufacturer pages but no static
-public document was identified: Techniks Press-n-Peel Blue vendor SKU `TEK-5`
-([ordering page](https://aretronics.com/products/techniks-press-peel-pc-board-kit));
-MIPEC 1.0 mm drill ([product](https://www.mipec.eu/pcb-drill-1-0-mm/)); and
-Cambro `2SFSPP190`
-working container with `SFC2SCPP190` lid
-([manufacturer product family](https://www.cambro.com/Products/food-storage/square-food-storage-containers/camsquares-classic-food-storage-containers/)).
+The following budget items have maintained pages but no separate static public
+drawing or manual was identified: Harfington `f25070700ux0179` 1.0 mm carbide
+PCB drills ([product](https://www.harfington.com/products/p-1889293));
+PITTSBURGH PRO automatic center punch SKU `621`
+([manufacturer/retailer](https://www.harborfreight.com/spring-loaded-center-punch-621.html));
+IKEA SAMLA PP working box `701.029.72`, lid `504.550.88`, and secondary box
+`401.029.78` ([working box](https://www.ikea.com/us/en/p/samla-box-clear-70102972/),
+[lid](https://www.ikea.com/us/en/p/samla-lid-for-box-1-gallon-clear-50455088/),
+[secondary box](https://www.ikea.com/us/en/p/samla-box-clear-40102978/)); and
+U.S. Plastic item `97365`, 32 oz HDPE bottle with PP cap
+([product](https://www.usplastic.com/catalog/item.aspx?itemid=165118)).
 
-The budget rivet system has no manufacturer drawing or static technical
-document: generic `M0.9(d) x 2.5(L) mm` hollow PCB rivets are sourced as Amazon
-ASIN `B015CV377O` ([listing](https://www.amazon.com/dp/B015CV377O)), and the
-adjustable center punch is Amazon ASIN `B08LG98JK9`
-([listing](https://www.amazon.com/dp/B08LG98JK9)). Treat both listings as
+The generic copper clad, transfer paper, and rivets have no manufacturer
+drawing or reliable static technical document. Their purchase references are
+GeeBat `GB0021`, Amazon ASIN `B01MRG7NHC`
+([listing](https://www.amazon.com/dp/B01MRG7NHC)); Ximimark
+`XQJ=LY251-XQJ-FBA`, Amazon ASIN `B07MYXK4WJ`
+([listing](https://www.amazon.com/dp/B07MYXK4WJ)); and generic
+`M0.9(d) x 2.5(L) mm` hollow PCB rivets, Amazon ASIN `B015CV377O`
+([listing](https://www.amazon.com/dp/B015CV377O)). Treat these listings as
 purchase references only; incoming measurement and the process coupon are the
 technical acceptance record.

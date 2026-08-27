@@ -5,11 +5,11 @@ release
 
 Last reviewed: 2026-08-25
 
-This folder covers small, toner-transfer FR-4 boards etched with MG Chemicals
-`415` ferric chloride, drilled on the existing WEN `4208T` press, and joined
-with inexpensive 0.9 mm-OD hollow PCB rivets. The separately sourced items are in
-[bom.md](bom.md). This workflow does not approve a telescope PCB or modify its
-design record.
+This folder covers toner-transfer FR-4 boards up to 70 x 100 mm, etched with MG
+Chemicals `415` ferric chloride, printed on the existing Brother `HL-L2370DW`,
+drilled on the existing WEN `4208T` press, and joined with inexpensive 0.9 mm-OD
+hollow PCB rivets. The cost-optimized purchases are in [bom.md](bom.md). This
+workflow does not approve a telescope PCB or modify its design record.
 
 ## Practical safety model
 
@@ -39,11 +39,9 @@ let the area clear. A lack of odor is not an exposure measurement.
 Use splash goggles, long sleeves and pants, closed shoes, and 13-inch reusable
 nitrile chemical gloves. Stage a 32 oz eyewash bottle for the immediate first
 flush and verify the unobstructed route to a household sink or shower before
-pouring. The bottle is finite and its own manufacturer calls it supplemental:
-after using it, continue flushing at the sink or shower for the etchant SDS's
-full 30 minutes and call Poison Control or a doctor. This removes the proposed
-$400 plumbed eyewash purchase without pretending one bottle can provide a
-30-minute rinse.
+pouring. The bottle is finite and intended only as the first response: after
+using it, continue flushing at the sink or shower for the etchant SDS's full 30
+minutes and call Poison Control or a doctor.
 
 Secondary containment is the main spill control. For a small spill contained
 in the tub, keep it there, absorb any remaining free liquid with compatible
@@ -87,16 +85,17 @@ E = A * Km * MW * Pv / (R * T)
 Km = 0.0048 * U^0.78 * Z^-0.11 * Sc^-0.67
 ```
 
-with a 0.030 m2 exposed surface, 1 m/s wind, 0.18 m along-wind dimension,
-Schmidt number 0.9, 25 degrees C, `MW = 0.03646 kg/mol`, and
-`R = 8.314 J/(mol K)`, the 2% comparison pressure gives
-`Km = 0.00622 m/s`, an HCl evaporation estimate of **0.36 mg/hour**, or
-**0.71 mg during a two-hour etch**. A deliberately crude 10x matrix/condition
-screen would be 3.6 mg/hour and 7.1 mg in two hours. The corresponding
+with a conservative 0.0532 m2 exposed surface (the selected box's full
+11 x 7.5 in top footprint), 1 m/s wind, 0.279 m along-wind dimension, Schmidt
+number 0.9, 25 degrees C,
+`MW = 0.03646 kg/mol`, and `R = 8.314 J/(mol K)`, the 2% comparison pressure
+gives `Km = 0.00593 m/s`, an HCl evaporation estimate of **0.60 mg/hour**, or
+**1.2 mg during a two-hour etch**. A deliberately crude 10x matrix/condition
+screen would be 6.0 mg/hour and 12 mg in two hours. The corresponding
 surface-equilibrium comparisons are 0.36 and 3.6 ppm; the open-air breathing
 zone should be lower because of dilution. The model assumes almost the entire
 inner surface is exposed, so it does not take credit for the loose cover. Those
-two-hour mass estimates are about 0.051% and 0.51%, respectively,
+two-hour mass estimates are about 0.086% and 0.86%, respectively,
 of the approximately 1.4 g inventory.
 
 For context only, the OSHA and NIOSH occupational ceiling for HCl is 5 ppm.
@@ -131,10 +130,12 @@ visual inspection and continuity.
    H59 brass and quote heads around 1.75-1.95 mm. Measure the delivered lot and
    reject rivets that are split, plated, badly out of round, or too short for
    the actual board.
-3. Start with a 2.5 mm pad on both sides; use 3.0 mm where space permits. Drill
-   a nominal 1.0 mm hole, intentionally 0.1 mm over the listed shank. The WEN's
-   runout may enlarge it further, so the coupon must confirm that the rivet
-   drops in without force but does not wobble excessively.
+3. Use a 3.0 mm pad on both sides; 3.5 mm is preferred where space permits.
+   Drill a nominal 1.0 mm hole, intentionally 0.1 mm over the listed shank.
+   The WEN's runout may enlarge it further, so the coupon must confirm that the
+   rivet drops in without force but does not wobble excessively. If the
+   measured rivet lot will not slip into the coupon, move up only to a 1.05 or
+   1.1 mm bit; do not force it through the pad.
 4. Add bottom-plane antipads around every non-ground hole. A hole through an
    unbroken ground plane is a short, whether or not it contains a rivet.
 5. Keep both rivet collars accessible for forming, inspection, and joining.
@@ -143,17 +144,27 @@ visual inspection and continuity.
 
 ### 1. Artwork and copper
 
-1. Generate top and bottom artwork at 1:1 with explicit mirror settings. Print
-   and measure the coupon before transferring a board.
-2. Prefer a pre-sized blank. Cutting or routing FR-4 creates much more dust than
+1. Generate top and bottom artwork at 1:1 with explicit mirror settings. Include
+   100 mm horizontal and vertical scale bars, 6/8/10/12 mil trace-space tests,
+   solid fills, and registration marks on the coupon.
+2. Use the Brother desktop driver, not mobile printing. Select the manual feed
+   slot and rear face-up output; `Actual size`/100% scaling; one-sided output;
+   1200 x 1200 dpi or HQ1200; Graphics mode; Toner Save off; and high density.
+   Start with the Labels media setting. Feed one laser-rated transfer sheet at a
+   time with its printable surface facing up. The paper instructions override
+   the starting media setting if they differ.
+3. Measure both printed 100 mm bars. Reject scaling error greater than 0.2 mm,
+   skew, broken 8-10 mil features, or pinholes in solid fills. Transfer this
+   coupon before assuming the particular toner and paper work together.
+4. Prefer a pre-sized blank. Cutting or routing FR-4 creates much more dust than
    drilling a few holes.
-3. Wet-clean copper with dish detergent and a dedicated fine nonmetallic pad.
+5. Wet-clean copper with dish detergent and a dedicated fine nonmetallic pad.
    Do not dry-sand or use steel wool. Capture the residue with the process
    waste.
-4. Transfer toner using the transfer-medium instructions and an existing
+6. Transfer toner using the transfer-medium instructions and an existing
    household iron or laminator dedicated to workshop use. Keep this dry step
    away from chemistry.
-5. Inspect under magnification. Reject smears, missing fine features, or poor
+7. Inspect under magnification. Reject smears, missing fine features, or poor
    front/back registration.
 
 ### 2. Balcony etch and rinse
@@ -187,12 +198,13 @@ plastic tub away from bases, metals, heat, food, children, and pets.
 
 ### 4. Drill on the existing WEN press
 
-The WEN `4208T` is not an ideal PCB drill: its 3,140 RPM maximum is far below
-the selected 1.0 mm MIPEC bit's 48,000 RPM starting recommendation. It will still make
-prototype holes when the setup is rigid. Expect slower work, greater thrust,
-more exit burr/chip-out, shorter carbide-bit life, and less consistent diameter
-than a purpose-built high-speed spindle. The coupon decides whether that
-quality is acceptable.
+The WEN `4208T` is not an ideal high-speed PCB drill, but it will make prototype
+holes when the setup is rigid. The selected tools are 1.0 mm solid-carbide
+twist drills intended for PCB work, not pointed engraving burrs. At the press's
+3,140 RPM maximum, expect slower work, greater thrust, more exit burr/chip-out,
+shorter carbide-bit life, and less consistent diameter than a purpose-built PCB
+spindle. The coupon decides
+whether that quality is acceptable.
 
 1. Work outdoors. Clamp the vise to the press table and support the complete
    PCB flat on a clean sacrificial backer. Never hand-hold the board.
@@ -219,29 +231,29 @@ outdoor prototype boards if it is rigid, close to the hole, and paired with a
 working dry-dust vacuum setup. It is not a filter by itself and does not make a
 generic vacuum a certified HEPA machine.
 
-Use the existing shop vac with its manufacturer's compatible dry collection
-bag and best available high-efficiency/HEPA cartridge. Inspect the hose, lid,
-and filter seals and direct the exhaust away from people, doors, and windows.
+Use the existing shop vac with a compatible dry collection bag and a serviceable
+dry cartridge/filter. Inspect the hose, lid, and filter seals and direct the
+exhaust away from people, doors, and windows.
 The print must clear the bit, chuck, quill, vise, and full travel; stay fixed
 without a hand holding it; and be dry-run with the press unplugged. A small
 opening close to the bit is more effective than a large nozzle several inches
 away. Stop and improve the hood if a bright side light shows a dust plume.
 
-For this limited outdoor use, buying a $600 certified extractor is not
-proportionate. A disposable N95 is reasonable secondary protection if one is
-already available or many holes are planned, but source capture and outdoor
-work remain the primary controls. The exact replacement bag and cartridge are
-shop-vac-model-specific and should be sourced only after reading the vac's
-model plate and manual.
+For this limited outdoor use, do not buy a new certified extractor or HEPA
+vacuum. A disposable N95 is reasonable secondary protection if one is already
+available or many holes are planned, but source capture and outdoor work remain
+the primary controls. Replace a bag or cartridge only if the existing one is
+missing, damaged, or unsuitable for dry collection; the exact replacement is
+shop-vac-model-specific.
 
 ### 5. Form and verify rivets
 
 1. Deburr the 1.0 mm coupon hole and insert one delivered rivet without force.
 2. Put the factory flange down on a clean, flat steel backing block. Support
    the board around the rivet; do not bridge it across vise jaws.
-3. Set an adjustable automatic center punch to minimum force, center its point
-   in the hollow tail, and fire one stroke at a time. Increase only enough to
-   produce a small, even flare that retains the rivet. Do not use a hammer or
+3. Center the automatic center punch in the hollow tail and use one
+   push-to-strike stroke. Inspect before applying another stroke. Produce only
+   a small, even flare that retains the rivet. Do not use a hammer or
    try to flatten the tail into a second factory-looking head.
 4. Reject a split tail, cracked or lifted pad, tilted rivet, loose fit, or
    deformed board. Cheap punched rivets provide retention, not a dependable
@@ -272,8 +284,10 @@ US Poison Control: 1-800-222-1222. Call 911 for a life-threatening emergency.
 - [MG Chemicals 415 US/Canada SDS](https://www.mgchemicals.com/downloads/msds/01%20English%20Can-USA%20SDS/sds-415-l.pdf)
 - [NOAA HAZMAT Report 93-3, hydrochloric-acid evaporation model](https://library.oarcloud.noaa.gov/noaa_documents.lib/NOS/HMRA/HAZMAT_report_93-3.pdf)
 - [NIOSH hydrogen-chloride limits](https://www.cdc.gov/niosh/npg/npgd0332.html)
-- [MIPEC 1.0 mm drill page](https://www.mipec.eu/pcb-drill-1-0-mm/)
+- [Brother HL-L2370DW specifications and manuals](https://support.brother.com/g/b/manualtop.aspx?c=us&lang=en&prod=hll2370dw_us)
+- [Harfington 1.0 mm carbide PCB drill pack](https://www.harfington.com/products/p-1889293)
 - [WEN 4208T product and manual](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press)
+- [PITTSBURGH PRO automatic center punch, SKU 621](https://www.harborfreight.com/spring-loaded-center-punch-621.html)
 - [NIOSH local-exhaust hood proximity guidance](https://www.cdc.gov/niosh/engcontrols/ecd/detail39.html)
-- [Honeywell Eyesaline personal-bottle data](https://ppe.honeywell.com/us/en/shop/first-aid/eyesaline-personal-eyewash-bottles/personal-sterile-saline-eyewash-bottles-12-pack)
+- [First Aid Only personal-eyewash product sheet](../datasheets/home-pcb-fabrication/first-aid-only-eyewash-product-sheet.pdf)
 - [San Mateo County household hazardous waste](https://www.smchealth.org/hhw)
