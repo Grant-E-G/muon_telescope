@@ -85,9 +85,12 @@ and are unmodified.
 | PP/HDPE material-compatibility basis | [Thermo Scientific chemical-resistance guide](home-pcb-fabrication/thermo-plastics-chemical-resistance-guide.pdf) | [guide](https://assets.thermofisher.com/TFS-Assets/LCD/posters/LCD-Chemical-Resistance-Guide-GALSPCHEMRESPOSTER-EN.pdf) |
 | NOAA HAZMAT Report 93-3 HCl partial-pressure and evaporation model | [report](home-pcb-fabrication/noaa-hazmat-93-3-hcl-properties.pdf) | [NOAA](https://library.oarcloud.noaa.gov/noaa_documents.lib/NOS/HMRA/HAZMAT_report_93-3.pdf) |
 
-The following budget items have maintained pages but no separate static public
-drawing or manual was identified: Harfington `f25070700ux0179` 1.0 mm carbide
+The following maintained pages were checked 2026-08-27; no separate static
+public drawing or manual was identified for these budget items: Harfington
+`f25070700ux0179` 1.0 mm carbide
 PCB drills ([product](https://www.harfington.com/products/p-1889293));
+NEIKO adjustable automatic center punch `02638A`
+([manufacturer](https://neikotools.com/products/neiko-02638a-5-automatic-center-hole-punch-adjustable-impact-spring-loaded-puncher-tool));
 PITTSBURGH PRO automatic center punch SKU `621`
 ([manufacturer/retailer](https://www.harborfreight.com/spring-loaded-center-punch-621.html));
 IKEA SAMLA PP working box `701.029.72`, lid `504.550.88`, and secondary box
