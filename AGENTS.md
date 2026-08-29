@@ -10,7 +10,7 @@ For hardware work, also read `docs/design.md`, `docs/build-and-debug.md`, and
 - Treat `docs/design.md` as the reviewed design intent. Update it in the same
   change when connectivity, component values, timing, pin assignments, or
   scientific scope changes.
-- Use KiCad 10.0.5. Do not migrate KiCad files to another version implicitly.
+- Use KiCad 9.0.9. Do not migrate KiCad files to another version implicitly.
 - Do not guess a symbol pin number, footprint pad, connector orientation, or
   manufacturer part number. Check the current primary-source datasheet.
 - For every selected part with a public datasheet, drawing, manual, or similar

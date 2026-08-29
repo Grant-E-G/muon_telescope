@@ -121,7 +121,7 @@ large number of generic test-point terminals.
 | EJ-550 optical coupling compound | 1 | [Surplus listing](https://www.ebay.com/itm/157806378831), $16.50 when checked; [technical sheet](https://www-eng.lbl.gov/~shuman/NEXT/MATERIALS%26COMPONENTS/WLS_materials/optical-grease_EJ550.pdf) | $16.50 |
 | Reflective foil and opaque wrap/tape | 1 set | Local consumable; document the actual material used | $10 |
 | Rigid adjustable frame and fasteners | 1 | Design under `hardware/mechanical/`; use existing stock where practical | $10-25 |
-| Five detector-head plus five power/interface PCBs | 10 boards | Quote from the chosen fabricator after dimensions are known; [JLCPCB quote tool](https://jlcpcb.com/quote) is a planning reference, not a selected supplier | $35-55 |
+| Five 70 x 70 mm detector-head plus five 96 x 64 mm power/interface PCBs | 10 boards | Frozen revision A outlines are in `docs/design.md`; quote the chosen fabricator from the reviewed KiCad boards. The [JLCPCB quote tool](https://jlcpcb.com/quote) is a planning reference, not a selected supplier | $35-55 |
 | Optional stainless stencil | 1 | Quote with fabrication package if it improves SiPM process control | $0-15 |
 
 The scintillator geometry and provenance decisions are resolved. The seller

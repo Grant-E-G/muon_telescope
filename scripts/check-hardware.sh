@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-required_version="10.0.5"
+required_version="9.0.9"
 output_dir="build/checks"
 
 if command -v kicad-cli >/dev/null 2>&1; then

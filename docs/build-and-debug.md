@@ -21,11 +21,17 @@ than creating a separate form for every test.
   listing on the purchase day.
 - [x] Every currently selected planning-BOM part is mapped to its primary
   document in `docs/datasheets/README.md`; recheck when any part changes.
-- [ ] Create both KiCad 10.0.5 projects and project-local library tables.
+- [x] Revision A pre-KiCad choices are frozen in `docs/design.md`, including
+  the 70 x 70 head and 96 x 64 central-board envelopes, holes, connector
+  locations, cable exits, trimmer direction, optical stack, and frame datums.
+- [ ] Create both KiCad 9.0.9 projects and project-local library tables.
 - [ ] Check the SiPM symbol, footprint, orientation, and no-solder center paddle
   independently against the current datasheet and physical part.
 - [ ] Add unambiguous top- and bottom-side pin-1/mating markings to all headers.
 - [ ] Print each unusual footprint and connector at 1:1.
+- [ ] Model both PCB envelopes and the replaceable scintillator carrier from the
+  coordinate-controlled dimensions in `docs/design.md`; a measured block-size
+  mismatch changes the carrier insert, not the PCB datums.
 - [ ] Run ERC/DRC and `make check`; explain rather than hide any exception.
 - [ ] Complete every fabrication-release item near the end of this document.
 
@@ -236,13 +242,18 @@ Layout and mechanics:
 - [ ] High-voltage clearance and capacitor voltage/DC-bias ratings are checked.
 - [ ] Connector orientation, reverse-side pin 1, rail labels, mounting holes,
   and Pmod support are unambiguous.
-- [ ] Board outline and critical dimensions fit the mechanical model.
+- [ ] Board outlines, hole coordinates, connector centers, cable clearance, and
+  critical dimensions match the frozen mechanical interface-control tables and
+  the mechanical model.
+- [ ] The carrier hard stops are set from the installed SiPM height, carry the
+  clamp load without package compression, and preserve the specified grease
+  gap; both cable exits point away from the coincidence aperture.
 - [ ] DNP parts and alternate sense-resistor stuffing are identified on assembly
   drawings.
 
 Outputs and order:
 
-- [ ] KiCad 10.0.5 ERC and DRC, including schematic parity, pass or have reviewed
+- [ ] KiCad 9.0.9 ERC and DRC, including schematic parity, pass or have reviewed
   written exceptions.
 - [ ] Gerber, drill, outline, solder-mask, paste, silkscreen, and copper layers
   are inspected in an independent viewer.

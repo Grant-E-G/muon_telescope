@@ -53,7 +53,7 @@ record their external source and a checksum instead.
 
 ## Toolchain and routine checks
 
-- KiCad **10.0.5** is the locked hardware file-format version.
+- KiCad **9.0.9** is the locked hardware file-format version.
 - Run `make check` before a hardware pull request and before a fabrication
   release. The check intentionally fails if the locked KiCad version or either
   KiCad project is missing.

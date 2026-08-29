@@ -10,6 +10,11 @@ These decisions affect connectivity, footprints, or board geometry. Resolve
 them here before schematic capture; do not leave them as annotations to fix
 during layout.
 
+**Revision A has no open pre-KiCad design decisions.** The unchecked work in
+`docs/build-and-debug.md` is verification or implementation work, not authority
+to choose a different interface during capture or layout. A physical mismatch
+must be recorded and reviewed before changing the frozen values below.
+
 Power and bias:
 
 - [x] Use `MAX5026`, not `MAX5028`: both accept 3-11 V, but the MAX5026 has an
@@ -59,10 +64,13 @@ Physical and procurement inputs:
 - [x] Couple the 6 mm SiPM at the center of the polished 50 x 50 mm face with a
   thin grease layer. Use a compliant clamp with hard stops so pressure is
   repeatable and the sensor package is not the structural stop.
-- [ ] Freeze head and central board outlines, mounting holes, cable exits, and
-  adjustable-frame interfaces around that coupling arrangement.
-- [ ] Obtain or print-check physical samples of the SiPM, trimmers, JST headers,
-  Pmod header, and other unusual footprints before PCB release.
+- [x] Use the board outlines, mounting holes, connector coordinates, cable exits,
+  optical stack, and adjustable-frame datums in the mechanical interface-control
+  section below.
+- [x] Begin schematic and footprint capture from the exact selected-part drawings
+  in `docs/datasheets/`. A datasheet check, 1:1 print, and physical-part check are
+  fabrication-release verification gates; they do not remain open design choices
+  and do not block schematic capture.
 
 ## Scope and architecture
 
@@ -204,13 +212,19 @@ Generate an adjustable threshold of approximately 0-0.53 V:
 pot bottom -- GND; pot wiper -- VTH; VTH -- 10 nF -- GND
 ```
 
+For the `3296W-1-103LF`, connect pin 3 to the divider node, pin 1 to ground,
+and pin 2 (wiper) to `VTH`. Clockwise rotation raises the threshold. Mark
+`VTH + CW` on the silkscreen; the meter reading, not turns from an end stop,
+defines the setting.
+
 Begin at a measured `VTH = 100 mV`. With a 50 mV baseline, this is about
 3.7 mV referred to `SIPM_RAW`; the real operating point comes from a threshold
 scan, not pot rotation.
 
-Provide a two-pin injection header: generator signal through 499 ohm to
-`SIPM_RAW`, plus ground. Use it without an installed SiPM first. Verify generator
-level and polarity on a scope before connecting it to a biased sensor.
+Provide a 1x2, 2.54 mm injection header: pin 1 is `INJECT` and reaches
+`SIPM_RAW` through 499 ohm; pin 2 is ground. Mark both functions on both board
+sides. Use it without an installed SiPM first. Verify generator level and
+polarity on a scope before connecting it to a biased sensor.
 
 Provide labeled probe points for `BIAS_27V`, `BIAS_LOCAL`, `+5VA`,
 `+3V3_LOCAL`, `VBASE`, `SIPM_RAW`, `AMP_OUT`, `VTH`, `COMP_RAW`,
@@ -241,12 +255,14 @@ Same Sky `PJ-102AH` board jack. The connection is center-positive; the adapter's
 through:
 
 ```text
-5 V input -> 500 mA resettable fuse -> SS14 Schottky -> +5VA
+5 V input -> 500 mA resettable fuse -> SS14 Schottky
+            -> +5VA_PRELINK -> 0 ohm current link -> +5VA
 ```
 
 The adapter is specified at 5 V +/-5%; require 4.75-5.25 V at the jack under
-load. Put 10 uF and 100 nF at `+5VA`; include a clearly marked current link if
-space permits. A `TLV75533PDBVR`, with its datasheet capacitors, generates
+load. Put 10 uF and 100 nF at `+5VA`. Fit a clearly marked 0 ohm 0805 current
+link between `+5VA_PRELINK` and `+5VA`; do not omit it for space. A
+`TLV75533PDBVR`, with its datasheet capacitors, generates
 `+3V3_LOCAL`. The adapter's 1 A capability does not replace the on-board 500 mA
 PTC. For bench bring-up, begin with a 100 mA current limit and increase it only
 when measured load justifies doing so.
@@ -279,13 +295,16 @@ margin after the input Schottky diode and 5 V source tolerance.)
 | Input bypass | 4.7 uF / 16 V X7R plus 100 nF |
 | Inductor | 47 uH shielded, DCR <1 ohm, saturation current >=350 mA |
 | Boost diode | 60 V Schottky, >=0.5 A pulse capability |
-| Raw output | 2 x 1 uF / 50 V X7R, preferably 1206 |
+| Raw output | 2 x 1 uF / 50 V X7R, 1206 |
 | Feedback top | 147 kohm, 0.1% |
 | Feedback bottom | 6.98 kohm, 0.1%, 25 ppm/deg C, plus 500 ohm 10-turn rheostat |
 | Distribution filter | 100 ohm, then 1 uF / 50 V and 10 nF / 100 V |
 | Discharge | 1 Mohm from filtered bias to ground |
 
-Tie the trimmer wiper to one end so a lost wiper does not open the feedback path.
+Wire the `3296W-1-501LF` as a fail-safe rheostat: pin 3 connects to the 6.98
+kohm resistor; pins 1 and 2 are tied together and connect to ground. Clockwise
+rotation then reduces the added bottom resistance and raises the bias. A lost
+wiper contact leaves the full track rather than opening the feedback path.
 The MAX5026 relation, including feedback-pin current, is approximately:
 
 ```text
@@ -314,10 +333,12 @@ high-impedance meter, and set 27.2 V. Do not operate below 0 deg C without
 recalculating the limit or lowering the measured bias, and never exceed the
 individual part's measured breakdown plus 5.0 V.
 
-Pull `SHDN` low with 100 kohm and use a labeled jumper or switch to connect it
-to `+5VA`. Shutdown stops switching but does not isolate the output; the
-inductor and diode can leave the output near the input voltage. Always measure
-the rail and wait for the bleeder before handling it.
+Pull `SHDN` low with 100 kohm. Use a fitted 1x2, 2.54 mm header and removable
+shunt: pin 1 is `SHDN`, pin 2 is `+5VA`, open is `BIAS OFF`, and shunted is
+`BIAS ON`. Do not fit a board switch in revision A. Shutdown stops switching
+but does not isolate the output; the inductor and diode can leave the output
+near the input voltage. Always measure the rail and wait for the bleeder before
+handling it.
 
 The 1 Mohm bleeder discharges stored charge after the boost branch loses input
 power; it does not eliminate diode feed-through while `+5VA` is present. At
@@ -374,7 +395,8 @@ that local 3.3 V is open-circuit to Pmod pins 6 and 12.
 
 - Use two-layer, 1.6 mm FR-4, 1 oz copper and hand-assembly-friendly 0805
   passives; use 1206 where high-voltage capacitor performance benefits.
-- Use one root schematic per board until complexity makes a hierarchy useful.
+- Use exactly one root schematic per board for revision A; do not introduce
+  hierarchical sheets during initial capture.
 - Prefer a mostly unbroken ground plane. Do not create a split that forces
   return current around a gap.
 - On the head, place sensor, cathode decoupling, sense/coupling parts, amplifier,
@@ -391,7 +413,106 @@ that local 3.3 V is open-circuit to Pmod pins 6 and 12.
   insulate conductive foil from the PCB. Do not rely on tape tension to load
   the package.
 - Start with 50 mm paddle separation in a rigid, repeatable frame; preserve an
-  adjustment range of roughly 50-250 mm and a repeatable angle reference.
+  adjustment range of 50-250 mm and the angle reference specified below.
+
+### Mechanical interface control
+
+All dimensions in this section are millimetres. PCB coordinates are viewed
+from the component side, with the lower-left corner of the outline's bounding
+box at `(0, 0)`, `+X` to the right, and `+Y` away from the cable-exit edge.
+The component side is KiCad's front side and faces away from the scintillator;
+the optical side is KiCad's back side. Board-edge and hole dimensions are
+frozen; component placement may move only within the resulting envelope and
+the electrical layout rules above.
+
+#### Detector-head PCB
+
+| Feature | Revision A geometry |
+|---|---|
+| Outline | 70.0 x 70.0 rectangle with 2.0 corner radii |
+| Mounting holes | Four 3.2 NPTH holes at `(5,5)`, `(65,5)`, `(5,65)`, and `(65,65)`; no copper within 1.0 of each finished hole |
+| Scintillator projection | Bare 50.0 x 50.0 block centered on the board, nominally `X=10..60`, `Y=10..60` |
+| SiPM | Back/optical-side footprint with active-area center at `(35,35)`; in the component-side coordinate view, pad 1 lies in the `X<35, Y>35` quadrant and pad 3 lies in the `X>35, Y<35` quadrant, matching the manufacturer's bottom view |
+| Other components | Component side only; no other package or solder joint may protrude from the optical side inside the scintillator projection |
+| `HEAD` connector | `B8B-XH-A`, component side, body centered at `(35,8)`, eight-pin axis along X; pin 1 at `(26.25,8)` |
+| Head cable exit | Mate normal to the component side, then bend and strain-relieve toward `-Y`; keep the cable outside the active 50 x 50 aperture |
+
+Put unambiguous `OPTICAL SIDE`, `COMPONENT SIDE`, pin-1, and rail markings on
+both PCB faces. On the component-side view, orient the JST molded face
+toward `+Y`. The pin-1 end and electrical cable table control if a library
+graphic or 3D model uses a different visual convention.
+
+The SiPM is the only optical-side component. Transition each required SiPM pad
+to the component side immediately beside its land; place the cathode bypass,
+sense resistor, coupling capacitor, and their returns directly behind the
+sensor before continuing through the signal chain. The pin-5 mechanical paddle
+still has no copper, paste, or solder.
+
+#### Power/interface PCB
+
+| Feature | Revision A geometry |
+|---|---|
+| Outline | 96.0 x 64.0 rectangle with 2.0 corner radii |
+| Mounting holes | Four 3.2 NPTH holes at `(4,4)`, `(92,4)`, `(4,60)`, and `(92,60)`; no copper within 1.0 of each finished hole |
+| `HEAD_A` | `B8B-XH-A`, component side, body centered at `(62,50)`, eight-pin axis along Y, pin 1 at `(62,58.75)` |
+| `HEAD_B` | `B8B-XH-A`, component side, body centered at `(82,50)`, eight-pin axis along Y, pin 1 at `(82,58.75)` |
+| Pmod | `TSW-106-08-G-D-RA` with its mating-face plane at `X=96`, centerline `Y=18`, six-position axis along Y, and cable projecting beyond `+X`; derive hole offsets from the Samtec drawing |
+| Barrel jack | `PJ-102AH` with its plug-entry plane at `X=0`, centerline `Y=18`, and plug projecting beyond `-X`; derive hole offsets from the Same Sky drawing |
+| Head cable exit | Mate normal to the component side, then bend both bundles toward `+Y`; reserve 25 clear normal to the board above the connector bodies for housing and bend relief |
+| Pmod strain relief | Restrain the cable or gender changer to the fixed central-board carrier within 25 of the `+X` edge; the header is not the structural restraint |
+
+Place the power-entry and boost islands in the left half, the head-distribution
+connectors in the upper-right, and the Pmod interface in the lower-right. Keep
+the boost switch node out of the head-connector and Pmod regions. Mount this
+board component-side up on at least 6.0 standoffs using the 88 x 56 hole pattern.
+Orient both JST molded faces toward `+X`; their pin-1 ends are toward `+Y` as
+given by the coordinate table.
+
+The unkeyed Pmod requires three consistent views: the schematic pin table, the
+component-side footprint view, and the view looking into the mated cable. Put a
+filled pin-1 triangle on both PCB faces. Following Digilent's nonstandard male
+peripheral numbering, pads 1 through 6 occupy the inboard (`-X`) row from `+Y`
+to `-Y`, and pads 7 through 12 occupy the outboard (`+X`) row in the same
+direction. The archived Digilent specification controls this numbering; the
+continuity-mapped `240-109` cable and gender changer must confirm the two mating
+views before release. A failed continuity check corrects the drawing or
+assembly instructions, not the fixed JA net assignment.
+
+Implement ordinary signal test points as 2.0 diameter component-side exposed
+copper pads. At `SIPM_RAW`, `AMP_OUT`, `COMP_RAW`, `TRIG_OUT`, `HV_RAW`, and
+`BIAS_27V`, add a ground-loop footprint within 5.0: two 1.0 plated holes on
+5.0 pitch fitted with a short formed solid-wire loop. Use cut sections of the
+selected 2.54 mm breakaway header for `INJECT` and `BIAS ENABLE`; do not invent
+another connector family during capture.
+
+#### Optical carrier and adjustable frame
+
+Each head uses the PCB's 60 x 60 mounting-hole pattern as its only interface to
+a removable carrier. The carrier centers a nominal 50.0 x 50.0 block on the
+SiPM axis and uses a 52.0 x 52.0 nominal replaceable pocket with compliant side
+retention, allowing 1.0 nominal wrap thickness per side. If the inspected and
+wrapped seller-cut block does not fit that pocket, change only the replaceable
+carrier insert; do not move the PCB sensor, holes, or connector.
+
+The carrier has four adjustable hard-stop lands concentric with the PCB holes.
+Set the stopped distance from the polished scintillator face to the PCB optical
+side to the measured installed SiPM height plus `0.05 +/- 0.03`. Light springs
+or compliant washers keep the PCB seated on those stops; the stops, not the
+SiPM package, carry clamp load. Fill the resulting nominal 0.05 optical gap
+with a thin, bubble-free EJ-550 layer. Cut a centered 7.5 x 7.5 opening in the
+reflective and opaque layers at the sensor and electrically insulate any
+conductive reflector from the PCB.
+
+Install the upper and lower modules with their polished/sensor faces pointing
+outward, so both component sides and cable exits face away from the coincidence
+aperture. Define paddle separation as the distance between scintillator
+midplanes. The parallel-position carriage must lock from 50 to 250 separation;
+use 50 for first measurements. Its zero-angle datum is parallel faces with the
+two SiPM/scintillator centers coaxial. Any angle stage rotates about the moving
+scintillator center, covers at least `-60` to `+60` degrees, and provides fixed
+marks at 0, 15, 30, 45, and 60 degrees in both directions with 1 degree or
+better readback. Record center-to-center distance and signed angle for every
+nonparallel run.
 
 ## FPGA and data path
 
@@ -543,4 +664,4 @@ Part, connector, and board documentation is archived and mapped to exact
 manufacturer numbers in [`docs/datasheets/README.md`](datasheets/README.md).
 Background references remain the [CosmicWatch v3X paper](https://arxiv.org/html/2508.12111)
 and [reference repository](https://github.com/spenceraxani/CosmicWatch-Desktop-Muon-Detector-v3X).
-Tool behavior follows the [KiCad 10.0 CLI documentation](https://docs.kicad.org/10.0/en/cli/cli.html).
+Tool behavior follows the [KiCad 9.0 CLI documentation](https://docs.kicad.org/9.0/en/cli/cli.html).

@@ -10,7 +10,7 @@ hardware/power_interface/power_interface.kicad_pro
 
 ## Hardware workflow
 
-- Use KiCad 10.0.5 and open a project through its `.kicad_pro` file.
+- Use KiCad 9.0.9 and open a project through its `.kicad_pro` file.
 - Do not accept a file-format migration during ordinary editing.
 - Only one person edits a given `.kicad_sch`, `.kicad_pcb`, `.kicad_sym`, or
   `.kicad_mod` file at a time. Divide work by board or take turns through
