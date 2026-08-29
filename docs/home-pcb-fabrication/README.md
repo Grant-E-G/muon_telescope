@@ -3,12 +3,14 @@
 Status: prototype process; independent of the telescope design and fabrication
 release
 
-Last reviewed: 2026-08-28
+Last reviewed: 2026-08-29
 
 This folder covers toner-transfer FR-4 boards up to 70 x 100 mm, etched with MG
 Chemicals `415` ferric chloride, printed on the existing Brother `HL-L2370DW`,
-drilled on the existing WEN `4208T` press, and joined with inexpensive 0.9 mm-OD
-hollow PCB rivets. The cost-optimized purchases are in [bom.md](bom.md). This
+drilled on the existing WEN `4208T` press, and joined with coupon-qualified
+Litoexpe `GAOC1570` eyelets formed by the matched `GAOC1573` steel tooling in
+the stationary drill-press chuck. The direct Amazon pair and its delivered-cost
+cases are recorded in [bom.md](bom.md). This
 workflow does not approve a telescope PCB or modify its design record.
 
 ## Practical safety model
@@ -115,30 +117,36 @@ reactive metals, another reason to use plastic tools and never seal the setup.
 | QFN, BGA, controlled impedance | Use a commercial board |
 | Double-sided registration | Manual and variable |
 | WEN-drilled holes | Usable prototype quality; expect more burrs and bit wear |
-| Budget riveted vias | Functional after joining both sides, but mechanically crude and lot-dependent |
+| Budget eyelet vias | Functional after joining both sides; received dimensions and coupon still control the layout |
 
 Make a coupon first with the minimum trace/space, a measured 100 mm artwork
 dimension, front/back registration marks, ground-plane clearances, and several
-1.0 mm rivet holes. Do not populate a board until the coupon passes
+2.0 and 2.1 mm eyelet holes. Do not populate a board until the coupon passes
 visual inspection and continuity.
 
-## Layout for rivets
+## Layout for eyelets
 
-1. Use rivets as dedicated vias; do not share a rivet with a component lead.
-2. Buy the exact `M0.9(d) x 2.5(L) mm` variant: nominal 0.9 mm shank OD and
-   2.5 mm length. Cheap listings disagree on whether the material is copper or
-   H59 brass and quote heads around 1.75-1.95 mm. Measure the delivered lot and
-   reject rivets that are split, plated, badly out of round, or too short for
-   the actual board.
-3. Use a 3.0 mm pad on both sides; 3.5 mm is preferred where space permits.
-   Drill a nominal 1.0 mm hole, intentionally 0.1 mm over the listed shank.
-   The WEN's runout may enlarge it further, so the coupon must confirm that the
-   rivet drops in without force but does not wobble excessively. If the
-   measured rivet lot will not slip into the coupon, move up only to a 1.05 or
-   1.1 mm bit; do not force it through the pad.
-4. Add bottom-plane antipads around every non-ground hole. A hole through an
-   unbroken ground plane is a short, whether or not it contains a rivet.
-5. Keep both rivet collars accessible for forming, inspection, and joining.
+1. Use eyelets as dedicated vias; do not share an eyelet with a component lead.
+2. Use the matched Litoexpe `GAOC1570` eyelets (Amazon ASIN `B0DYY6MCZS`) and
+   `GAOC1573` forming-tool set (ASIN `B0DYY4NCQW`). The listing publishes a
+   2.0 mm barrel OD, 3.5 mm flange OD, and 3.45 mm overall height; “1.5 mm” is
+   the nominal opening. Measure at least five received parts and reject split,
+   badly out-of-round, or inconsistent parts.
+3. Do not freeze the pad diameter until those measurements and the coupon are
+   recorded. Size the pad so the complete as-formed collar remains on copper
+   with useful inspection and soldering clearance on both sides.
+4. Make 2.0 and 2.1 mm coupon holes with the owned Genmitsu `PD30A`. The barrel
+   is nominally 2.0 mm, so accept the largest hole that permits insertion
+   without force but does not allow excessive wobble after allowing for WEN
+   runout. The 2.1 mm bit is larger and less fragile than the smaller tooling
+   previously considered. Do not exceed 3.0 mm.
+5. The listing describes the eyelet as brass and an associated “gasket” as
+   iron. Magnet-test the received fastener and reject it if ferrous material is
+   exposed in the current path, corrodes, flakes, or prevents normal solder
+   wetting. The formed and soldered coupon must pass continuity before layout.
+6. Add bottom-plane antipads around every non-ground hole. A hole through an
+   unbroken ground plane is a short, whether or not it contains an eyelet.
+7. Keep both eyelet collars accessible for forming, inspection, and joining.
 
 ## Workflow
 
@@ -204,24 +212,25 @@ plastic tub away from bases, metals, heat, food, children, and pets.
 
 The WEN `4208T` is not an ideal high-speed PCB drill, but it will make prototype
 holes when the setup is rigid. The selected Genmitsu `PD30A` set contains
-solid-carbide spiral-flute drills intended for PCB work, including the required
-1.0 mm size; they are not pointed engraving burrs or flat end mills. At the
+solid-carbide spiral-flute drills intended for PCB work, including 2.0 and 2.1
+mm sizes; they are not pointed engraving burrs or flat end mills. At the
 press's 3,140 RPM maximum, expect slower work, greater thrust, more exit burr/chip-out,
 shorter carbide-bit life, and less consistent diameter than a purpose-built PCB
 spindle. The coupon decides whether that quality is acceptable.
 
 1. Work outdoors. Clamp the vise to the press table and support the complete
    PCB flat on a clean sacrificial backer. Never hand-hold the board.
-2. Use a new 3.175 mm-shank 1.0 mm solid-carbide bit and the highest
-   speed, 3,140 RPM. Tighten the chuck at all three key positions and remove
-   the key.
+2. For the eyelet coupon, drill 2.0 and 2.1 mm holes with the owned 3.175
+   mm-shank solid-carbide bits at the highest speed, 3,140 RPM. Tighten the
+   chuck at all three key positions and remove the key. Retain the largest hole
+   that gives low insertion force without excessive eyelet wobble.
 3. Position a shop-vac hood immediately beside and partly around the drill
    point. Start the vacuum before the spindle.
 4. Feed vertically with very light pressure and brief pecks. Do not side-load
    or force the brittle bit. Stop for chatter, heating, smoke, excessive force,
    delamination, or a moving board.
 5. Inspect the coupon for diameter, registration, burrs, glass breakout, and
-   rivet fit before drilling the real board.
+   eyelet fit before drilling the real board.
 6. Vacuum the board, backer, vise, shroud, and table, then damp-wipe them. Do not
    use compressed air or dry sweeping.
 
@@ -250,20 +259,25 @@ the primary controls. Replace a bag or cartridge only if the existing one is
 missing, damaged, or unsuitable for dry collection; the exact replacement is
 shop-vac-model-specific.
 
-### 5. Form and verify rivets
+### 5. Form and verify eyelets
 
-1. Deburr the 1.0 mm coupon hole and insert one delivered rivet without force.
-2. Put the factory flange down on a clean, flat steel backing block. Support
-   the board around the rivet; do not bridge it across vise jaws.
-3. Center the automatic center punch in the hollow tail and use one
-   push-to-strike stroke. Inspect before applying another stroke. Produce only
-   a small, even flare that retains the rivet. Do not use a hammer or
-   try to flatten the tail into a second factory-looking head.
-4. Reject a split tail, cracked or lifted pad, tilted rivet, loose fit, or
-   deformed board. Cheap punched rivets provide retention, not a dependable
-   electrical joint by themselves.
+1. Deburr the 2.0 and 2.1 mm coupon holes and insert a measured `GAOC1570`
+   eyelet into each without force.
+2. With the WEN unplugged and its switch off, clamp the `GAOC1573` lower base
+   to the table. Put the eyelet factory flange down on its matching support and
+   keep the board flat; do not bridge it across vise jaws or a recess.
+3. Chuck the `GAOC1573` straight 8 x 98 mm steel forming ram; its listed 8 mm
+   diameter is within the WEN's 0.5 in / 12.7 mm chuck capacity. Verify secure
+   grip, tighten at all three chuck-key positions, and remove the key.
+   Do not use the included hollow punch on FR-4. Align the ram with the eyelet,
+   set the depth stop conservatively on scrap, and lower the quill by hand in
+   small increments. Never turn on the spindle. Stop rather than applying
+   appreciable spindle load; the WEN manual does not give an eyelet-press rating.
+4. Reject a split tail, cracked or lifted pad, tilted eyelet, loose fit, or
+   deformed board. The formed eyelet provides retention, not a dependable
+   electrical joint by itself.
 5. Join both collars using the existing assembly equipment. Excessive dwell can
-   loosen a marginal rivet or lift a pad.
+   loosen a marginal eyelet or lift a pad.
 6. Inspect both sides under magnification and measure continuity. On the coupon,
    require less than 0.1 ohm after subtracting lead resistance and no
    intermittence during gentle flexing.
@@ -291,8 +305,9 @@ US Poison Control: 1-800-222-1222. Call 911 for a life-threatening emergency.
 - [Brother HL-L2370DW specifications and manuals](https://support.brother.com/g/b/manualtop.aspx?c=us&lang=en&prod=hll2370dw_us)
 - [Genmitsu PD30A PCB drill set](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a)
 - [Genmitsu PCB drill-bit buying guide](../datasheets/home-pcb-fabrication/genmitsu-pcb-drill-bits-buying-guide.pdf)
+- [Litoexpe GAOC1570 eyelets, Amazon ASIN B0DYY6MCZS](https://www.amazon.com/dp/B0DYY6MCZS)
+- [Litoexpe GAOC1573 tooling, Amazon ASIN B0DYY4NCQW](https://www.amazon.com/dp/B0DYY4NCQW)
 - [WEN 4208T product and manual](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press)
-- [PITTSBURGH PRO automatic center punch, SKU 621](https://www.harborfreight.com/spring-loaded-center-punch-621.html)
 - [NIOSH local-exhaust hood proximity guidance](https://www.cdc.gov/niosh/engcontrols/ecd/detail39.html)
 - [First Aid Only personal-eyewash product sheet](../datasheets/home-pcb-fabrication/first-aid-only-eyewash-product-sheet.pdf)
 - [San Mateo County household hazardous waste](https://www.smchealth.org/hhw)

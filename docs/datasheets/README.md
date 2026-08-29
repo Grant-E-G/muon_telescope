@@ -80,6 +80,9 @@ Files in the `home-pcb-fabrication/` subdirectory were retrieved from
 | Existing Brother `HL-L2370DW` monochrome laser printer | [online user's guide](home-pcb-fabrication/brother-hl-l2370dw-online-user-guide.pdf) | [specifications](https://support.brother.com/g/b/spec.aspx?c=us_ot&lang=en&prod=hll2370dw_us); [manuals](https://support.brother.com/g/b/manualtop.aspx?c=us&lang=en&prod=hll2370dw_us) |
 | Existing WEN `4208T` drill press | [4208/4208T manual](home-pcb-fabrication/wen-4208t-manual.pdf) | [product](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press); [manual source](https://cdn.shopify.com/s/files/1/0012/0350/3168/files/4208T.manual.20220914.pdf?v=1664398265) |
 | Genmitsu `PD30A` (`101-61S-PD30A`) tungsten-carbide PCB drill set | [PCB drill-bit buying guide](home-pcb-fabrication/genmitsu-pcb-drill-bits-buying-guide.pdf) | [product](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a); [buying guide](https://genmitsu.s3.us-east-1.amazonaws.com/Milling%20Bit%20Data%20Base/Genmitsu_CNC_Router_Bits_Buying_Guide_20230930.pdf) |
+| Litoexpe `GAOC1570` 1.5 mm self-backing eyelets, Amazon ASIN `B0DYY6MCZS` | No stable static manufacturer drawing or manual identified; exact dimensions and materials are catalog claims and require incoming inspection | [maintained Amazon listing](https://www.amazon.com/dp/B0DYY6MCZS) |
+| Litoexpe 1.5 mm eyelet tool set, seller SKU `GAOC1573`, Amazon ASIN `B0DYY4NCQW` | No manufacturer MPN or stable static drawing/manual is published; the seller SKU is retained only as the exact Amazon offer identity. Listing images publish an 8 x 98 mm forming ram and 22 x 18.2 mm base | [maintained Amazon listing](https://www.amazon.com/dp/B0DYY4NCQW) |
+| StewMac `5975` brass pickup mini eyelets and `5976` Eyelet Setting Tool and Bit | No stable static manufacturer drawing or manual identified; use the maintained product and instruction pages | [eyelets](https://www.stewmac.com/electronics/pickups/pickup-parts/pickup-parts-for-strat/brass-pickup-eyelets-package-of-50/); [steel setting tool and 1.85 mm bit](https://www.stewmac.com/luthier-tools-and-supplies/tools-by-job/tools-for-electronics/pickup-building/eyelet-setting-tool-and-bit/); [instructions](https://www.stewmac.com/video-and-ideas/online-resources/learn-about-guitar-pickups-and-electronics-and-wiring/eyelet-setting-tool-and-bit-instructions/) |
 | 3M `91252H1-DC-10` chemical-splash goggles | No stable static manufacturer specification identified; use the maintained product page | [3M `91252` product](https://www.3m.com/3M/en_US/p/d/b5005625014/) |
 | Pyramex `G205` chemical splash goggles | [product sheet](home-pcb-fabrication/pyramex-g205-product-sheet.pdf) | [product](https://www.pyramex.com/products/chemical-splash-goggle-d3); [product sheet](https://www.pyramex.com/cdn/shop/files/G205_Series_ANSI_HiRes_46cc9b24-3b11-4b06-b8bc-a10efec43877.pdf?v=8244389949847197997) |
 | SHOWA `730-[size]` reusable nitrile gloves | [2026 retail catalog](home-pcb-fabrication/showa-2026-retail-catalog.pdf) | [product](https://www.showagroup.com/us-en/shop/730/); [catalog](https://www.showagroup.com/wp-content/uploads/2024/02/SHOWA-RetailCatalog_EN-2026-NEW-REV-DIGITAL-1.pdf) |
@@ -87,8 +90,9 @@ Files in the `home-pcb-fabrication/` subdirectory were retrieved from
 | PP/HDPE material-compatibility basis | [Thermo Scientific chemical-resistance guide](home-pcb-fabrication/thermo-plastics-chemical-resistance-guide.pdf) | [guide](https://assets.thermofisher.com/TFS-Assets/LCD/posters/LCD-Chemical-Resistance-Guide-GALSPCHEMRESPOSTER-EN.pdf) |
 | NOAA HAZMAT Report 93-3 HCl partial-pressure and evaporation model | [report](home-pcb-fabrication/noaa-hazmat-93-3-hcl-properties.pdf) | [NOAA](https://library.oarcloud.noaa.gov/noaa_documents.lib/NOS/HMRA/HAZMAT_report_93-3.pdf) |
 
-The following maintained pages were checked 2026-08-28. No separate stable
-static public drawing or manual was identified for these budget items: NEIKO
+The following maintained pages were checked from 2026-08-28 through
+2026-08-29. No separate stable static public drawing or manual was identified
+for these budget items: NEIKO
 adjustable automatic center punch `02638A`
 ([manufacturer](https://neikotools.com/products/neiko-02638a-5-automatic-center-hole-punch-adjustable-impact-spring-loaded-puncher-tool));
 Paterson `PTP332` set of three 5 x 7 in developing trays, comprising the
@@ -121,13 +125,25 @@ is recorded only as a conditional waste-bottle candidate
 Amazon does not expose a stable Nalgene laboratory MPN for that offer, so it
 is not a selected replacement for U.S. Plastic item `97365`.
 
-The generic copper clad, transfer paper, and rivets have no manufacturer
+The generic copper clad and transfer paper have no manufacturer
 drawing or reliable static technical document. Their purchase references are
 GeeBat `GB0021`, Amazon ASIN `B01MRG7NHC`
 ([listing](https://www.amazon.com/dp/B01MRG7NHC)); Ximimark
 `XQJ=LY251-XQJ-FBA`, Amazon ASIN `B07MYXK4WJ`
-([listing](https://www.amazon.com/dp/B07MYXK4WJ)); and generic
-`M0.9(d) x 2.5(L) mm` hollow PCB rivets, Amazon ASIN `B015CV377O`
-([listing](https://www.amazon.com/dp/B015CV377O)). Treat these listings as
+([listing](https://www.amazon.com/dp/B07MYXK4WJ)). Treat these listings as
 purchase references only; incoming measurement and the process coupon are the
-technical acceptance record.
+technical acceptance record. Generic `M0.9(d) x 2.5(L) mm` hollow PCB rivets,
+Amazon ASIN `B015CV377O` ([listing](https://www.amazon.com/dp/B015CV377O)), are
+retained only as a superseded candidate. The selected Amazon trial pair is
+Litoexpe `GAOC1570` eyelets, ASIN `B0DYY6MCZS`, and the matching 1.5 mm tool
+set, seller SKU `GAOC1573`, ASIN `B0DYY4NCQW`. The eyelet listing publishes
+2.0 mm barrel OD, 3.5 mm flange OD, and 3.45 mm overall height, but also
+ambiguously describes an iron “gasket”; the BOM therefore requires incoming
+measurement, magnet inspection, solder-wetting, and continuity qualification.
+StewMac `5975`/`5976` remains only a higher-cost process comparison.
+
+QWORK/Co-link model `JJ07-18`, part `SHK-011`, Amazon ASIN `B00QWE5PR6`
+([Amazon](https://www.amazon.com/dp/B00QWE5PR6)), is a rejected leathercraft
+candidate. No stable manufacturer manual was identified. Its two hollow
+punches are 2.5 and 3.0 mm, while its lower support positions are 6, 7, 8, 9,
+10, 12, and 15 mm. It does not include a PCB-scale eyelet roll-forming die.

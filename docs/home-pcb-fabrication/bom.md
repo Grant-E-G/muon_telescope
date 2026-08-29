@@ -1,7 +1,7 @@
 # Cost-optimized home PCB fabrication BOM
 
 This is a standalone BOM for the workflow in this folder, not part of the
-telescope electronics BOM. Prices and links were checked 2026-08-28. Amazon
+telescope electronics BOM. Prices and links were checked 2026-08-29. Amazon
 prices, sellers, quantities, and fulfillment are volatile, so the tables give
 a **delivered buy ceiling** (item plus mandatory shipping, before sales tax):
 skip a listing above that price or when the seller does not identify the
@@ -38,12 +38,10 @@ $0 option.
 | Splash goggles | [3M `91252H1-DC-10`, ASIN B00467C7AE](https://www.amazon.com/dp/B00467C7AE); [manufacturer](https://www.3m.com/3M/en_US/p/d/b5005625014/) | Amazon recently listed $4.49; **$8 delivered ceiling** | Verify exact 3M `91252` chemical-splash goggles, indirect ventilation, ANSI Z87.1 marking, and intact lens and strap. Do not substitute open safety glasses. |
 | Chemical gloves | [SHOWA `730-09.RT`, size 9/L, ASIN B07GL6V229](https://www.amazon.com/dp/B07GL6V229); [manufacturer](https://www.showagroup.com/us-en/shop/730/) | recently $6.55; **$8 delivered ceiling** | The direct link is for size 9/L. Select a different size on the same listing only if the exact `730-[size].RT` identity remains visible. Verify 13 in nominal length, 15 mil nominal thickness, and an intact pair. |
 | Immediate eye flush | [First Aid Only / PhysiciansCare 24-202, ASIN B002A6AFDY](https://www.amazon.com/dp/B002A6AFDY) | target $20; **$22 delivered ceiling** | Verify the received station and bottle identity against the archived `24-202-001` product sheet, 32 fl oz fill, intact seal, and usable expiration. Reject an obscured model, reduced volume, damaged seal, or short-dated bottle. |
-| Carbide PCB drill bits | [Genmitsu `PD30A`, ASIN B08M5PLF48](https://www.amazon.com/dp/B08M5PLF48); [manufacturer](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a) | Amazon listed $16.99; **$22 delivered ceiling** | This is a functional 30-piece tungsten-carbide, spiral-flute PCB drill set—not engraving burrs or end mills. Verify exact `PD30A`, one each from 0.1 through 3.0 mm, 3.175 mm shanks, 38 mm overall length, and intact 0.9, 1.0, and 1.1 mm tips. |
+| Carbide PCB drill bits | Existing Genmitsu `PD30A`: [manufacturer](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a), [Amazon reference ASIN B08M5PLF48](https://www.amazon.com/dp/B08M5PLF48) | **Already owned; $0** | Verify one each from 0.1 through 3.0 mm, 3.175 mm shanks, and intact 2.0 and 2.1 mm tips. Trial both sizes with the 2.0 mm nominal eyelet barrel; do not force an eyelet into an undersize drilled hole. |
 | Printed drill hood | Print from repository source | about $1 material | No Amazon purchase. Record filament and the successful vacuum-capture test in the build log. |
 | Vacuum and filter/bag | Existing vacuum only | $0 | Verify the current filter/bag is fitted and serviceable. Do not buy an unqualified substitute from a recommendation carousel. |
-| Through-hole rivets | [ASIN B015CV377O](https://www.amazon.com/dp/B015CV377O) | target $8; **$10 delivered ceiling** | Verify the listing quantity and the stated 0.9 mm shank OD / 2.5 mm length, then measure the delivered lot before committing a board hole size. |
-| Rivet punch | [NEIKO 02638A, ASIN B008DXYOLC](https://www.amazon.com/dp/B008DXYOLC) | target $11; **$13 delivered ceiling** | Amazon alternative to local Pittsburgh SKU `621`. Verify exact adjustable automatic center punch `02638A`, straight S2 tip, smooth push-to-strike action, and working force adjustment. |
-| Rivet backing surface | Existing flat steel scrap or anvil | $0 | Buy nothing unless the existing surface fails a scrap-coupon test. |
+| Through-hole eyelets and setting tooling | **Selected Amazon trial pair:** Litoexpe 1.5 mm die set, seller SKU `GAOC1573`, [ASIN B0DYY4NCQW](https://www.amazon.com/dp/B0DYY4NCQW), plus Litoexpe 200-piece gold eyelets, item model `GAOC1570`, [ASIN B0DYY6MCZS](https://www.amazon.com/dp/B0DYY6MCZS) | $5.99 + $4.49 = **$10.48 with Prime/$35 cart; $17.47 if Amazon charges one $6.99 non-Prime shipment; $18 delivered ceiling** | Both pages were Amazon-fulfilled and Prime-eligible when checked. The tool listing publishes a straight 8 x 98 mm steel upper ram, which is within the WEN's 0.5 in / 12.7 mm chuck capacity, and a 22 x 18.2 mm matched base. Eyelets publish 2.0 mm barrel OD, 3.5 mm flange OD, and 3.45 mm overall height. The listing describes brass eyelets and an iron “gasket”; magnet-test and solder/continuity-qualify a coupon before any board layout. |
 
 ### Superseded container sourcing record
 
@@ -57,10 +55,67 @@ the selected Paterson tray and Rubbermaid tote.
 | Secondary containment | Cambro `12SFSPP190` | Too tall and too narrow for convenient staging. Amazon also mixes in the clear polycarbonate `12SFSCW135`, which is a different material and MPN. |
 | Working bath and secondary containment | IKEA SAMLA `701.029.72` with lid `504.550.88`, and SAMLA `401.029.78` secondary box: [working box](https://www.ikea.com/us/en/p/samla-box-clear-70102972/), [lid](https://www.ikea.com/us/en/p/samla-lid-for-box-1-gallon-clear-50455088/), [secondary box](https://www.ikea.com/us/en/p/samla-box-clear-40102978/) | Previously selected only as low-cost local PP containers. Their geometry is inferior to the shallow Paterson tray and wide Rubbermaid tote, and a dedicated pickup trip defeats the convenience objective. |
 
-The eye-flush and NEIKO entries are qualified sourcing alternatives; record the
-accepted received identity below. The consumer Nalgene bottle remains only a
-conditional candidate because the Amazon catalog does not expose a stable
-manufacturer laboratory MPN.
+The eye-flush entry is a qualified sourcing alternative; record the accepted
+received identity below. The consumer Nalgene bottle remains only a conditional
+candidate because the Amazon catalog does not expose a stable manufacturer
+laboratory MPN.
+
+### Eyelet-tooling design record
+
+The selected Amazon trial system is Litoexpe seller SKU `GAOC1573`, ASIN
+`B0DYY4NCQW`: a 1.5 mm stainless-steel eyelet tool set containing a straight
+8 x 98 mm upper forming ram, 22 x 18.2 mm matching lower base, and separate
+hollow punch. The straight 8 mm ram shown by the exact listing is the part to
+grip in the stationary WEN
+`4208T` chuck; it is below the manual's 0.5 in / 12.7 mm chuck capacity. The
+hollow punch is not used on FR-4. The WEN supplies the guided hand-operated ram
+and depth stop while switched off and unplugged. Clamp the matching lower base
+so it cannot translate or tilt.
+
+The matched consumable is Litoexpe item model `GAOC1570`, ASIN `B0DYY6MCZS`,
+200 self-backing gold eyelets. The exact listing image publishes a 2.0 mm
+barrel OD, 3.5 mm flange OD, and 3.45 mm overall height. “1.5 mm” describes the
+nominal opening, not the PCB drill diameter. This remains a **coupon-qualified
+selection**, not permission to freeze a board footprint: measure at least five
+received parts and trial the owned 2.0 and 2.1 mm Genmitsu drills in actual
+nominal 1.5 mm stock. Prefer the larger, sturdier 2.1 mm drill only if it does
+not leave excessive eyelet wobble. No selected hole may exceed 3.0 mm.
+
+The eyelet listing describes the eyelet as brass and an associated “gasket” as
+iron, while its photographs show a self-backing one-piece form. That material
+description is too ambiguous for an electrical via. Check the received part
+with a magnet, expose/inspect both formed faces, and require normal solder
+wetting and stable continuity on the coupon. Reject the system if iron is in
+the current path, plating flakes, corrosion appears, or solder will not wet.
+
+The selected arrangement must meet all of these requirements before a real
+board is committed:
+
+| Requirement | Acceptance check |
+|---|---|
+| Reach | At least 35 mm clear throat reaches every point on a 70 mm-wide board. |
+| Motion | Gradual hand force, no impact event, little lateral jaw motion, and a controllable stop or readily repeated endpoint. |
+| Lower tool | Exact Litoexpe lower base supports the factory flange and nearby board without rocking, denting the copper, or bowing the laminate; clamp it to the table. |
+| Upper tool | Exact Litoexpe `GAOC1573` straight steel ram is held securely in the stationary WEN chuck and rolls the matched eyelet tail. |
+| Tool retention | Ram shank is securely gripped by the chuck with the chuck key removed; lower base is clamped to the table and cannot slide or tilt. |
+| Access and safety | The panel lies flat, both collars remain inspectable, and fingers stay outside the closing jaws. |
+| Coupon result | Even retaining flare; no split tail, lifted pad, cracked laminate, loose eyelet, tilt, or board deformation; both collars are then soldered and continuity-tested. |
+
+The QWORK/Co-link 11-piece kit, model `JJ07-18` / ASIN `B00QWE5PR6`, is also
+rejected despite its attractive $8 observed Amazon price. Its 2.5 and 3.0 mm
+pieces are hollow punches. Its universal lower base has 6, 7, 8, 9, 10, 12,
+and 15 mm support positions for leather snaps and cap rivets; none is a
+roughly 1.5-2.0 mm eyelet rolling profile. It would not controllably form the
+PCB-scale hollow barrel.
+
+The separate hand-rivet gun, leather-rivet kit, automatic punch, Voltera spike,
+and imported PCB press/tooling families remain rejected for this build. They
+either lack matching micro-eyelet tooling, duplicate the WEN's frame and
+leverage, or cost substantially more. The owned center punch is the $0 fallback
+if the Litoexpe ram does not grip securely or its profile proves wrong, but it
+lacks a matched forming nose and lower base. The WEN manual does not specify an
+eyelet-press rating: use small increments, set the depth stop on scrap, and stop
+if appreciable spindle load or board deformation is required.
 
 ## Already owned: buy nothing
 
@@ -69,8 +124,9 @@ manufacturer laboratory MPN.
 | Printer | Brother `HL-L2370DW`: [specifications](https://support.brother.com/g/b/spec.aspx?c=us_ot&lang=en&prod=hll2370dw_us), [local guide](../datasheets/home-pcb-fabrication/brother-hl-l2370dw-online-user-guide.pdf) | $0 | Use the installed toner and the manual feed/rear face-up path. The coupon qualifies the toner and transfer paper together. |
 | Transfer heat | Existing workshop iron or laminator | $0 | No new press or laminator. |
 | Drill | WEN `4208T` and vise: [manufacturer](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press), [local manual](../datasheets/home-pcb-fabrication/wen-4208t-manual.pdf) | $0 | Highest speed, full backer support, light feed, and a coupon first. |
+| PCB drills | Existing Genmitsu `PD30A`, 0.1-3.0 mm by 0.1 mm increments: [manufacturer](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a), [local guide](../datasheets/home-pcb-fabrication/genmitsu-pcb-drill-bits-buying-guide.pdf) | $0 | Inspect the 2.0 and 2.1 mm tools for the selected eyelet coupon. |
 | Dust collection | Existing shop vac, serviceable dry cartridge/filter, and collection bag if already available | $0 | Use outdoors with a close-capture hood and direct exhaust away from people. Do not buy a new extractor. |
-| Assembly and inspection | Existing assembly equipment, multimeter, magnification, ordinary hand tools, and a flat steel block/plate | $0 | No assembly or soldering supplies are part of this BOM. |
+| Assembly and inspection | Existing assembly equipment, multimeter, magnification, ordinary hand tools, and center punch fallback | $0 | No assembly or soldering supplies are part of this BOM. |
 
 ## Consumables and containers
 
@@ -100,24 +156,28 @@ sink/shower, ordinary wipes, and labels are existing household provisions.
 
 | Function | Cost-optimized selection | Qty. | Target / buy ceiling | Notes |
 |---|---|---:|---:|---|
-| PCB drill set including 1.0 mm | Genmitsu `PD30A`, 30 tungsten-carbide spiral-flute PCB drills, one each from 0.1 through 3.0 mm, 3.175 mm shank, 38 mm overall: [manufacturer](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a), [local guide](../datasheets/home-pcb-fabrication/genmitsu-pcb-drill-bits-buying-guide.pdf), [Amazon ASIN B08M5PLF48](https://www.amazon.com/dp/B08M5PLF48) | 1 set | target $16.99; **do not exceed $22 delivered** | These are actual spiral-flute PCB drills, not pointed engraving burrs or flat end mills. Start with the 1.0 mm bit for the nominal 0.1 mm diametral clearance over a 0.9 mm rivet. The adjacent 0.9 and 1.1 mm bits support coupon qualification but are not automatic substitutes. Reject chipped or bent bits and qualify the measured hole and delivered rivet together. |
+| PCB drill set | Existing Genmitsu `PD30A`, 30 tungsten-carbide spiral-flute PCB drills, one each from 0.1 through 3.0 mm, 3.175 mm shank, 38 mm overall: [manufacturer](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a), [local guide](../datasheets/home-pcb-fabrication/genmitsu-pcb-drill-bits-buying-guide.pdf), [Amazon reference ASIN B08M5PLF48](https://www.amazon.com/dp/B08M5PLF48) | 1 set, owned | $0 | These are actual spiral-flute PCB drills, not engraving burrs or end mills. Inspect the 2.0 and 2.1 mm tips. Trial both on a coupon for the selected 2.0 mm nominal barrel and retain the largest hole that has low insertion force without excessive wobble. |
 | Close-capture hood | 3D-printed shop-vac nozzle/holder using existing filament and common hardware | 1 | about $1 incremental material | Rigidly mount it beside the bit and dry-run full quill travel. The print is a hood, not a filter. |
 | Vacuum consumables | Existing compatible dry collection bag and serviceable cartridge/filter | 1 set | $0 if already fitted | For a few holes outdoors, do not buy a new HEPA vacuum. Replace only a missing or damaged model-specific filter/bag. |
 
-## Complete budget rivet system
+## Budget eyelet system: selected Amazon trial pair
 
-The rivet system is intentionally a crude hobby method. It does **not** include
-a purpose-built press or matched forming dies.
+The existing WEN drill press is the hand-operated ram. No separate press or
+hand riveter is required. The Litoexpe pair below is a direct, matched Amazon
+option and remains conditional on receipt inspection and a formed/soldered
+coupon.
 
 | Function | Exact item/source | Qty. | Target / buy ceiling | Notes |
 |---|---|---:|---:|---|
-| Hollow PCB rivets | Generic `M0.9(d) x 2.5(L) mm` hollow PCB via rivets, Amazon ASIN `B015CV377O`: [Amazon](https://www.amazon.com/dp/B015CV377O) | 1 pack, listing says 1000 | target $8, **do not exceed $10** | Nominal 0.9 mm shank OD. Material and head claims vary; measure the delivered lot before freezing pads or holes. |
-| Forming punch | NEIKO adjustable automatic center punch `02638A`: [manufacturer](https://neikotools.com/products/neiko-02638a-5-automatic-center-hole-punch-adjustable-impact-spring-loaded-puncher-tool), [Amazon ASIN B008DXYOLC](https://www.amazon.com/dp/B008DXYOLC); or PITTSBURGH PRO automatic center punch, Harbor Freight SKU `621`: [Harbor Freight](https://www.harborfreight.com/spring-loaded-center-punch-621.html) | 1 | Amazon target $11, **do not exceed $13 delivered**; Pittsburgh $3.99 on a combined trip | No hammer or matched die is needed. Start the adjustable NEIKO at minimum force. Stop after one light push-to-strike stroke and inspect before another. Either pointed tip makes a rough retaining flare, not a precision rolled head. |
-| Backing surface | Existing clean, flat steel block or plate | 1 | $0 | Support the factory flange and surrounding board without rocking. |
+| Self-backing eyelets | Litoexpe `GAOC1570`, 200 pieces, gold, [Amazon ASIN B0DYY6MCZS](https://www.amazon.com/dp/B0DYY6MCZS) | 1 pack | observed $4.49 | Exact listing dimensions: 2.0 mm barrel OD, 3.5 mm flange OD, 3.45 mm overall height; nominal opening 1.5 mm. Listing says brass eyelet plus iron “gasket,” so magnet-test and qualify solder wetting/current path. |
+| Upper forming ram, lower base, and unused hollow punch | Litoexpe seller SKU `GAOC1573`, 1.5 mm stainless-steel set, [Amazon ASIN B0DYY4NCQW](https://www.amazon.com/dp/B0DYY4NCQW) | 1 set | observed $5.99 | Listing says precision heat-treated stainless steel and publishes an 8 x 98 mm forming ram and 22 x 18.2 mm base. The 8 mm ram fits within the WEN's 12.7 mm chuck capacity. Chuck only that ram in the stationary, unplugged WEN; clamp the matched base. Do not use the separate hollow punch on FR-4. |
+| Fallback upper tool | Existing center punch | 1, owned | $0 | Use only if its tip forms a clean, concentric coupon flare without splitting the tail; it has no matched profile and is inferior to the selected ram. |
 
-The Amazon rivets and NEIKO punch target is **about $19**. Including the
-Genmitsu carbide PCB drill set and printed hood material, plan **about $37**
-for the complete drilling-and-rivet subsystem.
+The matched pair is **$10.48 before tax with Prime or as part of a qualifying
+$35 Amazon cart**. Amazon displayed $6.99 shipping for non-Prime orders below
+$35; if charged once for the pair, the delivered total is **$17.47 before
+tax**. Do not buy the pair above the **$18 delivered ceiling**. StewMac
+`5975`/`5976` remains a $37.68-before-shipping comparison, not the selection.
 
 ## Realistic total
 
@@ -132,16 +192,17 @@ rinse containers, tongs, and a waste bottle.
 | Paterson `PTP332` working trays and Rubbermaid `FG350900WHT` secondary tote | $43 |
 | Reused verified rinse containers, tongs, and waste bottle | $0 |
 | Goggles, one reusable glove pair, and Amazon eyewash allowance | up to $36 |
-| Genmitsu `PD30A` drill set and printed hood material | $18 |
-| Rivets and NEIKO forming punch | $19 |
-| **Amazon-first startup plan with both new containers** | **about $160 delivered before sales tax** |
+| Owned Genmitsu `PD30A`; printed hood material | $1 |
+| Litoexpe eyelets and matched steel setting tooling | $10.48 Prime/qualifying cart; $17.47 standalone non-Prime case |
+| **Startup items with both new containers** | **about $134 with free Amazon delivery, or $141 with the recorded $6.99 eyelet-pair shipping, before sales tax** |
 
-Treat **$155-175 delivered before sales tax** as the realistic startup range
-with both new containers. The non-container Amazon ceilings total $139, and
-the two selected container ceilings add $57. Reusing already-qualified working
-and secondary containers reduces the target back to about $117. The purchase
-leaves ten blanks, twenty transfer sheets, 30 drill sizes, and roughly one
-thousand rivets; it is not a one-board cost. After the reusable safety items
+The target is about $134 delivered before sales tax when the eyelet pair ships
+free, or $141 with one $6.99 non-Prime shipping charge. It is about $91/$98
+when already-qualified working and secondary containers are reused. Record the
+actual checkout total because Amazon account, cart, and address determine
+shipping. The purchase leaves ten blanks, twenty
+transfer sheets, and the owned 30 drill sizes; it is not a one-board cost.
+After the reusable safety items
 and tools are owned, the consumable cost of another small board is roughly **$4-8**,
 depending mainly on failed transfers and etchant reuse.
 
@@ -165,18 +226,20 @@ payment details, or a full marketplace order number to this repository.
 | Splash goggles | 3M `91252H1-DC-10`, Amazon ASIN `B00467C7AE`; or documented Pyramex `G205` alternative | 1 | not ordered | — | Record exact model/markings and lens, vent, and strap inspection. |
 | Chemical gloves | SHOWA `730-[size]` | 1 pair | not ordered | — | Record exact model, selected size, package/lot code, and condition. |
 | Immediate eye flush | First Aid Only `24-202-001`; Amazon ASIN `B002A6AFDY` only after identity check | 1 | not ordered | — | Record exact received MPN, 32 fl oz marking, lot, expiration, intact seal, and mount condition. |
-| Carbide drills | Genmitsu `PD30A`, Amazon ASIN `B08M5PLF48` | 1 set | not ordered | — | Record exact MPN, count and size sequence, shank/length check, 0.9/1.0/1.1 mm tip inspection, and drilled coupon diameter. |
+| Carbide drills | Genmitsu `PD30A`, Amazon reference ASIN `B08M5PLF48` | 1 set | **owned; inspect** | existing | Record exact MPN, count and size sequence, shank/length check, 2.0/2.1 mm tip inspection, and drilled coupon diameter. |
 | Printed hood | Repository design | 1 | not made | — | Record filament, print revision, mounting, quill-clearance check, and capture-test result. |
 | Vacuum filter/bag | Existing model-compatible items | 1 set | inspect existing | — | Record vacuum model, filter/bag identity and condition, and exhaust-direction check. |
-| Hollow rivets | `M0.9(d) x 2.5(L) mm`, ASIN `B015CV377O` | 1 pack | not ordered | — | Record seller, quantity, material claim, measured shank/head/length sample, and coupon result. |
-| Forming punch | NEIKO `02638A`, ASIN `B008DXYOLC`; or Pittsburgh SKU `621` | 1 | not ordered | — | Record exact received model, tip condition, mechanism/adjustment check, and minimum-force rivet coupon result. |
-| Backing surface | Existing flat steel block or plate | 1 | inspect existing | — | Record flatness/cleanliness check and coupon support result. |
+| Self-backing eyelets | Litoexpe `GAOC1570`, ASIN `B0DYY6MCZS` | 1 pack of 200 | not ordered | observed $4.49 on Amazon, 2026-08-29 | Record exact package identity, count, dimensions, magnet response/material construction, fit in 2.0/2.1 mm coupon holes, and formed/soldered continuity result. |
+| Upper steel ram and lower base | Litoexpe seller SKU `GAOC1573`, ASIN `B0DYY4NCQW` | 1 set | not ordered | observed $5.99 on Amazon, 2026-08-29 | Record exact listing/package identity, component count, material/finish, measured confirmation of the listed 8 mm ram diameter and secure WEN chuck fit, base clamping, depth-stop setting, and coupon result. |
+| Existing center punch fallback | Existing tool; exact identity unknown | 1 | **owned; fallback only** | existing | Record tip geometry and coupon result only if the selected ram fails receipt inspection. Do not use it merely to avoid qualifying the matched tool. |
+| Rejected QWORK/Co-link craft kit | `JJ07-18`, ASIN `B00QWE5PR6` | 0 | **rejected** | user observed $8 on Amazon, 2026-08-29 | Two hole punches are 2.5/3.0 mm; base positions are 6-15 mm. No PCB-scale eyelet rolling die. Do not order for this function. |
 
 ## Explicitly not required
 
 - no Dynalon or other laboratory secondary-containment tray;
-- no purpose-built PCB rivet press, matched forming dies, or imported single
-  drill bits;
+- no separate PCB press, hand rivet gun, or leather-rivet kit; the unplugged
+  WEN, Litoexpe upper ram, and matched lower base form the eyelets; the owned
+  center punch remains a coupon-only fallback;
 - no plumbed eyewash, face shield, specialty spill kit, chemical apron, or
   respirator for this small outdoor process;
 - no new HEPA dust extractor; and
