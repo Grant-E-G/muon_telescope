@@ -70,8 +70,8 @@ specification are archived here; the current manual remains linked above.
 
 These documents support the standalone workflow in
 `docs/home-pcb-fabrication/`; they are not telescope design-part selections.
-Files in the `home-pcb-fabrication/` subdirectory were retrieved 2026-08-25
-and are unmodified.
+Files in the `home-pcb-fabrication/` subdirectory were retrieved from
+2026-08-25 through 2026-08-28 and are unmodified.
 
 | Selected manufacturer item | Local document | Primary source |
 |---|---|---|
@@ -79,26 +79,47 @@ and are unmodified.
 | MG Chemicals `540` double-sided copper clad | [500-series TDS](home-pcb-fabrication/mg-500-series-copper-clad-tds.pdf) | [TDS](https://www.mgchemicals.com/downloads/tds/tds-500-series.pdf); [ordering page](https://www.digikey.com/en/products/detail/mg-chemicals/540/2177370) |
 | Existing Brother `HL-L2370DW` monochrome laser printer | [online user's guide](home-pcb-fabrication/brother-hl-l2370dw-online-user-guide.pdf) | [specifications](https://support.brother.com/g/b/spec.aspx?c=us_ot&lang=en&prod=hll2370dw_us); [manuals](https://support.brother.com/g/b/manualtop.aspx?c=us&lang=en&prod=hll2370dw_us) |
 | Existing WEN `4208T` drill press | [4208/4208T manual](home-pcb-fabrication/wen-4208t-manual.pdf) | [product](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press); [manual source](https://cdn.shopify.com/s/files/1/0012/0350/3168/files/4208T.manual.20220914.pdf?v=1664398265) |
+| Genmitsu `PD30A` (`101-61S-PD30A`) tungsten-carbide PCB drill set | [PCB drill-bit buying guide](home-pcb-fabrication/genmitsu-pcb-drill-bits-buying-guide.pdf) | [product](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a); [buying guide](https://genmitsu.s3.us-east-1.amazonaws.com/Milling%20Bit%20Data%20Base/Genmitsu_CNC_Router_Bits_Buying_Guide_20230930.pdf) |
+| 3M `91252H1-DC-10` chemical-splash goggles | No stable static manufacturer specification identified; use the maintained product page | [3M `91252` product](https://www.3m.com/3M/en_US/p/d/b5005625014/) |
 | Pyramex `G205` chemical splash goggles | [product sheet](home-pcb-fabrication/pyramex-g205-product-sheet.pdf) | [product](https://www.pyramex.com/products/chemical-splash-goggle-d3); [product sheet](https://www.pyramex.com/cdn/shop/files/G205_Series_ANSI_HiRes_46cc9b24-3b11-4b06-b8bc-a10efec43877.pdf?v=8244389949847197997) |
 | SHOWA `730-[size]` reusable nitrile gloves | [2026 retail catalog](home-pcb-fabrication/showa-2026-retail-catalog.pdf) | [product](https://www.showagroup.com/us-en/shop/730/); [catalog](https://www.showagroup.com/wp-content/uploads/2024/02/SHOWA-RetailCatalog_EN-2026-NEW-REV-DIGITAL-1.pdf) |
 | First Aid Only `24-202-001` single 32 oz eye-flush station | [product sheet](home-pcb-fabrication/first-aid-only-eyewash-product-sheet.pdf) | [product sheet](https://externalassets.unilogcorp.com/ASSETS/DOCUMENTS/ITEMS/EN/First_Aid_Only_24-308_User_Manual.pdf); [single-unit clearance source](https://blackboxsafety.com/products/first-aid-only-eyewash-station-24-202-001) |
 | PP/HDPE material-compatibility basis | [Thermo Scientific chemical-resistance guide](home-pcb-fabrication/thermo-plastics-chemical-resistance-guide.pdf) | [guide](https://assets.thermofisher.com/TFS-Assets/LCD/posters/LCD-Chemical-Resistance-Guide-GALSPCHEMRESPOSTER-EN.pdf) |
 | NOAA HAZMAT Report 93-3 HCl partial-pressure and evaporation model | [report](home-pcb-fabrication/noaa-hazmat-93-3-hcl-properties.pdf) | [NOAA](https://library.oarcloud.noaa.gov/noaa_documents.lib/NOS/HMRA/HAZMAT_report_93-3.pdf) |
 
-The following maintained pages were checked 2026-08-27; no separate static
-public drawing or manual was identified for these budget items: Harfington
-`f25070700ux0179` 1.0 mm carbide
-PCB drills ([product](https://www.harfington.com/products/p-1889293));
-NEIKO adjustable automatic center punch `02638A`
+The following maintained pages were checked 2026-08-28. No separate stable
+static public drawing or manual was identified for these budget items: NEIKO
+adjustable automatic center punch `02638A`
 ([manufacturer](https://neikotools.com/products/neiko-02638a-5-automatic-center-hole-punch-adjustable-impact-spring-loaded-puncher-tool));
+Paterson `PTP332` set of three 5 x 7 in developing trays, comprising the
+`PTP322G`, `PTP322R`, and `PTP322W` tray variants
+([manufacturer](https://www.patersonphotographic.ca/product/developing-tray/));
+Rubbermaid Commercial `FG350900WHT` 3.5 gal HDPE food/tote box
+([manufacturer](https://www.rubbermaidcommercial.com/foodservice/food-storage/foodtote-boxes-polyethylene/?sku=FG350900WHT));
 PITTSBURGH PRO automatic center punch SKU `621`
 ([manufacturer/retailer](https://www.harborfreight.com/spring-loaded-center-punch-621.html));
-IKEA SAMLA PP working box `701.029.72`, lid `504.550.88`, and secondary box
-`401.029.78` ([working box](https://www.ikea.com/us/en/p/samla-box-clear-70102972/),
-[lid](https://www.ikea.com/us/en/p/samla-lid-for-box-1-gallon-clear-50455088/),
-[secondary box](https://www.ikea.com/us/en/p/samla-box-clear-40102978/)); and
 U.S. Plastic item `97365`, 32 oz HDPE bottle with PP cap
 ([product](https://www.usplastic.com/catalog/item.aspx?itemid=165118)).
+
+The IKEA SAMLA PP working box `701.029.72`, lid `504.550.88`, and secondary
+box `401.029.78` remain recorded as superseded sourcing candidates
+([working box](https://www.ikea.com/us/en/p/samla-box-clear-70102972/),
+[lid](https://www.ikea.com/us/en/p/samla-lid-for-box-1-gallon-clear-50455088/),
+[secondary box](https://www.ikea.com/us/en/p/samla-box-clear-40102978/)). They
+are no longer selected because their geometry is inferior to the shallow
+Paterson working tray and wide Rubbermaid secondary tote above.
+
+Harfington `f25070700ux0179` 1.0 mm carbide PCB drills remain recorded as a
+superseded shipped candidate ([product](https://www.harfington.com/products/p-1889293)).
+They are no longer selected because their Amazon entry was only a search page;
+the BOM now selects the documented Genmitsu `PD30A` direct Amazon ASIN.
+
+The Nalgene 32 oz HDPE wide-mouth consumer bottle, Amazon ASIN `B000KA6AOU`,
+is recorded only as a conditional waste-bottle candidate
+([Amazon](https://www.amazon.com/dp/B000KA6AOU),
+[manufacturer family page](https://nalgene.com/product/32oz-wide-mouth-ultralite-bottle/)).
+Amazon does not expose a stable Nalgene laboratory MPN for that offer, so it
+is not a selected replacement for U.S. Plastic item `97365`.
 
 The generic copper clad, transfer paper, and rivets have no manufacturer
 drawing or reliable static technical document. Their purchase references are

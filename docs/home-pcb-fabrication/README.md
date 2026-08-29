@@ -3,7 +3,7 @@
 Status: prototype process; independent of the telescope design and fabrication
 release
 
-Last reviewed: 2026-08-25
+Last reviewed: 2026-08-28
 
 This folder covers toner-transfer FR-4 boards up to 70 x 100 mm, etched with MG
 Chemicals `415` ferric chloride, printed on the existing Brother `HL-L2370DW`,
@@ -14,10 +14,10 @@ workflow does not approve a telescope PCB or modify its design record.
 ## Practical safety model
 
 The sensible setup is the open-air balcony, not an indoor room and not an
-airtight box. Put a small polypropylene working container inside an ordinary
-HDPE or polypropylene storage tub. A loose lid over the inner container is a
-useful splash shield, but it must retain a visible vent gap. Keep the whole
-etching and rinse operation outdoors.
+airtight box. Put the shallow polypropylene working tray inside an ordinary
+HDPE or polypropylene storage tub. A second compatible tray resting upside-down
+over the working tray is a useful splash shield, but it must retain a visible
+vent gap. Keep the whole etching and rinse operation outdoors.
 
 For one run:
 
@@ -85,17 +85,17 @@ E = A * Km * MW * Pv / (R * T)
 Km = 0.0048 * U^0.78 * Z^-0.11 * Sc^-0.67
 ```
 
-with a conservative 0.0532 m2 exposed surface (the selected box's full
-11 x 7.5 in top footprint), 1 m/s wind, 0.279 m along-wind dimension, Schmidt
+with a conservative 0.0406 m2 exposed surface (the selected tray's full
+7 x 9 in physical footprint), 1 m/s wind, 0.229 m along-wind dimension, Schmidt
 number 0.9, 25 degrees C,
 `MW = 0.03646 kg/mol`, and `R = 8.314 J/(mol K)`, the 2% comparison pressure
-gives `Km = 0.00593 m/s`, an HCl evaporation estimate of **0.60 mg/hour**, or
-**1.2 mg during a two-hour etch**. A deliberately crude 10x matrix/condition
-screen would be 6.0 mg/hour and 12 mg in two hours. The corresponding
+gives `Km = 0.00606 m/s`, an HCl evaporation estimate of **0.47 mg/hour**, or
+**0.94 mg during a two-hour etch**. A deliberately crude 10x matrix/condition
+screen would be 4.7 mg/hour and 9.4 mg in two hours. The corresponding
 surface-equilibrium comparisons are 0.36 and 3.6 ppm; the open-air breathing
 zone should be lower because of dilution. The model assumes almost the entire
 inner surface is exposed, so it does not take credit for the loose cover. Those
-two-hour mass estimates are about 0.086% and 0.86%, respectively,
+two-hour mass estimates are about 0.067% and 0.67%, respectively,
 of the approximately 1.4 g inventory.
 
 For context only, the OSHA and NIOSH occupational ceiling for HCl is 5 ppm.
@@ -169,12 +169,16 @@ visual inspection and continuity.
 
 ### 2. Balcony etch and rinse
 
-1. Place the PP working container in the larger #2 HDPE or #5 PP tub. Dry-fit
-   everything and confirm the tub can retain all liquid staged for the run.
+1. Place the shallow PP working tray in the larger #2 HDPE or #5 PP tub.
+   Dry-fit everything and confirm the tub can retain all liquid staged for the
+   run. Before opening etchant, put the panel in the level tray, add 100 mL of
+   water, and verify the panel stays covered during a slow, gentle tilt. Reject
+   a tray that fails this geometry check.
 2. Put on gloves and splash goggles. Open the stock bottle outdoors below face
    level and pour no more than 100 mL. Recap it immediately.
-3. Lower the board with plastic tongs and rest the lid loosely on the container
-   with a visible gap. Never snap, tape, gasket, or weight it shut.
+3. Lower the board with plastic tongs and rest the second PP tray upside-down
+   over the working tray with a visible gap. Never snap, tape, gasket, or weight
+   the cover shut.
 4. Keep the room-temperature etch attended. A slow, occasional gentle tilt is
    acceptable if it does not splash; do not shake or use an air bubbler.
 5. When unwanted copper is gone, lift the board over the etchant and place it
@@ -199,12 +203,12 @@ plastic tub away from bases, metals, heat, food, children, and pets.
 ### 4. Drill on the existing WEN press
 
 The WEN `4208T` is not an ideal high-speed PCB drill, but it will make prototype
-holes when the setup is rigid. The selected tools are 1.0 mm solid-carbide
-twist drills intended for PCB work, not pointed engraving burrs. At the press's
-3,140 RPM maximum, expect slower work, greater thrust, more exit burr/chip-out,
+holes when the setup is rigid. The selected Genmitsu `PD30A` set contains
+solid-carbide spiral-flute drills intended for PCB work, including the required
+1.0 mm size; they are not pointed engraving burrs or flat end mills. At the
+press's 3,140 RPM maximum, expect slower work, greater thrust, more exit burr/chip-out,
 shorter carbide-bit life, and less consistent diameter than a purpose-built PCB
-spindle. The coupon decides
-whether that quality is acceptable.
+spindle. The coupon decides whether that quality is acceptable.
 
 1. Work outdoors. Clamp the vise to the press table and support the complete
    PCB flat on a clean sacrificial backer. Never hand-hold the board.
@@ -285,7 +289,8 @@ US Poison Control: 1-800-222-1222. Call 911 for a life-threatening emergency.
 - [NOAA HAZMAT Report 93-3, hydrochloric-acid evaporation model](https://library.oarcloud.noaa.gov/noaa_documents.lib/NOS/HMRA/HAZMAT_report_93-3.pdf)
 - [NIOSH hydrogen-chloride limits](https://www.cdc.gov/niosh/npg/npgd0332.html)
 - [Brother HL-L2370DW specifications and manuals](https://support.brother.com/g/b/manualtop.aspx?c=us&lang=en&prod=hll2370dw_us)
-- [Harfington 1.0 mm carbide PCB drill pack](https://www.harfington.com/products/p-1889293)
+- [Genmitsu PD30A PCB drill set](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a)
+- [Genmitsu PCB drill-bit buying guide](../datasheets/home-pcb-fabrication/genmitsu-pcb-drill-bits-buying-guide.pdf)
 - [WEN 4208T product and manual](https://wenproducts.com/products/wen-4208t-2-3-amp-8-inch-5-speed-benchtop-drill-press)
 - [PITTSBURGH PRO automatic center punch, SKU 621](https://www.harborfreight.com/spring-loaded-center-punch-621.html)
 - [NIOSH local-exhaust hood proximity guidance](https://www.cdc.gov/niosh/engcontrols/ecd/detail39.html)

@@ -1,7 +1,7 @@
 # Cost-optimized home PCB fabrication BOM
 
 This is a standalone BOM for the workflow in this folder, not part of the
-telescope electronics BOM. Prices and links were checked 2026-08-27. Amazon
+telescope electronics BOM. Prices and links were checked 2026-08-28. Amazon
 prices, sellers, quantities, and fulfillment are volatile, so the tables give
 a **delivered buy ceiling** (item plus mandatory shipping, before sales tax):
 skip a listing above that price or when the seller does not identify the
@@ -20,36 +20,47 @@ quantity, material, size, lot, and expiration date when applicable.
 
 ## Amazon convenience-sourcing record
 
-This table supplements the cost-optimized line-item tables below. Exact-part
-search links are used when Amazon divides sizes or sellers among listings.
-“Reuse” is deliberately the $0 Amazon option.
+This table supplements the cost-optimized line-item tables below. A row counts
+as an Amazon option only when it has a direct ASIN link to the qualified item.
+A search-results page is not a purchase option. “Reuse” is deliberately the
+$0 option.
 
 | Function | Amazon option | Reference price / ceiling | Checkout and receipt requirement |
 |---|---|---:|---|
 | Copper-clad stock | [GeeBat GB0021, ASIN B01MRG7NHC](https://www.amazon.com/dp/B01MRG7NHC) | target $14; **$18 delivered ceiling** | Verify ten nominal 70 x 100 x 1.5 mm double-sided copper-clad FR-4 blanks. |
 | Toner-transfer paper | [Ximimark XQJ=LY251-XQJ-FBA, ASIN B07MYXK4WJ](https://www.amazon.com/dp/B07MYXK4WJ) | target $9; **$12 delivered ceiling** | Verify 20 A4 sheets intended for laser-toner PCB transfer. |
 | Ferric-chloride etchant | [MG Chemicals 415-1L, ASIN B005T8Y20W](https://www.amazon.com/dp/B005T8Y20W) | user-observed $21 on 2026-08-27; **$25 delivered ceiling** | Preferred over a dedicated one-hour drive. Verify sealed MG `415-1L`, nominal 1 L package (945 mL net contents), with no leak or crystallized closure. |
-| PP working bath with lid | Conditional Cambro 4 qt two-pack, bundle model `4RPP2PKB190`, [ASIN B0CZ552H67](https://www.amazon.com/dp/B0CZ552H67), [price record](https://pricehistory.app/p/cambro-food-storage-containers-lids-bpa-free-btT17CSj); recorded square alternative: [exact `4SFSPP190` search](https://www.amazon.com/s?k=Cambro+4SFSPP190) plus [lid `SFC2-452`, ASIN B07SPVM8ZZ](https://www.amazon.com/dp/B07SPVM8ZZ) | two-pack recently about $17.50-19.08; **$20 delivered ceiling** | Reuse a verified container first. Amazon describes the two-pack material only as “plastic,” so do not qualify it at checkout. Accept only a body molded `PP`/resin-code-5 and a lid explicitly marked compatible PP or HDPE, with enough panel clearance, no metal, and no hollow handle. `SFC2-452` is described only as polyethylene and commonly sold six at a time, so it remains unqualified and poor value unless its exact resin grade is documented. |
-| PP secondary containment | [Amazon exact-MPN search for Cambro 12SFSPP190](https://www.amazon.com/s?k=Cambro+12SFSPP190); otherwise [generic PP bus-box search](https://www.amazon.com/s?k=polypropylene+bus+box) | **$20 delivered ceiling** | Reuse first. Require exact `12SFSPP190` or a body molded `PP`/resin-code-5, and capacity for the full working bath plus spill margin. Do not accept clear polycarbonate `12SFSCW135`, which is a different material and MPN. |
-| Board-handling tongs | [Amazon search for one-piece polypropylene tongs](https://www.amazon.com/s?k=one+piece+polypropylene+tongs) | **$8 delivered ceiling** | Reuse first. Accept only one-piece PP without a metal spring, fastener, insert, or hollow liquid-trapping handle. |
+| Shallow PP working bath and loose cover | **No qualified Amazon listing found.** Buy Paterson `PTP332` directly from [B&H](https://www.bhphotovideo.com/c/product/40358-REG/Paterson_PTP332_Plastic_Developing_Tray_Set.html); [manufacturer](https://www.patersonphotographic.ca/product/developing-tray/) | B&H listed $17.95; **$25 delivered ceiling** | This replaces the tall food-storage tubs. The nominal 127 x 178 mm processing area easily fits a 70 x 100 mm panel, and the ribbed base is intended to minimize solution volume. Use one tray as the bath and rest a second tray upside-down over it as a loose, visibly vented splash cover; never seal or latch them. Before etchant, verify with 100 mL water that the panel remains covered during a gentle tilt. |
+| HDPE secondary containment | Rubbermaid Commercial `FG350900WHT`, 3.5 gal, 18 x 12 x 6 in: [Amazon ASIN B000VAUFT0](https://www.amazon.com/Rubbermaid-Commercial-Storage-Gallon-White/dp/B000VAUFT0), [manufacturer](https://www.rubbermaidcommercial.com/foodservice/food-storage/foodtote-boxes-polyethylene/?sku=FG350900WHT) | target $25; **$32 delivered ceiling** | Selected replacement for the narrow/tall Cambro search. Rubbermaid identifies the exact tote as HDPE with 13.25 L capacity. No lid is needed for secondary containment. Dry-fit the working tray, rinse containers, and every liquid staged for the run, then verify that a complete working-bath spill stays below the rim. Do not accept Amazon's clear polycarbonate variants. |
+| Board-handling tongs | **No qualified Amazon listing found; reuse a verified one-piece PP tool.** | $0 | Amazon's inexpensive listings generally omit the exact resin. Accept only a one-piece tool molded `PP`/resin-code-5, without a metal spring, fastener, insert, or hollow liquid-trapping handle. |
 | Rinse containers | Reuse two verified HDPE or PP containers | $0 | Label for PCB work and never return to food use. |
-| Spent-etchant bottle | Reuse a compatible screw-cap HDPE bottle; conditional [Amazon search for Nalgene 312104-0032](https://www.amazon.com/s?k=Nalgene+312104-0032) | $0 reused; **$25 delivered ceiling** if a new bottle is necessary | Require an HDPE body, compatible nonmetal cap, leak-free closure, and at least 1 L capacity. The Nalgene item is a candidate, not selected; selecting it requires primary-documentation mapping in the datasheet index. Never pour spent etchant down a drain. |
-| Splash goggles | [Amazon search for Pyramex G205](https://www.amazon.com/s?k=Pyramex+G205) | **$8 delivered ceiling** | Verify exact model `G205`, indirect ventilation, intact lens and strap, and no safety-glasses substitution. |
-| Chemical gloves | [Amazon search for SHOWA 730](https://www.amazon.com/s?k=SHOWA+730+nitrile+chemical+gloves) | **$8 delivered ceiling** | Select and record the wearer's size. Verify exact `730-[size]`, 13 in nominal length, 15 mil nominal thickness, and an intact pair. |
+| Spent-etchant bottle | Reuse first; conditional [Nalgene 32 oz HDPE wide-mouth bottle, ASIN B000KA6AOU](https://www.amazon.com/dp/B000KA6AOU) | Amazon listed $11.99; **$16 delivered ceiling** if a new bottle is necessary | This direct listing identifies a 32 oz HDPE, leakproof bottle but not a stable Nalgene laboratory MPN, so it remains a conditional consumer-bottle candidate. Require a molded HDPE body, compatible nonmetal cap, leak test, at least 1 L nominal capacity, and local HHW acceptance before use. Never pour spent etchant down a drain. |
+| Splash goggles | [3M `91252H1-DC-10`, ASIN B00467C7AE](https://www.amazon.com/dp/B00467C7AE); [manufacturer](https://www.3m.com/3M/en_US/p/d/b5005625014/) | Amazon recently listed $4.49; **$8 delivered ceiling** | Verify exact 3M `91252` chemical-splash goggles, indirect ventilation, ANSI Z87.1 marking, and intact lens and strap. Do not substitute open safety glasses. |
+| Chemical gloves | [SHOWA `730-09.RT`, size 9/L, ASIN B07GL6V229](https://www.amazon.com/dp/B07GL6V229); [manufacturer](https://www.showagroup.com/us-en/shop/730/) | recently $6.55; **$8 delivered ceiling** | The direct link is for size 9/L. Select a different size on the same listing only if the exact `730-[size].RT` identity remains visible. Verify 13 in nominal length, 15 mil nominal thickness, and an intact pair. |
 | Immediate eye flush | [First Aid Only / PhysiciansCare 24-202, ASIN B002A6AFDY](https://www.amazon.com/dp/B002A6AFDY) | target $20; **$22 delivered ceiling** | Verify the received station and bottle identity against the archived `24-202-001` product sheet, 32 fl oz fill, intact seal, and usable expiration. Reject an obscured model, reduced volume, damaged seal, or short-dated bottle. |
-| Carbide drill bits | [Amazon search for Harfington f25070700ux0179](https://www.amazon.com/s?k=Harfington+f25070700ux0179) | **$12 delivered ceiling** | The manufacturer-direct shipped listing remains acceptable. Verify the exact ten-piece 1.0 mm set, 3.175 mm shank, 10 mm flute, and 38 mm overall length; inspect every tip. |
+| Carbide PCB drill bits | [Genmitsu `PD30A`, ASIN B08M5PLF48](https://www.amazon.com/dp/B08M5PLF48); [manufacturer](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a) | Amazon listed $16.99; **$22 delivered ceiling** | This is a functional 30-piece tungsten-carbide, spiral-flute PCB drill set—not engraving burrs or end mills. Verify exact `PD30A`, one each from 0.1 through 3.0 mm, 3.175 mm shanks, 38 mm overall length, and intact 0.9, 1.0, and 1.1 mm tips. |
 | Printed drill hood | Print from repository source | about $1 material | No Amazon purchase. Record filament and the successful vacuum-capture test in the build log. |
 | Vacuum and filter/bag | Existing vacuum only | $0 | Verify the current filter/bag is fitted and serviceable. Do not buy an unqualified substitute from a recommendation carousel. |
 | Through-hole rivets | [ASIN B015CV377O](https://www.amazon.com/dp/B015CV377O) | target $8; **$10 delivered ceiling** | Verify the listing quantity and the stated 0.9 mm shank OD / 2.5 mm length, then measure the delivered lot before committing a board hole size. |
 | Rivet punch | [NEIKO 02638A, ASIN B008DXYOLC](https://www.amazon.com/dp/B008DXYOLC) | target $11; **$13 delivered ceiling** | Amazon alternative to local Pittsburgh SKU `621`. Verify exact adjustable automatic center punch `02638A`, straight S2 tip, smooth push-to-strike action, and working force adjustment. |
 | Rivet backing surface | Existing flat steel scrap or anvil | $0 | Buy nothing unless the existing surface fails a scrap-coupon test. |
 
+### Superseded container sourcing record
+
+These links are retained to prevent the rejected tall/narrow choices from
+quietly returning in a later search. They are **not approved substitutes** for
+the selected Paterson tray and Rubbermaid tote.
+
+| Function | Rejected option | Reason rejected |
+|---|---|---|
+| Working bath | Cambro 4 qt round two-pack `4RPP2PKB190`, [ASIN B0CZ552H67](https://www.amazon.com/dp/B0CZ552H67); square Cambro `4SFSPP190` with `SFC2-452` lid, [lid ASIN B07SPVM8ZZ](https://www.amazon.com/dp/B07SPVM8ZZ) | Food-storage geometry is much taller than necessary and does not provide the wide, shallow liquid footprint wanted for a 70 x 100 mm panel. The bundle also did not document every resin and exact component identity well enough at checkout. |
+| Secondary containment | Cambro `12SFSPP190` | Too tall and too narrow for convenient staging. Amazon also mixes in the clear polycarbonate `12SFSCW135`, which is a different material and MPN. |
+| Working bath and secondary containment | IKEA SAMLA `701.029.72` with lid `504.550.88`, and SAMLA `401.029.78` secondary box: [working box](https://www.ikea.com/us/en/p/samla-box-clear-70102972/), [lid](https://www.ikea.com/us/en/p/samla-lid-for-box-1-gallon-clear-50455088/), [secondary box](https://www.ikea.com/us/en/p/samla-box-clear-40102978/) | Previously selected only as low-cost local PP containers. Their geometry is inferior to the shallow Paterson tray and wide Rubbermaid tote, and a dedicated pickup trip defeats the convenience objective. |
+
 The eye-flush and NEIKO entries are qualified sourcing alternatives; record the
-accepted received identity below. The Nalgene bottle remains only a candidate.
-Selecting it requires adding its exact primary documentation and source mapping
-to `docs/datasheets/README.md` in the same change. The Cambro Amazon choices
-are also candidates until the delivered resin marks and exact component MPNs
-are known; archive and map Cambro primary documentation if either is selected.
+accepted received identity below. The consumer Nalgene bottle remains only a
+conditional candidate because the Amazon catalog does not expose a stable
+manufacturer laboratory MPN.
 
 ## Already owned: buy nothing
 
@@ -67,10 +78,10 @@ are known; archive and map Cambro primary documentation if either is selected.
 |---|---|---:|---:|---|
 | Copper clad | GeeBat `GB0021`, Amazon ASIN `B01MRG7NHC`, ten nominal 70 x 100 x 1.5 mm double-sided FR-4 blanks: [Amazon](https://www.amazon.com/dp/B01MRG7NHC) | 1 pack | target $14, **do not exceed $18** | Much lower unit cost than individual branded blanks. Copper weight is not documented; inspect flatness, thickness, copper adhesion, and etch time on the coupon. Maximum board size becomes 70 x 100 mm. If a larger board is actually needed, buy one MG Chemicals `540` 3 x 5 in blank instead of both options. |
 | Toner-transfer paper | Ximimark `XQJ=LY251-XQJ-FBA`, 20 A4 PCB-transfer sheets, Amazon ASIN `B07MYXK4WJ`: [Amazon](https://www.amazon.com/dp/B07MYXK4WJ) | 1 pack | target $9, **do not exceed $12** | This replaces the branded five-sheet pack. Later Brother printer/toner combinations are variable, so do not buy a second pack until the artwork coupon transfers cleanly. |
-| Etchant | MG Chemicals `415-1L` ready-to-use ferric chloride: [manufacturer](https://mgchemicals.com/products/circuit-board-design/copper-etchants/ferric-chloride-etching/), [Amazon ASIN B005T8Y20W](https://www.amazon.com/dp/B005T8Y20W), [Anchor Electronics](https://anchor-electronics.com/product/mgchemicals-415-ferric-chloride/) | 1 | Amazon observed $21; **do not exceed $25 delivered** | The $21 Amazon option is preferred to a dedicated one-hour pickup drive. Use the $18.01 Anchor option only on a combined trip. Use at most 100 mL in the working box and reuse it while it still etches acceptably; keep fresh and used material separately labeled. |
-| Working box | IKEA SAMLA `701.029.72`, 1-gallon polypropylene box: [IKEA](https://www.ikea.com/us/en/p/samla-box-clear-70102972/), with PP lid `504.550.88`: [IKEA](https://www.ikea.com/us/en/p/samla-lid-for-box-1-gallon-clear-50455088/) | 1 each | $3.99 + $1.00 | Fits these blanks. Rest the lid loosely with a visible vent gap during an etch; never latch it closed. The HCl model conservatively uses its full 11 x 7.5 in top footprint. Mark both pieces chemical-use-only. IKEA currently imposes an online minimum of two, so buy one in store or substitute a local #5 PP box rather than paying for extras. |
-| Secondary containment | IKEA SAMLA `401.029.78`, 3-gallon polypropylene box: [IKEA](https://www.ikea.com/us/en/p/samla-box-clear-40102978/) | 1 | $2.99 | No lid is required. It replaces the specialty Dynalon tray and must remain large enough to hold all liquid staged for the run. |
-| Board handling | Local all-plastic serving tongs; [low-cost example](https://www.walmart.com/c/kp/plastic-serving-utensils) | 1 | $1-2 | Inspect for exposed metal, cracks, or a hollow section that can trap etchant. Dedicate it to chemical work. |
+| Etchant | MG Chemicals `415-1L` ready-to-use ferric chloride: [manufacturer](https://mgchemicals.com/products/circuit-board-design/copper-etchants/ferric-chloride-etching/), [Amazon ASIN B005T8Y20W](https://www.amazon.com/dp/B005T8Y20W), [Anchor Electronics](https://anchor-electronics.com/product/mgchemicals-415-ferric-chloride/) | 1 | Amazon observed $21; **do not exceed $25 delivered** | The $21 Amazon option is preferred to a dedicated one-hour pickup drive. Use the $18.01 Anchor option only on a combined trip. Use at most 100 mL in the working tray and reuse it while it still etches acceptably; keep fresh and used material separately labeled. |
+| Working bath and loose cover | Paterson `PTP332`, three 5 x 7 in chemical-resistant polypropylene developing trays: [manufacturer](https://www.patersonphotographic.ca/product/developing-tray/), [B&H](https://www.bhphotovideo.com/c/product/40358-REG/Paterson_PTP332_Plastic_Developing_Tray_Set.html) | 1 set | target $17.95; **do not exceed $25 delivered** | No qualified Amazon listing was found. Use one tray for etchant and invert a second loosely over it as the vented splash cover. The third is a labeled spare, not permission to mix chemical and food use. The 5 x 7 in processing area is intentionally close to the panel size so no more than 100 mL can cover the board. Qualify actual coverage with water before opening etchant. |
+| Secondary containment | Rubbermaid Commercial `FG350900WHT`, 3.5 gal, 18 x 12 x 6 in HDPE food/tote box: [manufacturer](https://www.rubbermaidcommercial.com/foodservice/food-storage/foodtote-boxes-polyethylene/?sku=FG350900WHT), [Amazon ASIN B000VAUFT0](https://www.amazon.com/Rubbermaid-Commercial-Storage-Gallon-White/dp/B000VAUFT0) | 1 | target $25; **do not exceed $32 delivered** | No lid is required. Its verified 13.25 L capacity and wide footprint replace the IKEA and Cambro candidates. Dry-fit all staged liquid containers and verify the spill margin before use. |
+| Board handling | Reused one-piece PP serving tongs with a molded `PP`/resin-code-5 mark | 1 | $0 | No qualified exact online listing was found. Inspect for exposed metal, cracks, or a hollow section that can trap etchant. Dedicate it to chemical work. |
 | Rinse containers | Two clean, reused #2 HDPE or #5 PP household containers with identifying labels | 2 | $0 | Permanently mark them chemical-use-only. Do not use glass or metal. |
 | Waste bottle | 32 oz HDPE bottle with PP screw cap, U.S. Plastic item `97365`: [source](https://www.usplastic.com/catalog/item.aspx?itemid=165118), or a local equivalent | 1 | $1.89 before shipping; **buy locally if shipping dominates** | Confirm the container and size with the local HHW program. Deface it and label actual contents and date. A larger compatible bottle is needed if captured rinse volume will exceed 32 oz. |
 
@@ -78,8 +89,8 @@ are known; archive and map Cambro primary documentation if either is selected.
 
 | Function | Selected item/source | Qty. | Target cost | Notes |
 |---|---|---:|---:|---|
-| Splash goggles | Pyramex `G205`, ANSI Z87+ and D3: [manufacturer](https://www.pyramex.com/products/chemical-splash-goggle-d3), [Amazon exact-model search](https://www.amazon.com/s?k=Pyramex+G205), [single-unit source](https://hdsupplysolutions.com/p/pyramex-chemical-splash-goggles-clear-body-clear-lens-p414897) | 1 | **do not exceed $8 delivered** | Buy the exact `G205` on Amazon or combine the cheaper source with another order. Indirect-vent chemical-splash goggles marked D3 are required; ordinary safety glasses are not a substitute. |
-| Chemical gloves | SHOWA `730-[size]`, 13 in, 15 mil reusable nitrile: [manufacturer](https://www.showagroup.com/us-en/shop/730/), [Amazon exact-model search](https://www.amazon.com/s?k=SHOWA+730+nitrile+chemical+gloves), [size 9 example](https://www.grainger.com/product/SHOWA-Chemical-Resistant-Gloves-4JF19) | 1 correctly sized pair | **do not exceed $8 delivered; do not buy a case** | Record the selected size. Brief splash handling only. Rinse the exterior after a splash and replace damaged gloves. Never wear them at the drill press. |
+| Splash goggles | 3M `91252H1-DC-10` chemical-splash goggles: [manufacturer](https://www.3m.com/3M/en_US/p/d/b5005625014/), [Amazon ASIN B00467C7AE](https://www.amazon.com/dp/B00467C7AE). Pyramex `G205` remains a documented shipped alternative: [manufacturer](https://www.pyramex.com/products/chemical-splash-goggle-d3), [single-unit source](https://hdsupplysolutions.com/p/pyramex-chemical-splash-goggles-clear-body-clear-lens-p414897) | 1 | Amazon target $4.49; **do not exceed $8 delivered** | The 3M model has indirect ventilation and meets ANSI Z87.1. If using the alternative, require exact Pyramex `G205` with D3 marking. Ordinary safety glasses are not a substitute. |
+| Chemical gloves | SHOWA `730-[size].RT`, 13 in, 15 mil reusable nitrile: [manufacturer](https://www.showagroup.com/us-en/shop/730/), [Amazon size 9/L ASIN B07GL6V229](https://www.amazon.com/dp/B07GL6V229), [size 9 distributor reference](https://www.grainger.com/product/SHOWA-Chemical-Resistant-Gloves-4JF19) | 1 correctly sized pair | Amazon target $6.55; **do not exceed $8 delivered; do not buy a case** | The Amazon link is a direct size-9 listing, not a search. Choose the wearer's size and record the exact variant; do not buy size 9 merely because it is linked. Brief splash handling only. Rinse the exterior after a splash and replace damaged gloves. Never wear them at the drill press. |
 | Immediate eye flush | First Aid Only `24-202-001`, single 32 oz eye-flush station: [product sheet](../datasheets/home-pcb-fabrication/first-aid-only-eyewash-product-sheet.pdf), [Amazon candidate ASIN B002A6AFDY](https://www.amazon.com/dp/B002A6AFDY), [clearance source](https://blackboxsafety.com/products/first-aid-only-eyewash-station-24-202-001) | 1 | target $20 on Amazon; **do not exceed $22 delivered** | Confirm exact model identity against the product sheet before accepting an Amazon listing; record the received model and expiration below. This is immediate first flush only; continue at the already-tested household sink/shower for the etchant SDS's 30 minutes. Replace after opening. |
 
 Long sleeves, long pants, closed shoes, an unobstructed route to a household
@@ -89,7 +100,7 @@ sink/shower, ordinary wipes, and labels are existing household provisions.
 
 | Function | Cost-optimized selection | Qty. | Target / buy ceiling | Notes |
 |---|---|---:|---:|---|
-| 1.0 mm overdrill bits | Harfington `f25070700ux0179`, ten 1.0 mm solid-carbide twist drills, 3.175 mm shank, 10 mm flute, 38 mm overall: [Harfington](https://www.harfington.com/products/p-1889293), [Amazon exact-MPN search](https://www.amazon.com/s?k=Harfington+f25070700ux0179) | 1 pack | target $6.54 direct; **do not exceed $12 delivered** | These are actual spiral-flute PCB drills, not pointed engraving burrs. The nominal 0.1 mm diametral clearance over a 0.9 mm rivet is deliberate. Reject chipped or bent bits and qualify the measured hole and delivered rivet together on the coupon. |
+| PCB drill set including 1.0 mm | Genmitsu `PD30A`, 30 tungsten-carbide spiral-flute PCB drills, one each from 0.1 through 3.0 mm, 3.175 mm shank, 38 mm overall: [manufacturer](https://www.sainsmart.com/products/genmitsu-30pcs-pcb-drill-bits-set-0-1mm-3-0mm-1-8-shank-pd30a), [local guide](../datasheets/home-pcb-fabrication/genmitsu-pcb-drill-bits-buying-guide.pdf), [Amazon ASIN B08M5PLF48](https://www.amazon.com/dp/B08M5PLF48) | 1 set | target $16.99; **do not exceed $22 delivered** | These are actual spiral-flute PCB drills, not pointed engraving burrs or flat end mills. Start with the 1.0 mm bit for the nominal 0.1 mm diametral clearance over a 0.9 mm rivet. The adjacent 0.9 and 1.1 mm bits support coupon qualification but are not automatic substitutes. Reject chipped or bent bits and qualify the measured hole and delivered rivet together. |
 | Close-capture hood | 3D-printed shop-vac nozzle/holder using existing filament and common hardware | 1 | about $1 incremental material | Rigidly mount it beside the bit and dry-run full quill travel. The print is a hood, not a filter. |
 | Vacuum consumables | Existing compatible dry collection bag and serviceable cartridge/filter | 1 set | $0 if already fitted | For a few holes outdoors, do not buy a new HEPA vacuum. Replace only a missing or damaged model-specific filter/bag. |
 
@@ -104,35 +115,35 @@ a purpose-built press or matched forming dies.
 | Forming punch | NEIKO adjustable automatic center punch `02638A`: [manufacturer](https://neikotools.com/products/neiko-02638a-5-automatic-center-hole-punch-adjustable-impact-spring-loaded-puncher-tool), [Amazon ASIN B008DXYOLC](https://www.amazon.com/dp/B008DXYOLC); or PITTSBURGH PRO automatic center punch, Harbor Freight SKU `621`: [Harbor Freight](https://www.harborfreight.com/spring-loaded-center-punch-621.html) | 1 | Amazon target $11, **do not exceed $13 delivered**; Pittsburgh $3.99 on a combined trip | No hammer or matched die is needed. Start the adjustable NEIKO at minimum force. Stop after one light push-to-strike stroke and inspect before another. Either pointed tip makes a rough retaining flare, not a precision rolled head. |
 | Backing surface | Existing clean, flat steel block or plate | 1 | $0 | Support the factory flange and surrounding board without rocking. |
 
-The Amazon rivets and NEIKO punch target is **about $19**. Including ten proper
-carbide PCB drills, the printed hood material, and the Amazon convenience
-allowances, plan **about $27** for the complete drilling-and-rivet subsystem.
+The Amazon rivets and NEIKO punch target is **about $19**. Including the
+Genmitsu carbide PCB drill set and printed hood material, plan **about $37**
+for the complete drilling-and-rivet subsystem.
 
 ## Realistic total
 
 The Amazon-first plan below uses the observed or target values, with the full
-Amazon allowances for goggles and gloves. It assumes suitable reused PP/HDPE
-containers and tongs; buying the inexpensive IKEA items on an already-planned
-trip adds about $11.
+Amazon allowances for goggles and gloves. It includes the newly selected
+Paterson working-tray set and Rubbermaid secondary tote, while reusing suitable
+rinse containers, tongs, and a waste bottle.
 
 | Group | Target subtotal |
 |---|---:|
 | Ten blanks, 20 transfer sheets, and MG `415-1L` from Amazon | $44 |
-| Reused verified PP/HDPE boxes, tongs, and waste bottle | $0 |
+| Paterson `PTP332` working trays and Rubbermaid `FG350900WHT` secondary tote | $43 |
+| Reused verified rinse containers, tongs, and waste bottle | $0 |
 | Goggles, one reusable glove pair, and Amazon eyewash allowance | up to $36 |
-| Ten drill bits and printed hood material | $8 |
+| Genmitsu `PD30A` drill set and printed hood material | $18 |
 | Rivets and NEIKO forming punch | $19 |
-| **Amazon-first startup plan** | **about $107 delivered before sales tax** |
+| **Amazon-first startup plan with both new containers** | **about $160 delivered before sales tax** |
 
-Treat **$105-120 delivered before sales tax** as the realistic startup
-range with reused containers. The item-by-item Amazon ceilings total $129
-before any container purchases. Do not spend the possible additional $73 at
-the generic Amazon container ceilings: reuse verified items or obtain the $11
-local set during another trip. The purchase leaves ten blanks, twenty transfer
-sheets, ten bits, and roughly one thousand rivets; it is not a one-board cost.
-After the reusable safety items and tools are owned, the consumable cost of
-another small board is roughly **$4-8**, depending mainly on failed transfers
-and etchant reuse.
+Treat **$155-175 delivered before sales tax** as the realistic startup range
+with both new containers. The non-container Amazon ceilings total $139, and
+the two selected container ceilings add $57. Reusing already-qualified working
+and secondary containers reduces the target back to about $117. The purchase
+leaves ten blanks, twenty transfer sheets, 30 drill sizes, and roughly one
+thousand rivets; it is not a one-board cost. After the reusable safety items
+and tools are owned, the consumable cost of another small board is roughly **$4-8**,
+depending mainly on failed transfers and etchant reuse.
 
 ## Purchase and receipt ledger
 
@@ -146,15 +157,15 @@ payment details, or a full marketplace order number to this repository.
 | Copper-clad stock | GeeBat `GB0021`, ASIN `B01MRG7NHC` | 1 pack | not ordered | — | Record measured count, panel dimensions/thickness, flatness, and coupon result. |
 | Toner-transfer paper | Ximimark `XQJ=LY251-XQJ-FBA`, ASIN `B07MYXK4WJ` | 1 pack | not ordered | — | Record sheet count and Brother toner-transfer coupon result. |
 | Ferric-chloride etchant | MG Chemicals `415-1L`, ASIN `B005T8Y20W` | 1 | not ordered | — | Record exact label identity, lot/date code, seal and bottle condition, and net-volume marking. |
-| Working bath and lid | Reused verified PP, IKEA SAMLA, or accepted Amazon PP item | 1 set | not ordered | — | Record source/MPN if bought, molded resin mark, internal dimensions, lid fit, and absence of metal/hollows. |
-| Secondary containment | Reused verified PP, IKEA SAMLA, or accepted Amazon PP item | 1 | not ordered | — | Record source/MPN if bought, molded resin mark, and containment-volume check. |
+| Working bath and loose cover | Paterson `PTP332` 5 x 7 in tray set | 1 set | not ordered | — | Record exact tray MPNs/material, condition, dedicated labels, 100 mL water-coverage test, inverted-cover vent gap, and fit inside the secondary tote. |
+| Secondary containment | Rubbermaid Commercial `FG350900WHT`, Amazon ASIN `B000VAUFT0` | 1 | not ordered | — | Record exact MPN, molded HDPE mark, 18 x 12 x 6 in dimensions, condition, dry-fit of all staged liquids, and spill-margin check. |
 | Board-handling tongs | Reused or one-piece PP | 1 | not ordered | — | Record material marking and inspection for metal, cracks, and trapped-volume features. |
 | Rinse containers | Reused HDPE or PP | 2 | not ordered | — | Record resin marks, volume, closure, and chemical-use labels. |
 | Spent-etchant bottle | Reused HDPE/compatible cap or separately qualified exact item | 1 | not ordered | — | Record body/cap materials, capacity, leak test, HHW acceptance, contents label, and first-use date. |
-| Splash goggles | Pyramex `G205` | 1 | not ordered | — | Record exact model/markings and lens, vent, and strap inspection. |
+| Splash goggles | 3M `91252H1-DC-10`, Amazon ASIN `B00467C7AE`; or documented Pyramex `G205` alternative | 1 | not ordered | — | Record exact model/markings and lens, vent, and strap inspection. |
 | Chemical gloves | SHOWA `730-[size]` | 1 pair | not ordered | — | Record exact model, selected size, package/lot code, and condition. |
 | Immediate eye flush | First Aid Only `24-202-001`; Amazon ASIN `B002A6AFDY` only after identity check | 1 | not ordered | — | Record exact received MPN, 32 fl oz marking, lot, expiration, intact seal, and mount condition. |
-| Carbide drills | Harfington `f25070700ux0179`, 1.0 mm | 1 pack | not ordered | — | Record exact MPN, count, dimensions, tip inspection, and drilled coupon diameter. |
+| Carbide drills | Genmitsu `PD30A`, Amazon ASIN `B08M5PLF48` | 1 set | not ordered | — | Record exact MPN, count and size sequence, shank/length check, 0.9/1.0/1.1 mm tip inspection, and drilled coupon diameter. |
 | Printed hood | Repository design | 1 | not made | — | Record filament, print revision, mounting, quill-clearance check, and capture-test result. |
 | Vacuum filter/bag | Existing model-compatible items | 1 set | inspect existing | — | Record vacuum model, filter/bag identity and condition, and exhaust-direction check. |
 | Hollow rivets | `M0.9(d) x 2.5(L) mm`, ASIN `B015CV377O` | 1 pack | not ordered | — | Record seller, quantity, material claim, measured shank/head/length sample, and coupon result. |
