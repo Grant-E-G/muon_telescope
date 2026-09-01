@@ -70,7 +70,12 @@ Use a scope-verified 0-3.3 V pulse source; never put 5 V logic on JA.
 - [ ] Before enabling pulse-height logging, simulate rejected-single reset,
   accepted-coincidence busy/read/reset, events during busy, both ADC channel
   command words, SPI timing, timeout, reset, stale-peak, and later-pulse overwrite
-  cases. Count and report busy rejections and contaminated records.
+  cases. Include a second same-channel edge inside the open coincidence window;
+  count and report busy rejections and contaminated records.
+- [ ] With both ends powered, measure CS, SCLK, and MOSI at the MCP3202 pins.
+  Verify logic thresholds at both rail extremes, CS rises above `0.7 * VDD`
+  during the required 8 us inter-transaction gap, and CS falls below
+  `0.2 * VDD` when asserted.
 - [ ] Exercise every documented register, rejected configuration writes,
   sticky-error clearing, atomic 64-bit rollover snapshots, and sequence changes.
 - [ ] Leave both inputs low when disconnected; investigate any idle counts.
@@ -110,7 +115,7 @@ discharge time must be recorded before attaching a head.
 ## Stage 3: each detector head without a SiPM
 
 Fit power, both TPH2502 devices, TLV3502, SN74LVC1G123, passive networks,
-headers, and test points. Fit `R_STRETCH`, the provisional 49.9 ohm `R_CHG` and
+headers, and test points. Fit `R_STRETCH`, the provisional 82.0 ohm `R_CHG` and
 220 pF `C_HOLD`, and exactly one reset variant. Leave `R_DIRECT`, the SiPM, and
 other DNP parts absent.
 
@@ -129,7 +134,13 @@ other DNP parts absent.
 - [ ] Verify `PEAK_RESET` returns `PEAK_HOLD` and `PEAK_OUT` to `VBASE`, then
   release reset and inject known positive pulses. Confirm monotonic peak capture,
   no comparator-path timing change, no U3B oscillation with the full cable/ADC
-  load, and ADC agreement with the scoped held voltage.
+  load plus `PEAK_GUARD`, and ADC agreement with the scoped held voltage. Inspect
+  and clean the guarded hold island before accepting any leakage measurement.
+- [ ] Repeat the comparator timing/ringing comparison with the U3 peak-capture
+  load fitted and unfitted. Exercise U3A into its normal held-state saturation
+  and confirm U3B and the ADC node settle within the qualified 8 us allowance.
+  Scope `+5VA`, local ground, and `VBASE` during peak charging and reject any
+  supply/ground transient that measurably moves the comparator crossing.
 - [ ] Sweep the allowed `R_CHG` and `C_HOLD` stuffing matrix over the measured
   `AMP_OUT` width and amplitude range. Record peak acquisition error, overshoot,
   upper-rail clipping, 8 us output settling, switch-release pedestal, reset
@@ -140,6 +151,10 @@ other DNP parts absent.
   typical behavior is not a substitute for its unguaranteed low-voltage leakage.
 - [ ] Confirm the Cora counts injected singles and coincidences through each
   complete head/cable/channel path.
+- [ ] In ADC mode, verify startup reset/baseline self-test failure for an open
+  reset conductor and wrong reset population. Confirm `LIVE_TICKS` pauses during
+  conversion/reset/rearm and that busy ticks, rejected events, and contaminated
+  conversions are counted independently.
 
 Gate: both heads pass the same injection limits without optional clamp or
 hysteresis parts unless measurements justify and document those changes.

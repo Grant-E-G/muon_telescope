@@ -57,16 +57,18 @@ hand assembly is not stopped by a lost part.
 | 0 ohm current and trigger-selection links | Yageo `RC0805JR-070RL` | 3 (plus 2 DNP footprints) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805JR-070RL) |
 | 10.0 ohm ADC-supply filter | Yageo `RC0805FR-0710RL` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0710RL) |
 | 22.0 ohm peak charging, characterization alternate | Yageo `RC0805FR-0722RL` | 0 (2 stuffing options) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0722RL) |
-| 49.9 ohm SiPM sense and provisional peak charging | Yageo `RC0805FR-0749R9L` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0749R9L) |
+| 49.9 ohm SiPM sense | Yageo `RC0805FR-0749R9L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0749R9L) |
+| 56.0 ohm peak charging, characterization alternate | Yageo `RC0805FR-0756RL` | 0 (2 stuffing options) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0756RL) |
+| 82.0 ohm peak charging, provisional | Yageo `RC0805FR-0782RL` | 2 | [DigiKey](https://www.digikey.com/en/products/detail/yageo/RC0805FR-0782RL/728164) |
 | 100 ohm bias filters, trigger damping, peak-output isolation, and peak-charging alternate | Yageo `RC0805FR-07100RL` | 7 (plus 2 stuffing options) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07100RL) |
 | 499 ohm input bias and injection | Yageo `RC0805FR-07499RL` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07499RL) |
 | 1.00 kohm gain, comparator, threshold, ADC input, and reset fanout | Yageo `RC0805FR-071KL` | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071KL) |
 | 1.65 kohm ADC attenuator bottom | Yageo `RC0805FR-071K65L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071K65L) |
 | 2.00 kohm baseline dividers and one-shot timing | Yageo `RC0805FR-072KL` | 4 | [DigiKey](https://www.digikey.com/en/products/detail/yageo/RC0805FR-072KL/730611) |
 | 4.70 kohm threshold divider and JA/ADC SPI series | Yageo `RC0805FR-074K7L` | 6 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-074K7L) |
-| 10.0 kohm FPGA trigger/SPI pulldown and ADC-CS pull-up | Yageo `RC0805FR-0710KL` | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0710KL) |
+| 10.0 kohm FPGA trigger pulldowns | Yageo `RC0805FR-0710KL` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0710KL) |
 | 12.4 kohm gain feedback | Yageo `RC0805FR-0712K4L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0712K4L) |
-| 100 kohm shutdown/reset/MISO default-state resistors | Yageo `RC0805FR-07100KL` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07100KL) |
+| 100 kohm shutdown, reset, and SPI default-state resistors | Yageo `RC0805FR-07100KL` | 7 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07100KL) |
 | 130 kohm baseline divider | Yageo `RC0805FR-07130KL` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07130KL) |
 | 330 kohm external hysteresis, DNP | Yageo `RC0805FR-07330KL` | 0 (2 footprints) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07330KL) |
 | 1 Mohm bias bleeder | Yageo `RC0805FR-071ML` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071ML) |
