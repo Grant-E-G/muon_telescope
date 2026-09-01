@@ -73,7 +73,7 @@ Interface and firmware:
   default prototype population; the TMUX1101 is the characterized low-leakage
   option. Never fit both.
 - [x] Make only the peak charging resistor and C0G hold capacitor stuffing values
-  bench-selectable. Start characterization with 49.9 ohm and 220 pF, but measure
+  bench-selectable. Start characterization with 82.0 ohm and 220 pF, but measure
   the real `AMP_OUT` pulse and peak error before freezing either value.
 
 Physical and procurement inputs:
@@ -209,7 +209,7 @@ BAS70 cathode ------------------------ PEAK_HOLD
 PEAK_HOLD -- C_HOLD -- GND
 PEAK_HOLD ---------------------------- U3B non-inverting input
 U3B output --------------------------- U3B inverting input
-U3B output -- 100 ohm ---------------- PEAK_OUT
+U3B output/PEAK_GUARD -- 100 ohm ------ PEAK_OUT
 
 PEAK_HOLD -- Q_RESET or U_RESET ------ VBASE
 PEAK_RESET -- 100 kohm -- GND
@@ -230,15 +230,20 @@ required; changing `R_CHG`, `C_HOLD`, or ADC scaling cannot restore a clipped
 peak.
 
 Provide one 0805 footprint each for `R_CHG` and `C_HOLD`. The provisional first
-population is 49.9 ohm and 220 pF C0G. Buy 22, 49.9, 100, and 220 ohm charging
+population is 82.0 ohm and 220 pF C0G. Buy 22, 56, 82, 100, and 220 ohm charging
 resistors and 100 pF, 220 pF, 470 pF, and 1 nF 50 V C0G capacitors for
 characterization. Do not change other gain, threshold, ADC-divider, or timing
 values to compensate for an unmeasured peak circuit. A larger capacitor reduces
 droop and switch charge-injection error but requires more current and pulse area
 to reach the true peak; a larger charging resistor limits the TPH2502 and BAS70
-current but increases acquisition error on a narrow pulse. The 49.9 ohm starting
-value bounds the idealized current from a 5 V amplifier step to about 100 mA,
-the BAS70 non-repetitive limit, before amplifier and diode voltage drops.
+current but increases acquisition error on a narrow pulse. At the allowed 5.25 V
+rail maximum, an 82 ohm, 1% resistor bounds even the deliberately pessimistic
+zero-diode-drop current from the 50 mV baseline below 65 mA. This leaves margin
+to the BAS70 70 mA repetitive/continuous limit; its 100 mA rating is explicitly
+non-repetitive and is not a normal operating target. The 22 ohm and 56 ohm
+alternates may be fitted only if measured `AMP_OUT` amplitude and U3A output
+current keep both the BAS70 and TPH2502 within their repetitive/thermal limits;
+they are not unrestricted full-scale stuffing options.
 
 Fit exactly one of these active-high reset implementations across `PEAK_HOLD`
 and `VBASE`:
@@ -260,7 +265,7 @@ disturb `VBASE`.
 
 Use `delta V = I_leak * t_hold / C_HOLD` when reviewing measured retention. As
 an intentionally pessimistic illustration, the BSS138P's 1 uA datasheet limit
-at 60 V would imply about 0.23 V loss in 50 us with 220 pF; the actual drain
+at 60 V would imply about 0.27 V loss in 60 us with 220 pF; the actual drain
 voltage is below 5 V, but no lower maximum is guaranteed. The cost variant is
 therefore a characterize-and-bin option, not a precision claim. The TMUX1101
 removes that reset-device uncertainty, but BAS70 reverse leakage, both TPH2502
@@ -270,9 +275,26 @@ Power U3 from `+5VA`, place 100 nF at the IC, and use the existing nearby 4.7 uF
 head bypass. Keep U3A, `R_CHG`, the diode, `C_HOLD`, reset part, and U3B in that
 order with a very small `PEAK_HOLD` island. Flux residue and probe contamination
 can dominate the intended leakage; keep the node away from the bias rail,
-connector contamination, and solder-mask openings other than its test pad. The
-100 ohm U3B output resistor isolates cable capacitance and is outside the peak
-feedback loop.
+connector contamination, and solder-mask openings other than its test pad.
+Surround the hold island on the component-side surface with a narrow guard tied
+to `PEAK_GUARD`, the local U3B output before the 100 ohm resistor. Keep that guard
+clear of the fast U3A-output/diode-anode node and do not turn it into a large
+capacitive pour. The nearly equipotential driven guard reduces surface-leakage
+error; its added load is part of the U3B stability test. The 100 ohm U3B output
+resistor isolates cable capacitance and is outside the peak feedback loop.
+
+The added U3A input is a branch load on `AMP_OUT`, even though comparator-path
+connectivity is unchanged. Compare `AMP_OUT`, `COMP_RAW`, and `TRIG_OUT` delay,
+width, ringing, and threshold crossing with the peak-capture parts fitted and
+unfitted. A material timing shift blocks release and requires a reviewed input
+isolation or front-end change; it must not be hidden in the coincidence window.
+Also verify U3B output settling after U3A saturation because normal linear
+crosstalk specifications do not guarantee behavior during overload recovery.
+The peak charger can draw a short current pulse approaching the BAS70 limit;
+scope `+5VA`, ground, `VBASE`, and the comparator crossing during that pulse.
+The close 100 nF U3 bypass, nearby 4.7 uF reservoir, compact charge loop, and
+ground-plane return are mandatory. Supply or baseline movement that changes
+trigger timing blocks release even if the DC power budget passes.
 
 The hold circuit captures the largest pulse since the last reset; it does not
 know which pulse caused a later coincidence. ADC-mode firmware must therefore
@@ -486,7 +508,7 @@ powered from a filtered copy of `+3V3_LOCAL`:
                          +-- 4.7 uF -- GND
                          +-- 100 nF -- GND, at MCP3202 pin 8
 
-MCP3202 pin 1  CS/SHDN -- ADC_CS_N; 10 kohm to +3V3_ADC
+MCP3202 pin 1  CS/SHDN -- ADC_CS_N; 100 kohm to +3V3_ADC
 MCP3202 pin 2  CH0 ----- ADC_A
 MCP3202 pin 3  CH1 ----- ADC_B
 MCP3202 pin 4  VSS ----- GND
@@ -513,9 +535,13 @@ head U3B -- 100 ohm -- PEAK_A/B cable -- 1.00 kohm --+-- ADC_A/B
 The nominal end-to-end scale is `1.65 / (0.10 + 1.00 + 1.65) = 0.600`, so a
 full-scale ADC code corresponds to about 5.5 V at the buffer for a 3.3 V ADC
 rail. This keeps every valid TPH2502 output below the ADC input range even at
-the allowed input-supply high limit. The nominal physical input step is about
-1.34 mV per code at 3.3 V. Subtract each channel's post-reset baseline code from
-its held code; do not assume the analog baseline is zero.
+the allowed input-supply high limit. With 1% divider tolerances, the maximum
+scale is about 0.605; a 5.25 V source is therefore below 3.18 V at the ADC pin,
+leaving at least about 50 mV of normal-range margin against the lowest allowed
+3.3 V rail including the 10 ohm filter drop. Confirm that margin on hardware.
+The nominal physical input step is about 1.34 mV per code at 3.3 V. Subtract
+each channel's post-reset baseline code from its held code; do not assume the
+analog baseline is zero.
 
 The divider's approximately 0.66 kohm Thevenin resistance and 1 nF reservoir
 settle to 12-bit accuracy in about 5.5 us after a step. Wait at least 8 us after
@@ -528,23 +554,35 @@ allowance on both physical cable lengths.
 Run the MCP3202 in single-ended mode with SPI mode 0,0 at no more than 900 kHz.
 That clock is within the datasheet's 2.7 V limit and produces at most 50 ksps.
 Allow 18 clocks per channel transaction and complete two separate channel
-transactions; this ADC is multiplexed, not simultaneous-sampling. Two reads
-therefore take about 40 us, but the locally held inputs make their timing
-difference harmless if droop passes qualification. Do not lower the clock below
-10 kHz during a transaction because the internal sample capacitor loses charge.
+transactions; this ADC is multiplexed, not simultaneous-sampling. The clocks
+take about 20 us per channel. Because `ADC_CS_N` uses the high-value pull-up
+specified below, keep CS released high for at least 8 us between channel reads
+and verify at the ADC pin that it crosses `0.7 * VDD` before the second
+transaction. The two reads therefore take about 48 us. The locally held inputs
+make their timing difference harmless only if droop passes qualification. Do
+not lower the clock below 10 kHz during a transaction because the internal
+sample capacitor loses charge.
 
 Put 4.70 kohm series resistors between JA and `ADC_CS_N`, `ADC_SCLK`,
 `ADC_MOSI`, and `ADC_MISO`. Fan `PEAK_RESET` out through one separate 1.00 kohm
-resistor per head. Keep the 10 kohm `ADC_CS_N` pull-up at the ADC so DOUT is
-high impedance before FPGA configuration. Put 10 kohm pulldowns on the board
+resistor per head. Keep the 100 kohm `ADC_CS_N` pull-up at the ADC so DOUT is
+high impedance before FPGA configuration. Put 100 kohm pulldowns on the board
 side of `ADC_SCLK` and `ADC_MOSI`, and a 100 kohm pulldown on the JA side of the
 `ADC_MISO` series resistor; each head already has a 100 kohm `PEAK_RESET`
 pulldown. These resistors limit unpowered-input current and define the otherwise
 three-state MISO input, but do not replace the required detector-off/Cora-on and
 detector-on/Cora-off back-power tests.
 
+All three SPI default resistors at the ADC are 100 kohm deliberately. With the
+4.70 kohm series parts, a 10 kohm SCLK/MOSI pulldown would reduce a nominal high
+to about 2.24 V, below the MCP3202's guaranteed `0.7 * VDD` input-high level;
+a 10 kohm CS pull-up would similarly raise a driven low to about 1.05 V, above
+its guaranteed `0.2 * VDD` input-low level. The 100 kohm values produce nominal
+levels near 3.15 V and 0.15 V respectively. Verify those levels at the ADC pins
+over both rail extremes before firmware qualification.
+
 Implement `ADC_CS_N` as an open-drain-style FPGA pin: drive it low only during a
-transaction and otherwise three-state it so the local 10 kohm resistor pulls it
+transaction and otherwise three-state it so the local 100 kohm resistor pulls it
 high. Never actively drive it high. Together with idle-low SCLK/MOSI, high-Z
 MISO, and the fail-safe/insulated reset inputs, this avoids a normal DC drive
 from a powered Cora into an unpowered detector. The bidirectional off-state test
@@ -563,17 +601,23 @@ record. Prompt acquisition must use this sequence:
 2. On a first comparator edge, preserve the held peak while the normal
    coincidence window runs. If the window expires without a partner, inhibit
    new events, reset both holds for at least 1 us, release reset, wait at least
-   1 us, and re-arm.
+   1 us, and re-arm. Count any additional edge on the first channel while the
+   window is open; if a partner subsequently arrives, the record is
+   contaminated because that channel's hold may represent the later pulse.
 3. On an accepted coincidence, inhibit further event acceptance, wait at least
-   8 us, read channel A and then B at 900 kHz or slower, and commit both codes
+   8 us, read channel A and then B at 900 kHz or slower with at least 8 us of
+   verified CS-high time between transactions, and commit both codes
    with the coincident timestamp and trigger metadata. Continue monitoring both
    comparator edges while busy; if either channel fires again before the second
    sample is complete, mark the record contaminated and normally discard it,
-   because the peak detector can update to the later, larger pulse.
+   because the peak detector can update to the later, larger pulse. From the
+   first edge through the second ADC sample, exactly the two edges forming the
+   accepted pair are allowed; any extra edge contaminates the pulse-height
+   association.
 4. Assert reset for at least 1 us, release it, wait at least 1 us, and re-arm.
    Account for the entire inhibited interval as dead time.
 
-At the expected cosmic coincidence rate, the roughly 50 us ADC transaction and
+At the expected cosmic coincidence rate, the roughly 60 us acquisition and
 reset dead time is negligible. It is not negligible during generator tests or
 at an excessively low threshold, so firmware must count busy rejections and
 busy-contaminated records, and software must include them in run metadata. If
@@ -699,8 +743,8 @@ still has no copper, paste, or solder.
 |---|---|
 | Outline | 96.0 x 64.0 rectangle with 2.0 corner radii |
 | Mounting holes | Four 3.2 NPTH holes at `(4,4)`, `(92,4)`, `(4,60)`, and `(92,60)`; no copper within 1.0 of each finished hole |
-| `HEAD_A` | `B10B-XH-A`, component side, body centered at `(62,50)`, ten-pin axis along Y, pin 1 at `(62,61.25)` |
-| `HEAD_B` | `B10B-XH-A`, component side, body centered at `(82,50)`, ten-pin axis along Y, pin 1 at `(82,61.25)` |
+| `HEAD_A` | `B10B-XH-A`, component side, body centered at `(62,47)`, ten-pin axis along Y, pin 1 at `(62,58.25)` |
+| `HEAD_B` | `B10B-XH-A`, component side, body centered at `(82,47)`, ten-pin axis along Y, pin 1 at `(82,58.25)` |
 | Pmod | `TSW-106-08-G-D-RA` with its mating-face plane at `X=96`, centerline `Y=18`, six-position axis along Y, and cable projecting beyond `+X`; derive hole offsets from the Samtec drawing |
 | Barrel jack | `PJ-102AH` with its plug-entry plane at `X=0`, centerline `Y=18`, and plug projecting beyond `-X`; derive hole offsets from the Same Sky drawing |
 | Head cable exit | Mate normal to the component side, then bend both bundles toward `+Y`; reserve 25 clear normal to the board above the connector bodies for housing and bend relief |
@@ -712,6 +756,11 @@ the boost switch node out of the head-connector and Pmod regions. Mount this
 board component-side up on at least 6.0 standoffs using the 88 x 56 hole pattern.
 Orient both JST molded faces toward `+X`; their pin-1 ends are toward `+Y` as
 given by the coordinate table.
+
+The JST drawing gives the ten-position header body length as 27.4 mm. The
+specified `Y=47` centers leave 3.3 mm between that nominal body and the `Y=64`
+board edge; do not move them back to `Y=50`, which would leave only 0.3 mm and
+would not provide a credible fabrication/assembly margin.
 
 The unkeyed Pmod requires three consistent views: the schematic pin table, the
 component-side footprint view, and the view looking into the mated cable. Put a
@@ -828,12 +877,26 @@ The minimum useful data path is not just RTL counters:
 The version-1 register contract below remains the comparator-only first target
 and may ignore the ADC. ADC-enabled firmware is a later, reviewed interface
 revision. It must atomically enqueue at least the 64-bit accepted-coincidence
-tick, both raw 12-bit ADC codes, conversion/reset status, and a sequence number;
+tick, the signed trigger-edge separation and first-channel flag, both raw
+12-bit ADC codes, conversion/reset status, and a sequence number;
 expose FIFO overflow, busy-rejection, and busy-contamination counts; and
 preserve enough metadata to apply channel baselines and the measured ADC scale
 offline. Do not silently append samples to the summary CSV, and do not label the
 fixed one-shot width as ToT. A true ToT field is permitted only after the direct
 comparator path passes the qualification stated above.
+
+In that ADC-enabled revision, `LIVE_TICKS` must pause while acquisition is
+inhibited for ADC conversion, reset, or rearm; otherwise reported rates hide the
+approximately 60 us accepted-event dead time and the dead time caused by resets
+after rejected singles. Keep a separate total busy-tick counter and the rejection
+counters so effective live time and lost-event fractions can be audited.
+
+At ADC-mode startup, assert reset, release it, wait the qualified rearm time,
+and read both channels at least twice to establish and sanity-check baseline
+codes. Retry or fault if either channel is outside its characterized baseline
+window. Repeat this check periodically while disabled. This detects an open
+reset conductor, wrong reset population, or a hold node that failed to return;
+event-by-event subtraction alone cannot detect those faults.
 
 ### AXI-Lite register contract
 
