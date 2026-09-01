@@ -23,8 +23,16 @@ than creating a separate form for every test.
   document in `docs/datasheets/README.md`; recheck when any part changes.
 - [x] Revision A pre-KiCad choices are frozen in `docs/design.md`, including
   the 70 x 70 head and 96 x 64 central-board envelopes, holes, connector
-  locations, cable exits, trimmer direction, optical stack, and frame datums.
+  locations, cable exits, trimmer direction, peak/ADC topology, optical stack,
+  and frame datums. Only the documented `R_CHG`/`C_HOLD` stuffing values await
+  waveform characterization.
 - [ ] Create both KiCad 9.0.9 projects and project-local library tables.
+- [ ] Revise the existing power/interface KiCad project for the MCP3202, JA SPI
+  and reset nets, and ten-position head connectors; the current checked-in
+  board predates this design revision and is not electrically authoritative.
+- [ ] Add and verify the power/interface `Edge.Cuts`; KiCad 9.0.9 DRC on
+  2026-09-01 reports a malformed outline because the current PCB has no edge
+  segments.
 - [ ] Check the SiPM symbol, footprint, orientation, and no-solder center paddle
   independently against the current datasheet and physical part.
 - [ ] Add unambiguous top- and bottom-side pin-1/mating markings to all headers.
@@ -56,6 +64,13 @@ Use a scope-verified 0-3.3 V pulse source; never put 5 V logic on JA.
 - [ ] Verify the 125,000-clock read-before-write delay memory, its 1 ms valid
   transition, reset/refill behavior, and comparison against a software model.
 - [ ] Confirm coherent AXI-Lite snapshots and one-second host CSV output.
+- [ ] In comparator-only firmware, drive `PEAK_RESET` high, release
+  `ADC_CS_N` to its local pull-up, and drive `ADC_SCLK`/`ADC_MOSI` low; verify
+  no ADC transaction or reset transition can create a trigger count.
+- [ ] Before enabling pulse-height logging, simulate rejected-single reset,
+  accepted-coincidence busy/read/reset, events during busy, both ADC channel
+  command words, SPI timing, timeout, reset, stale-peak, and later-pulse overwrite
+  cases. Count and report busy rejections and contaminated records.
 - [ ] Exercise every documented register, rejected configuration writes,
   sticky-error clearing, atomic 64-bit rollover snapshots, and sequence changes.
 - [ ] Leave both inputs low when disconnected; investigate any idle counts.
@@ -72,16 +87,21 @@ Assemble by functional island so a bad rail cannot damage every IC.
    Apply current-limited 5 V and verify `+5VA`, input current, and heating.
 2. Fit the LDO and its capacitors. Verify 3.3 V at no load and with a temporary
    30 mA load.
-3. Fit the MAX5026 island without installing either SiPM. Set the 500 ohm trim
+3. Fit the MCP3202, its filtered supply, input dividers/reservoir capacitors,
+   and JA series/default-state resistors. With the heads absent, verify
+   `+3V3_ADC`, `ADC_CS_N` high, DOUT high impedance, both ADC inputs at ground,
+   correct reads of applied 0 V and two known voltages, and no off-state
+   back-power in either direction.
+4. Fit the MAX5026 island without installing either SiPM. Set the 500 ohm trim
    to maximum bottom resistance, leave `SHDN` low, and inspect resistance/diode
    orientation before power.
-4. Enable bias with a 100 mA initial input limit. Set `BIAS_27V` to 27.2 V with
+5. Enable bias with a 100 mA initial input limit. Set `BIAS_27V` to 27.2 V with
    a high-impedance meter. Verify the complete approximate 25.8-27.6 V nominal
    adjustment range and confirm the measured maximum remains below 28.55 V,
    without exceeding breakdown plus 5.0 V for the lowest-breakdown sensor.
-5. Measure startup, shutdown, `HV_RAW` ripple, filtered bias ripple, bleeder
+6. Measure startup, shutdown, `HV_RAW` ripple, filtered bias ripple, bleeder
    discharge, and residual disabled voltage. Do not assume "disabled" is 0 V.
-6. With the Cora off, detector on, verify no Pmod supply pin is driven. Repeat
+7. With the Cora off, detector on, verify no Pmod supply pin is driven. Repeat
    with detector off and Cora on.
 
 Gate: stable rails, acceptable ripple/temperature, no back-power, and a measured
@@ -89,14 +109,16 @@ discharge time must be recorded before attaching a head.
 
 ## Stage 3: each detector head without a SiPM
 
-Fit power, TPH2502, TLV3502, SN74LVC1G123, passive networks, headers, and test
-points. Fit `R_STRETCH` and leave `R_DIRECT`, the SiPM, and other DNP parts
-absent.
+Fit power, both TPH2502 devices, TLV3502, SN74LVC1G123, passive networks,
+headers, and test points. Fit `R_STRETCH`, the provisional 49.9 ohm `R_CHG` and
+220 pF `C_HOLD`, and exactly one reset variant. Leave `R_DIRECT`, the SiPM, and
+other DNP parts absent.
 
-- [ ] Continuity-map the head cable pin 1 to pin 1 and verify adjacent ground
-  returns. Label that cable; do not rely on wire color alone.
+- [ ] Continuity-map all ten head-cable pins pin 1 to pin 1 and verify the four
+  original ground returns. Label that cable; do not rely on wire color alone.
 - [ ] Verify connector voltages at the unplugged cable: bias, ground, `+5VA`,
-  ground, 3.3 V, ground, inactive trigger, ground.
+  ground, 3.3 V, ground, inactive trigger, ground, baseline/held peak, and the
+  commanded reset level.
 - [ ] Power the head at a conservative current limit. Check 3.3 V, `VBASE` near
   50 mV, `AMP_OUT` baseline, and the approximately 0-0.53 V threshold range.
 - [ ] Inject a low-rate pulse through 499 ohm. Observe `SIPM_RAW`, `AMP_OUT`,
@@ -104,6 +126,18 @@ absent.
   grounds.
 - [ ] Confirm gain, polarity, threshold behavior, hysteresis, trigger amplitude,
   and ringing. Confirm `COMP_RAW` is at least 3 ns and `TRIG_OUT` is 150-250 ns.
+- [ ] Verify `PEAK_RESET` returns `PEAK_HOLD` and `PEAK_OUT` to `VBASE`, then
+  release reset and inject known positive pulses. Confirm monotonic peak capture,
+  no comparator-path timing change, no U3B oscillation with the full cable/ADC
+  load, and ADC agreement with the scoped held voltage.
+- [ ] Sweep the allowed `R_CHG` and `C_HOLD` stuffing matrix over the measured
+  `AMP_OUT` width and amplitude range. Record peak acquisition error, overshoot,
+  upper-rail clipping, 8 us output settling, switch-release pedestal, reset
+  residue, and droop at the end of both 900 kHz ADC reads. Freeze values in
+  `docs/design.md`, the BOM, and KiCad only from this evidence.
+- [ ] For any reset variant intended for assembly, repeat droop and reset tests
+  at 0, room temperature, and 40 deg C. The cost MOSFET's room-temperature
+  typical behavior is not a substitute for its unguaranteed low-voltage leakage.
 - [ ] Confirm the Cora counts injected singles and coincidences through each
   complete head/cable/channel path.
 
@@ -145,14 +179,18 @@ temperature, geometry, window, firmware commit, and live time for every run.
 2. **Threshold scan:** at fixed bias and temperature, measure both singles,
    prompt, and delayed rates over a safe threshold range. Select a stable region,
    not simply the highest rate.
-3. **Bias scan:** at fixed measured threshold and temperature, step overvoltage
+3. **Pulse-height sanity scan:** inject calibrated amplitudes first, then collect
+   dark and scintillator events. Verify baseline-subtracted ADC codes are
+   monotonic, do not depend materially on A/B conversion order, and show no stale
+   peak after rejected singles. Treat the result as uncalibrated pulse height.
+4. **Bias scan:** at fixed measured threshold and temperature, step overvoltage
    conservatively. Stop for excessive current, noise, or instability.
-4. **Prompt/delayed control:** implement a delay much longer than physical
+5. **Prompt/delayed control:** implement a delay much longer than physical
    correlation, such as 1 ms, with the same window width and nonoverlapping
    sample. Prompt should significantly exceed delayed in aligned geometry.
-5. **Alignment control:** collect equal-live-time aligned and deliberately
+6. **Alignment control:** collect equal-live-time aligned and deliberately
    offset runs. Aligned prompt coincidence should be higher.
-6. **Angle/transmission:** only after the controls pass, use a rigid angle and
+7. **Angle/transmission:** only after the controls pass, use a rigid angle and
    separation reference. Bracket each changed condition with open-reference
    runs and quote Poisson plus observed drift uncertainty.
 
@@ -176,7 +214,7 @@ the ringing it appears to diagnose.
 | Bias high, above 28.55 V, or trim reversed | Power off; measure 147k, 6.98k, trimmer end-to-end, and wiper | Wrong value, open feedback, or reversed trimmer; never "trim through" an unexplained overvoltage |
 | Bias remains near 5 V when disabled | Compare to input and watch discharge | Normal path through inductor/diode plus stored charge; shutdown is not isolation |
 | Large 500 kHz bias ripple | Compare `HV_RAW`, bus, and head cathode with short ground | Poor switch loop/filter return, misplaced capacitor, MLCC DC derating, or probe pickup |
-| Rail changes when a head is plugged in | Verify all eight cable positions before retry | Mirrored/offset JST housing, connector view error, head short |
+| Rail changes when a head is plugged in | Verify all ten cable positions before retry | Mirrored/offset JST housing, connector view error, head short |
 | Cora powers while nominally off | Check Pmod pins 6/12 and trigger protection path | Local 3.3 V tied to Pmod or I/O back-power; disconnect and correct before use |
 | `VBASE` absent or noisy | Divider midpoint and U2B input/output | Wrong divider, op-amp orientation, capacitive follower load, or supply oscillation |
 | No injected amplifier pulse | Probe both sides of coupling cap and U2A pins | Missing 499 ohm DC path, wrong feedback, pulse polarity/level, bad ground reference |
@@ -188,6 +226,13 @@ the ringing it appears to diagnose.
 | `COMP_RAW` works but `TRIG_OUT` does not | Check one-shot supply, A low, CLR high, B input, timing parts, and selection links | Wrong DCT pinout, missing 2k/27pF, `R_STRETCH` open, or both selection links fitted |
 | Stretched trigger outside 150-250 ns | Measure 2k and 27pF; probe one-shot timing pins with low capacitance | Wrong timing value, excessive probe capacitance, solder fault, or incorrect footprint |
 | Trigger good at head, bad at Cora | Scope both cable ends; continuity-map pins | Cable mapping, missing common ground, Pmod rotation, connector ringing |
+| Peak never rises | Compare `AMP_OUT`, U3A inputs/output, BAS70 orientation, and reset level | Reset stuck high, reversed diode, open `R_CHG`, wrong U3 pinout, or negative input pulse |
+| Peak is low or width-dependent | Scope `AMP_OUT`, U3A output, and `PEAK_HOLD` with a low-capacitance probe | `C_HOLD` too large, `R_CHG` too large, diode/op-amp current limit, or insufficient pulse area; characterize rather than correcting in software |
+| Peak droops before channel B is read | Compare `PEAK_HOLD` at 8 us and after both ADC reads | Leaky MOSFET/diode, contaminated hold node, small `C_HOLD`, wrong reset footprint population, or ADC path loading before U3B |
+| Peak does not reset to baseline | Check `PEAK_RESET`, reset part orientation, `VBASE`, and both alternate footprints | Gate/SEL not high, MOSFET source/drain reversed, both reset parts fitted, open reset cable, or inadequate reset time |
+| ADC reads zero/full-scale/wrong channel | Probe ADC input pins, `+3V3_ADC`, CS, CLK, DIN, and DOUT | Wrong divider, MCP3202 pinout/command bit, missing ground, SPI mode/rate error, or input outside 0-VDD range |
+| ADC changes trigger counts | Observe JA SPI/reset and trigger pins together | Pmod mapping error, digital return/layout coupling, or firmware pin-direction error; comparator path must remain independent |
+| Pulse height belongs to an earlier single | Inspect comparator-edge, busy, read, and reset trace | Holds were reset only after coincidences or events were accepted during busy; implement rejected-single reset and dead-time accounting |
 | FPGA counts an unplugged input | Measure pulldown and actual JA pin | Missing 10k pulldown, wrong constraint, EMI, floating ground |
 | FPGA misses visible pulses | Measure `COMP_RAW`, `TRIG_OUT`, and both Pmod ends against the 8 ns clock | One-shot not selected, trigger below 150 ns, cable fault, wrong pin constraint, or synchronizer/edge-detector bug |
 | One physical pulse counts repeatedly | Compare synchronized level and edge pulse | Level counting instead of rising-edge counting, bad synchronizer, or clear logic |
@@ -230,6 +275,11 @@ Schematic and libraries:
   defined.
 - [ ] Each head has `R_STRETCH` fitted and `R_DIRECT` absent; the one-shot timing
   path and its test points match `docs/design.md`.
+- [ ] Each head has two `TPH2502-SR` devices, one `BAS70,215`, exactly one reset
+  variant, and the reviewed `R_CHG`/`C_HOLD` values; no alternate reset devices
+  are simultaneously populated.
+- [ ] The MCP3202 pinout, attenuators, reservoir capacitors, filtered reference
+  rail, JA mapping, SPI default states, and reset fanout match `docs/design.md`.
 - [ ] Power flags and intentional ERC exceptions are reviewed and documented.
 - [ ] Test points support every staged measurement above.
 
@@ -237,8 +287,9 @@ Layout and mechanics:
 
 - [ ] SiPM and all unusual footprints pass independent datasheet, 1:1 print,
   and physical-part review.
-- [ ] Boost loop/LX, feedback divider, head analog path, decoupling, and ground
-  returns pass independent visual review.
+- [ ] Boost loop/LX, feedback divider, head analog and peak paths, decoupling,
+  ADC input/reference placement, and ground returns pass independent visual
+  review.
 - [ ] High-voltage clearance and capacitor voltage/DC-bias ratings are checked.
 - [ ] Connector orientation, reverse-side pin 1, rail labels, mounting holes,
   and Pmod support are unambiguous.

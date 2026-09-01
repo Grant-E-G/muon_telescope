@@ -75,20 +75,59 @@ A retriggerable one-shot converts each comparator edge into a nominally 200 ns
 logic pulse. This makes synchronous FPGA capture insensitive to the unknown raw
 comparator pulse width while preserving the leading-edge timing used for
 coincidence. A direct comparator-output path exists only as a mutually exclusive
-assembly option for later diagnostics.
+assembly option for later diagnostics. Consequently, the default FPGA input
+does not contain physical time-over-threshold information: its width is set by
+the one-shot, not by the time `AMP_OUT` remains above `VTH`.
 
 The amplifier can momentarily rise above the comparator's 3.3 V rail. A series
 resistor limits the comparator's protection current. Optional Schottky clamps
 are left unpopulated unless the bench shows they are needed, because diode
 capacitance can change the timing being measured.
 
+## Capturing pulse height
+
+The comparator reduces a pulse to a yes/no timing edge. In parallel, a second
+wideband amplifier acts as a precision peak charger: while `AMP_OUT` rises, it
+drives a Schottky diode and hold capacitor until `PEAK_HOLD` follows the pulse.
+When the input falls, the diode opens and the capacitor retains the largest
+voltage. Another amplifier channel buffers that high-impedance node before it
+drives the cable and ADC divider. This separation is what makes a central slow
+ADC practical; cable and ADC sampling capacitance do not sit on the nanosecond
+signal or the hold capacitor.
+
+The held voltage is the amplified pulse plus the approximately 50 mV baseline.
+The ADC input attenuator maps the amplifier's nearly 5 V range into a 3.3 V ADC.
+Analysis subtracts a measured post-reset baseline and applies the measured ADC
+supply and divider ratio. The ADC codes are useful for threshold placement,
+head matching, coupling comparisons, bias/temperature scans, and broad
+distributions. Scintillator light collection, SiPM gain/crosstalk, amplifier
+response, peak acquisition, and ADC reference are not calibrated well enough
+to call the result deposited particle energy.
+
+Peak capture trades speed against retention. A larger hold capacitor droops
+less but demands more charge during the narrow pulse. A larger charging
+resistor protects the amplifier and diode but slows acquisition. Those are the
+only two prototype stuffing values intentionally left open until `AMP_OUT` is
+measured. Diode leakage, reset-switch leakage, PCB contamination, and switch
+charge injection then set the retained-voltage error.
+
+The hold always contains the largest pulse since reset, not necessarily the
+last pulse. Firmware must clear rejected singles after the coincidence window;
+otherwise an unrelated earlier peak can be attached to a later coincidence.
+For a valid pair, firmware waits for the cable/ADC filter to settle, reads both
+multiplexed ADC channels while the local capacitors hold them, resets both
+heads, and records the resulting busy interval as dead time. A later pulse can
+still raise a held maximum during that interval, so comparator edges remain
+monitored and any affected pulse-height record is flagged or discarded.
+
 ## Why local electronics and paired grounds help
 
 Every signal flows in a loop. A cable is not merely a list of named wires: its
 return conductors determine loop area, susceptibility, and ground shift. Each
 head cable therefore pairs bias, analog power, logic power, and trigger with
-nearby grounds. Only a full-amplitude digital edge traverses the cable; the
-small, high-impedance SiPM and amplifier nodes stay on the head.
+nearby grounds. The signals traversing the cable are a full-amplitude digital
+edge, a reset level, and a buffered slow held voltage; the small,
+high-impedance SiPM and peak-hold nodes stay on the head.
 
 The 100 ohm trigger resistor is source damping. It absorbs the initial mismatch
 of a practical cable and reduces ringing at the far end. The FPGA-side pulldown

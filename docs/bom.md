@@ -1,9 +1,10 @@
 # Revision A planning BOM
 
-Checked 2026-08-23. Prices are USD, quantity-one planning values, not quotes;
-stock, marketplace listings, shipping, tariffs, and tax can change. Recheck the
-manufacturer number, package, lifecycle, and stock on the order date. The KiCad-
-generated BOM must be reconciled to this document before fabrication.
+Original BOM checked 2026-08-23; pulse-height additions checked 2026-09-01.
+Prices are USD, quantity-one planning values, not quotes; stock, marketplace
+listings, shipping, tariffs, and tax can change. Recheck the manufacturer
+number, package, lifecycle, and stock on the order date. The KiCad-generated
+BOM must be reconciled to this document before fabrication.
 
 Every selected manufacturer number is mapped to an archived primary document
 in [`docs/datasheets/README.md`](datasheets/README.md). Distributor links below
@@ -21,9 +22,13 @@ are excluded.
 | Function | Manufacturer part | Package | Design qty | Buy qty | Checked source | Approx. each |
 |---|---|---|---:|---:|---|---:|
 | 6 mm, 35 um SiPM | onsemi `MICROFC-60035-SMT-TR` | custom SMT | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/onsemi/MICROFC-60035-SMT-TR/9742618), [datasheet](https://www.onsemi.com/pdf/datasheet/microc-series-d.pdf) | $24.25 |
-| Dual high-speed amplifier | 3PEAK `TPH2502-SR` | SOP-8 | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/3peak/TPH2502-SR/22229182), [datasheet](https://static.3peak.com/res/doc/ds/Datasheet_TPH2501-TPH2502-TPH2503-TPH2504.pdf) | $1.12 |
+| Dual high-speed amplifier | 3PEAK `TPH2502-SR` | SOP-8 | 4 | 4 | [DigiKey](https://www.digikey.com/en/products/detail/3peak/TPH2502-SR/22229182), [datasheet](https://static.3peak.com/res/doc/ds/Datasheet_TPH2501-TPH2502-TPH2503-TPH2504.pdf) | $1.12 |
 | Dual fast comparator | TI `TLV3502AIDR` | SOIC-8 | 2 | 2 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TLV3502AIDR/1669430), [datasheet](https://www.ti.com/lit/gpn/TLV3502) | $5.15 |
 | Trigger one-shot | TI `SN74LVC1G123DCTR`; DigiKey cut-tape SKU `296-18758-1-ND` | DCT/SM8 | 2 | 3 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G123DCTR/863597), [datasheet](https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf) | $1.73 |
+| Dual 12-bit SPI ADC | Microchip `MCP3202-BI/SN` | SOIC-8 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/microchip-technology/MCP3202-BI-SN/319432), [datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/21034F.pdf) | $3.82 |
+| Peak-detector Schottky diode | Nexperia `BAS70,215` | SOT-23 | 2 | 3 | [DigiKey](https://www.digikey.com/en/products?keywords=BAS70%2C215), [datasheet](https://assets.nexperia.com/documents/data-sheet/BAS70.pdf) | $0.20 |
+| Cost peak-reset MOSFET, default | Nexperia `BSS138P,215` | SOT-23 | 2 | 3 | [DigiKey](https://www.digikey.com/en/products/detail/nexperia-usa-inc/BSS138P-215/2779827), [datasheet](https://assets.nexperia.com/documents/data-sheet/BSS138P.pdf) | $0.19 |
+| Precision peak-reset switch, alternate | TI `TMUX1101DCKR` | SC70-5 | 0 (2 alternate footprints) | 2 if selected | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TMUX1101DCKR/10442439), [datasheet](https://www.ti.com/lit/ds/symlink/tmux1101.pdf) | $2.34 |
 | Adjustable boost controller | ADI/Maxim `MAX5026EUT+T`; DigiKey cut-tape SKU `MAX5026EUT+TCT-ND` | SOT-23-6 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/analog-devices-inc-maxim-integrated/MAX5026EUT-T/1516355), [datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf) | $1.95 |
 | 3.3 V, 500 mA LDO | TI `TLV75533PDBVR` | SOT-23-5 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TLV75533PDBVR/9356541), [datasheet](https://www.ti.com/lit/gpn/TLV755P) | $0.75 |
 | 47 uH shielded inductor | Bourns `SRN6045-470M` | 6 x 6 mm SMT | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/bourns-inc/SRN6045-470M/2756124) | $0.60 |
@@ -34,7 +39,8 @@ are excluded.
 | Threshold trim, 10 kohm, 10 turn | Bourns `3296W-1-103LF` | through-hole | 2 | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=3296W-1-103LF) | $2.39 |
 | Optional input clamp, DNP | Diodes Inc. `BAT54S-7-F` | SOT-23 | 0 | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=BAT54S-7-F) | $0.25 |
 
-The two DNP clamps are optional prototypes, not default assembly. If budget
+The two DNP clamps and two TMUX1101 switches are optional prototypes, not
+default assembly. Fit one reset technology per head, never both. If budget
 allows, a third SiPM adds $24.25 and is the most useful active-part spare.
 Distributor suffixes describe packaging, not different silicon: `CT-ND` is
 DigiKey cut tape, `TR-ND` is the full tape-and-reel option, and `DKR-ND` is a
@@ -49,23 +55,29 @@ hand assembly is not stopped by a lost part.
 | Value and role | Recommended part | Design qty | Source |
 |---|---|---:|---|
 | 0 ohm current and trigger-selection links | Yageo `RC0805JR-070RL` | 3 (plus 2 DNP footprints) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805JR-070RL) |
-| 49.9 ohm SiPM sense | Yageo `RC0805FR-0749R9L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0749R9L) |
-| 100 ohm bias filters and trigger damping | Yageo `RC0805FR-07100RL` | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07100RL) |
+| 10.0 ohm ADC-supply filter | Yageo `RC0805FR-0710RL` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0710RL) |
+| 22.0 ohm peak charging, characterization alternate | Yageo `RC0805FR-0722RL` | 0 (2 stuffing options) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0722RL) |
+| 49.9 ohm SiPM sense and provisional peak charging | Yageo `RC0805FR-0749R9L` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0749R9L) |
+| 100 ohm bias filters, trigger damping, peak-output isolation, and peak-charging alternate | Yageo `RC0805FR-07100RL` | 7 (plus 2 stuffing options) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07100RL) |
 | 499 ohm input bias and injection | Yageo `RC0805FR-07499RL` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07499RL) |
-| 1.00 kohm gain, comparator, threshold | Yageo `RC0805FR-071KL` | 6 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071KL) |
+| 1.00 kohm gain, comparator, threshold, ADC input, and reset fanout | Yageo `RC0805FR-071KL` | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071KL) |
+| 1.65 kohm ADC attenuator bottom | Yageo `RC0805FR-071K65L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071K65L) |
 | 2.00 kohm baseline dividers and one-shot timing | Yageo `RC0805FR-072KL` | 4 | [DigiKey](https://www.digikey.com/en/products/detail/yageo/RC0805FR-072KL/730611) |
-| 4.70 kohm threshold divider | Yageo `RC0805FR-074K7L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-074K7L) |
-| 10.0 kohm FPGA pulldown | Yageo `RC0805FR-0710KL` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0710KL) |
+| 4.70 kohm threshold divider and JA/ADC SPI series | Yageo `RC0805FR-074K7L` | 6 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-074K7L) |
+| 10.0 kohm FPGA trigger/SPI pulldown and ADC-CS pull-up | Yageo `RC0805FR-0710KL` | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0710KL) |
 | 12.4 kohm gain feedback | Yageo `RC0805FR-0712K4L` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-0712K4L) |
-| 100 kohm shutdown pulldown | Yageo `RC0805FR-07100KL` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07100KL) |
+| 100 kohm shutdown/reset/MISO default-state resistors | Yageo `RC0805FR-07100KL` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07100KL) |
 | 130 kohm baseline divider | Yageo `RC0805FR-07130KL` | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07130KL) |
 | 330 kohm external hysteresis, DNP | Yageo `RC0805FR-07330KL` | 0 (2 footprints) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07330KL) |
 | 1 Mohm bias bleeder | Yageo `RC0805FR-071ML` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-071ML) |
+| 220 ohm peak charging, characterization alternate | Yageo `RC0805FR-07220RL` | 0 (2 stuffing options) | [DigiKey](https://www.digikey.com/en/products?keywords=RC0805FR-07220RL) |
 | 147 kohm boost feedback, 0.1% | Panasonic `ERA-6AEB1473V` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=ERA-6AEB1473V) |
 | 6.98 kohm boost feedback, 0.1% | Panasonic `ERA-6AEB6981V` | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=ERA-6AEB6981V) |
 
-Buy two 10.0 ohm `RC0805FR-0710RL` resistors as alternate head stuffing parts;
-do not install them silently on only one channel.
+In addition to the fitted ADC-filter part, buy two 10.0 ohm
+`RC0805FR-0710RL` resistors as alternate SiPM-sense stuffing parts. Buy at
+least five of every listed peak-charging value. Do not install a different
+`R_CHG` or sense value on only one channel without recording it.
 
 ## Capacitors
 
@@ -75,13 +87,17 @@ solely because its printed nominal capacitance matches.
 
 | Value and dielectric | Recommended part | Design qty | Buy qty | Source |
 |---|---|---:|---:|---|
-| 100 nF, 50 V, X7R, 0805 | KEMET `C0805C104K5RACTU` | 12 | 20 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C104K5RACTU) |
+| 100 nF, 50 V, X7R, 0805 | KEMET `C0805C104K5RACTU` | 15 (plus 2 for precision-reset variant) | 25 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C104K5RACTU) |
 | 1 uF, 16 V, X7R, 0805 | KEMET `C0805C105K4RACTU` | 6 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C105K4RACTU) |
-| 4.7 uF, 16 V, X7R, 0805 | KEMET `C0805C475K4RACTU` | 3 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C475K4RACTU) |
+| 4.7 uF, 16 V, X7R, 0805 | KEMET `C0805C475K4RACTU` | 4 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C475K4RACTU) |
 | 10 uF, 10 V, X7R, 1206 | KEMET `C1206C106K8RACTU` | 1 | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=C1206C106K8RACTU) |
 | 1 uF, 50 V, X7R, 1206 | KEMET `C1206C105K5RACTU` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C1206C105K5RACTU) |
 | 10 nF, 100 V, C0G, 0805 | KEMET `C0805C103J1GACTU` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C103J1GACTU) |
 | 27 pF, 50 V, C0G, 0805 | KEMET `C0805C270J5GACTU` | 2 | 5 | [DigiKey](https://www.digikey.com/en/products/detail/kemet/C0805C270J5GACTU/411113) |
+| 100 pF, 50 V, C0G, 0805, hold alternate | KEMET `C0805C101J5GACTU` | 0 (2 stuffing options) | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C101J5GACTU) |
+| 220 pF, 50 V, C0G, 0805, provisional hold | KEMET `C0805C221J5GACTU` | 2 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C221J5GACTU) |
+| 470 pF, 50 V, C0G, 0805, hold alternate | KEMET `C0805C471J5GACTU` | 0 (2 stuffing options) | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C471J5GACTU) |
+| 1 nF, 50 V, C0G, 0805, ADC reservoir/hold alternate | KEMET `C0805C102J5GACTU` | 2 (plus 2 stuffing options) | 7 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C102J5GACTU) |
 | 2.2 pF, 50 V, C0G, 0805, DNP | KEMET `C0805C229C5GACTU` | 0 (2 footprints) | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C229C5GACTU) |
 
 The TLV755 schematic must follow the selected regulator datasheet. The total
@@ -95,9 +111,9 @@ pin-numbered continuity test on every finished cable.
 
 | Function | Manufacturer part | Design / buy qty | Source | Approx. each |
 |---|---|---:|---|---:|
-| 8-pin board headers, two central and two heads | JST `B8B-XH-A(LF)(SN)` | 4 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B8B-XH-A/1651049) | $0.65 |
-| 8-pin cable housings | JST `XHP-8` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=XHP-8) | $0.20 |
-| 12-inch XH-to-XH 22 AWG precrimp lead | JST `ASXHSXH22K305` | 16 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASXHSXH22K305/6684932) | $0.80 |
+| 10-pin board headers, two central and two heads | JST `B10B-XH-A(LF)(SN)` | 4 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B10B-XH-A/1651051) | $0.39 |
+| 10-pin cable housings | JST `XHP-10` | 4 | [DigiKey](https://www.digikey.com/en/products?keywords=XHP-10) | $0.15 |
+| 12-inch XH-to-XH 22 AWG precrimp lead | JST `ASXHSXH22K305` | 20 | [DigiKey](https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASXHSXH22K305/6684932) | $0.80 |
 | 5 V center-positive board jack | Same Sky `PJ-102AH` | 1 | [DigiKey](https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PJ-102AH/408448) | $1.30 |
 | Regulated 5 V, 1 A Class II wall adapter | Phihong `PSAC05A-050L6-R` | 1 | [DigiKey](https://www.digikey.com/en/products/detail/phihong-usa/PSAC05A-050L6-R/5418482) | $5.40 |
 | Right-angle 2x6 Pmod header | Samtec `TSW-106-08-G-D-RA` | 1 | [Mouser](https://www.mouser.com/ProductDetail/Samtec/TSW-106-08-G-D-RA) | $2.11 |
@@ -131,6 +147,28 @@ dimensions, damage, and which broad face is polished before optical or
 mechanical work begins. Back up project-owned mechanical models in Git; link to
 a third-party source and license rather than copying an unlicensed model.
 
+## Pulse-height upgrade increment
+
+The original rough $7 / $11-12 estimates describe electronics only. Exact
+selection confirms those figures for the active circuitry, but preserving all
+four existing cable ground returns requires four additional precrimp conductors
+across the two cables. Relative to the former eight-position design:
+
+| Added item | Cost-reset build | Precision-reset build |
+|---|---:|---:|
+| Two additional `TPH2502-SR` devices | $2.24 | $2.24 |
+| `MCP3202-BI/SN` | $3.82 | $3.82 |
+| Two BAS70 peak diodes | $0.40 | $0.40 |
+| Two reset devices | $0.38 | $4.68 |
+| Added passives, planning allowance | $1-1.50 | $1-1.50 |
+| **Electronics increment** | **about $8** | **about $12-13** |
+| Four additional factory-crimped conductors, less small connector-price change | about $2.50-3 | about $2.50-3 |
+| **Complete installed increment before PCB/shipping/tax** | **about $10.50-11** | **about $14.50-16** |
+
+Do not recover the cable cost by deleting a bias, analog, logic, or trigger
+return. PCB fabrication remains essentially unchanged when this circuitry is
+included before the next board order.
+
 ## Cost reality
 
 Using the purchased scintillator blocks and assembling by hand gives this
@@ -139,15 +177,15 @@ planning range:
 | Category | Planning subtotal |
 |---|---:|
 | Two scintillators | $45 |
-| Critical semiconductors, power parts, and trimmers | $79 |
-| Passives including order-quantity margin | $20-25 |
-| Power adapter, connectors, precrimp leads, and headers | $30-35 |
+| Critical semiconductors, power parts, and trimmers | $86 cost reset; about $90 precision reset |
+| Passives including order-quantity margin | $22-28 |
+| Power adapter, connectors, precrimp leads, and headers | $33-38 |
 | Optical compound and wrapping | $26.50 |
 | PCBs and optional stencil allowance | $35-55 |
 | Frame and fasteners | $10-25 |
-| **Parts subtotal before shipping/tax** | **about $246-291** |
+| **Parts subtotal before shipping/tax** | **about $258-304 cost reset; $262-308 precision reset** |
 
-A realistic delivered total is roughly **$280-350**, depending mainly on PCB
+A realistic delivered total is roughly **$295-370**, depending mainly on PCB
 shipping, frame stock, and whether consumables are already available. The
 subtotal includes the purchased scintillators at their listing price but not
 tax or shipping. Do not use the optimistic subtotal as authorization for the

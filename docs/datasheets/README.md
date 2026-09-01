@@ -1,7 +1,9 @@
 # Datasheet archive
 
 This directory is the local design-document archive for selected parts and
-existing equipment. Files were retrieved 2026-08-23 and are kept unmodified.
+existing equipment. Files were retrieved 2026-08-23 unless a later date is
+stated, and are kept unmodified. The pulse-height documents were retrieved
+2026-09-01.
 Use the exact manufacturer number below: a family document does not make every
 family member interchangeable. Recheck the linked primary source and revision
 before a fabrication release because the local copy is intentionally a
@@ -19,6 +21,10 @@ references, not substitutes for electrical or mechanical documentation.
 | 3PEAK `TPH2502-SR` | [TPH2501-TPH2504 datasheet](3peak-tph2501-tph2504.pdf) | [3PEAK](https://static.3peak.com/res/doc/ds/Datasheet_TPH2501-TPH2502-TPH2503-TPH2504.pdf) |
 | TI `TLV3502AIDR` | [TLV3501/TLV3502 datasheet](ti-tlv3501-tlv3502.pdf) | [TI](https://www.ti.com/lit/gpn/TLV3502) |
 | TI `SN74LVC1G123DCTR` | [SN74LVC1G123 datasheet](ti-sn74lvc1g123.pdf) | [TI](https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf) |
+| Microchip `MCP3202-BI/SN` | [MCP3202 datasheet](microchip-mcp3202.pdf) | [Microchip](https://ww1.microchip.com/downloads/en/DeviceDoc/21034F.pdf) |
+| Nexperia `BAS70,215` | [BAS70 datasheet](nexperia-bas70.pdf) | [Nexperia](https://assets.nexperia.com/documents/data-sheet/BAS70.pdf) |
+| Nexperia `BSS138P,215` | [BSS138P datasheet](nexperia-bss138p.pdf) | [Nexperia](https://assets.nexperia.com/documents/data-sheet/BSS138P.pdf) |
+| TI `TMUX1101DCKR` (precision reset alternate) | [TMUX1101/TMUX1102 datasheet](ti-tmux1101.pdf) | [TI](https://www.ti.com/lit/ds/symlink/tmux1101.pdf) |
 | ADI/Maxim `MAX5026EUT+T` | [MAX5025-MAX5028 datasheet](adi-max5025-max5028.pdf) | [Analog Devices](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf) |
 | TI `TLV75533PDBVR` | [TLV755P datasheet](ti-tlv755p.pdf) | [TI](https://www.ti.com/lit/gpn/TLV755P) |
 | onsemi `SS16HE` | [SS13HE-SS16HE datasheet](onsemi-ss13he-ss16he.pdf) | [onsemi](https://www.onsemi.com/pdf/datasheet/ss13he-d.pdf) |
@@ -33,15 +39,15 @@ references, not substitutes for electrical or mechanical documentation.
 | Littelfuse `1206L050YR` | [1206L datasheet](littelfuse-1206l.pdf) | [Littelfuse](https://www.littelfuse.com/assetdocs/littelfuse-ptc-1206l-datasheet?assetguid=2b6a1515-d4ee-4c83-8bd4-152b4901b8f5) |
 | Bourns `3296W-1-501LF`, `3296W-1-103LF` | [3296 trimmer datasheet](bourns-3296.pdf) | [Bourns](https://www.bourns.com/pdfs/3296.pdf) |
 | Panasonic `ERA-6AEB1473V`, `ERA-6AEB6981V` | [ERA-A resistor datasheet](panasonic-era-a-resistors.pdf) | [Panasonic](https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C307.pdf) |
-| Yageo `RC0805JR-070RL`, `RC0805FR-0749R9L`, `RC0805FR-07100RL`, `RC0805FR-07499RL`, `RC0805FR-071KL`, `RC0805FR-072KL`, `RC0805FR-074K7L`, `RC0805FR-0710KL`, `RC0805FR-0712K4L`, `RC0805FR-07100KL`, `RC0805FR-07130KL`, `RC0805FR-07330KL`, `RC0805FR-071ML`, `RC0805FR-0710RL` | [RC_L resistor datasheet](yageo-rc-l-resistors.pdf) | [Yageo](https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L) |
+| Yageo `RC0805JR-070RL`, `RC0805FR-0710RL`, `RC0805FR-0722RL`, `RC0805FR-0749R9L`, `RC0805FR-07100RL`, `RC0805FR-07220RL`, `RC0805FR-07499RL`, `RC0805FR-071KL`, `RC0805FR-071K65L`, `RC0805FR-072KL`, `RC0805FR-074K7L`, `RC0805FR-0710KL`, `RC0805FR-0712K4L`, `RC0805FR-07100KL`, `RC0805FR-07130KL`, `RC0805FR-07330KL`, `RC0805FR-071ML` | [RC_L resistor datasheet](yageo-rc-l-resistors.pdf) | [Yageo](https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L) |
 | KEMET `C0805C104K5RACTU`, `C0805C105K4RACTU`, `C0805C475K4RACTU`, `C1206C106K8RACTU`, `C1206C105K5RACTU` | [X7R MLCC datasheet](kemet-x7r-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD) |
-| KEMET `C0805C103J1GACTU`, `C0805C270J5GACTU`, `C0805C229C5GACTU` | [C0G MLCC datasheet](kemet-c0g-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1003_C0G_SMD) |
+| KEMET `C0805C103J1GACTU`, `C0805C270J5GACTU`, `C0805C101J5GACTU`, `C0805C221J5GACTU`, `C0805C471J5GACTU`, `C0805C102J5GACTU`, `C0805C229C5GACTU` | [C0G MLCC datasheet](kemet-c0g-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1003_C0G_SMD) |
 
 ## Connectors, cables, and external power
 
 | Selected manufacturer part(s) | Local document | Primary source |
 |---|---|---|
-| JST `B8B-XH-A(LF)(SN)`, `XHP-8` | [XH connector datasheet](jst-xh-connectors.pdf) | [JST](https://www.jst-mfg.com/product/pdf/eng/eXH.pdf) |
+| JST `B10B-XH-A(LF)(SN)`, `XHP-10` | [XH connector datasheet](jst-xh-connectors.pdf) | [JST](https://www.jst-mfg.com/product/pdf/eng/eXH.pdf) |
 | JST `ASXHSXH22K305` | [assembly drawing](jst-asxhsxh22k305-drawing.pdf) | [assembly drawing](https://gam-gec.com/wp-content/uploads/2018/10/GAM-198.pdf); [JST ordering page](https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASXHSXH22K305/6684932) |
 | Same Sky `PJ-102AH` | [connector datasheet](same-sky-pj-102ah.pdf) | [Same Sky](https://www.cuidevices.com/product/resource/pj-102ah.pdf) |
 | Phihong `PSAC05A-050L6-R` | [PSAC05A datasheet](phihong-psac05a.pdf) | [Phihong](https://www.phihong.com/wp-content/uploads/PSAC05A.pdf) |
