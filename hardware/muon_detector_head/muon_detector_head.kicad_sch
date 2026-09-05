@@ -259,7 +259,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Comparator:LM393"
+		(symbol "Comparator:TLV3502"
 			(pin_names
 				(offset 0.127)
 			)
@@ -274,7 +274,7 @@
 					)
 				)
 			)
-			(property "Value" "LM393"
+			(property "Value" "TLV3502"
 				(at 6.35 -3.81 0)
 				(effects
 					(font
@@ -291,8 +291,8 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm393.pdf"
-				(at 0 0 0)
+			(property "Datasheet" "https://www.ti.com/lit/gpn/TLV3502"
+				(at 0 6.604 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -300,8 +300,8 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8"
-				(at 0 0 0)
+			(property "Description" "4.5ns Rail-to-Rail Push-Pull Dual Comparator, SOIC-8"
+				(at -0.508 10.668 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -317,7 +317,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "cmp open collector"
+			(property "ki_keywords" "cmp comparator push-pull"
 				(at 0 0 0)
 				(effects
 					(font
@@ -335,7 +335,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "LM393_1_1"
+			(symbol "TLV3502_1_1"
 				(polyline
 					(pts
 						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
@@ -397,7 +397,7 @@
 						)
 					)
 				)
-				(pin open_collector line
+				(pin output line
 					(at 7.62 0 180)
 					(length 2.54)
 					(name "~"
@@ -416,7 +416,7 @@
 					)
 				)
 			)
-			(symbol "LM393_2_1"
+			(symbol "TLV3502_2_1"
 				(polyline
 					(pts
 						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
@@ -478,7 +478,7 @@
 						)
 					)
 				)
-				(pin open_collector line
+				(pin output line
 					(at 7.62 0 180)
 					(length 2.54)
 					(name "~"
@@ -497,7 +497,7 @@
 					)
 				)
 			)
-			(symbol "LM393_3_1"
+			(symbol "TLV3502_3_1"
 				(pin power_in line
 					(at -2.54 7.62 270)
 					(length 3.81)
@@ -1950,9 +1950,9 @@
 		)
 		(uuid "433f6707-04d0-464c-938e-64b831eba725")
 	)
-	(text "U2: VOLTAGE-COMPARATOR\nreal part is TLV3502 \n(push-pull, not open-collector)"
+	(text "U2: VOLTAGE-COMPARATOR"
 		(exclude_from_sim no)
-		(at 243.84 34.544 0)
+		(at 246.126 36.322 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2912,7 +2912,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 61.722 83.82 90)
 			(effects
 				(font
@@ -3049,7 +3049,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 36.322 53.34 90)
 			(effects
 				(font
@@ -3185,7 +3185,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 185.1152 137.16 0)
 			(effects
 				(font
@@ -3255,7 +3255,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Potentiometer_SMD:Potentiometer_Bourns_3314G_Vertical"
 			(at 233.68 62.23 0)
 			(effects
 				(font
@@ -3394,7 +3394,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 125.73 87.63 0)
 			(effects
 				(font
@@ -3521,7 +3521,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Comparator:LM393")
+		(lib_id "Comparator:TLV3502")
 		(at 243.84 90.17 0)
 		(unit 3)
 		(exclude_from_sim no)
@@ -3539,7 +3539,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "LM393"
+		(property "Value" "TLV3502"
 			(at 242.57 91.4399 0)
 			(effects
 				(font
@@ -3548,7 +3548,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 243.84 90.17 0)
 			(effects
 				(font
@@ -3557,8 +3557,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm393.pdf"
-			(at 243.84 90.17 0)
+		(property "Datasheet" "https://www.ti.com/lit/gpn/TLV3502"
+			(at 243.84 83.566 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3566,8 +3566,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8"
-			(at 243.84 90.17 0)
+		(property "Description" "4.5ns Rail-to-Rail Push-Pull Dual Comparator, SOIC-8"
+			(at 243.332 79.502 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3702,7 +3702,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 141.9352 137.16 0)
 			(effects
 				(font
@@ -3902,7 +3902,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 186.69 46.99 0)
 			(effects
 				(font
@@ -3988,7 +3988,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 261.62 47.752 90)
 			(effects
 				(font
@@ -4056,7 +4056,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 185.42 21.082 90)
 			(effects
 				(font
@@ -4126,7 +4126,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 94.742 50.8 90)
 			(effects
 				(font
@@ -4262,7 +4262,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 159.512 73.66 90)
 			(effects
 				(font
@@ -4640,7 +4640,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Comparator:LM393")
+		(lib_id "Comparator:TLV3502")
 		(at 246.38 49.53 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4657,7 +4657,7 @@
 				)
 			)
 		)
-		(property "Value" "LM393"
+		(property "Value" "TLV3502"
 			(at 246.38 41.91 0)
 			(effects
 				(font
@@ -4665,7 +4665,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 246.38 49.53 0)
 			(effects
 				(font
@@ -4674,8 +4674,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm393.pdf"
-			(at 246.38 49.53 0)
+		(property "Datasheet" "https://www.ti.com/lit/gpn/TLV3502"
+			(at 246.38 42.926 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4683,8 +4683,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8"
-			(at 246.38 49.53 0)
+		(property "Description" "4.5ns Rail-to-Rail Push-Pull Dual Comparator, SOIC-8"
+			(at 245.872 38.862 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4819,7 +4819,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 61.722 68.58 90)
 			(effects
 				(font
@@ -4952,7 +4952,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 86.36 43.4848 0)
 			(effects
 				(font
@@ -5022,7 +5022,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 157.1752 137.16 0)
 			(effects
 				(font
@@ -5092,7 +5092,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 171.1452 137.16 0)
 			(effects
 				(font
@@ -5293,7 +5293,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 107.95 78.74 0)
 			(effects
 				(font
@@ -5354,7 +5354,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Comparator:LM393")
+		(lib_id "Comparator:TLV3502")
 		(at 254 113.03 0)
 		(unit 2)
 		(exclude_from_sim no)
@@ -5371,7 +5371,7 @@
 				)
 			)
 		)
-		(property "Value" "LM393"
+		(property "Value" "TLV3502"
 			(at 254 105.41 0)
 			(effects
 				(font
@@ -5379,7 +5379,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 254 113.03 0)
 			(effects
 				(font
@@ -5388,8 +5388,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm393.pdf"
-			(at 254 113.03 0)
+		(property "Datasheet" "https://www.ti.com/lit/gpn/TLV3502"
+			(at 254 106.426 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5397,8 +5397,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8"
-			(at 254 113.03 0)
+		(property "Description" "4.5ns Rail-to-Rail Push-Pull Dual Comparator, SOIC-8"
+			(at 253.492 102.362 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5407,28 +5407,28 @@
 			)
 		)
 		(pin "8"
-			(uuid "3498f2f1-ac7a-4078-8b9d-302875cb73cf")
+			(uuid "3498f2f1-ac7a-4078-8b9d-302875cb73d0")
 		)
 		(pin "7"
-			(uuid "0514391f-eab8-4214-b05f-400bf92ab2de")
+			(uuid "0514391f-eab8-4214-b05f-400bf92ab2df")
 		)
 		(pin "6"
-			(uuid "51b35f2c-c669-467a-9b59-ecc24be42f71")
+			(uuid "51b35f2c-c669-467a-9b59-ecc24be42f72")
 		)
 		(pin "5"
-			(uuid "b48c5d2c-bda9-41ac-8801-44a42051e68c")
+			(uuid "b48c5d2c-bda9-41ac-8801-44a42051e68d")
 		)
 		(pin "3"
-			(uuid "5bdc4f83-76ac-4b5b-8288-e0c164d0307c")
+			(uuid "5bdc4f83-76ac-4b5b-8288-e0c164d0307d")
 		)
 		(pin "2"
-			(uuid "c6a1eaa6-3b61-46c8-8ccc-bafdaa23242e")
+			(uuid "c6a1eaa6-3b61-46c8-8ccc-bafdaa23242f")
 		)
 		(pin "1"
-			(uuid "5d099f1c-a9de-426c-ba6a-a740ecb7d55a")
+			(uuid "5d099f1c-a9de-426c-ba6a-a740ecb7d55b")
 		)
 		(pin "4"
-			(uuid "b4a04948-fe8e-424f-8561-641b51d695d2")
+			(uuid "b4a04948-fe8e-424f-8561-641b51d695d3")
 		)
 		(instances
 			(project "muon_detector_head"
@@ -5466,7 +5466,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical"
 			(at 241.3 139.7 0)
 			(effects
 				(font
