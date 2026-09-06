@@ -19,6 +19,7 @@ node_modules/
 dist/
 /build/
 *.log
+*.zip
 
 # Vivado generated state and implementation output
 .Xil/

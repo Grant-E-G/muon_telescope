@@ -1,0 +1,6 @@
+(version 1)
+
+(rule "Home-fabrication rivet vias"
+    (condition "A.Type == 'Via'")
+    (constraint hole_size (min 2.10mm) (max 2.30mm))
+    (constraint annular_width (min 1.00mm)))
