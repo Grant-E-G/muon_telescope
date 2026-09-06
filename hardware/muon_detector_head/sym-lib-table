@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "muon_sipm")(type "KiCad")(uri "${KIPRJMOD}/muon_sipm.kicad_sym")(options "")(descr ""))
+)
