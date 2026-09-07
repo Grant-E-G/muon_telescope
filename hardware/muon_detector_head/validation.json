@@ -1,0 +1,242 @@
+{
+  "schema": 1,
+  "locked_kicad": "9.0.9",
+  "require_custom_rules": true,
+  "required_rule_patterns": [
+    "Home-fabrication rivet vias",
+    "hole_size\\s+\\(min 2\\.10mm\\)\\s+\\(max 2\\.30mm\\)",
+    "annular_width\\s+\\(min 1\\.00mm\\)"
+  ],
+  "copper_layers": 2,
+  "board_thickness_mm": 1.6,
+  "copper_thickness_um": 35.0,
+  "reference_planes": {
+    "F.Cu": {
+      "layer": "B.Cu",
+      "net": "GND"
+    }
+  },
+  "minimum_reference_coverage_percent": 95.0,
+  "hypothetical_plane_distance_mm": 0.2,
+  "layout_report_nets": [
+    "/SIPM_RAW",
+    "/AMP_IN",
+    "/AMP_OUT",
+    "Net-(U1A--)",
+    "Net-(R7-Pad2)",
+    "/TRIG",
+    "VBIAS",
+    "+3.3V",
+    "+5V"
+  ],
+  "via_rule": {
+    "drill_min_mm": 2.1,
+    "drill_max_mm": 2.3,
+    "annular_min_mm": 1.0
+  },
+  "fast_edges_ns": {
+    "Net-(R7-Pad2)": 1.5,
+    "/TRIG": 1.5
+  },
+  "sensitive_nets": [
+    "/SIPM_RAW",
+    "/AMP_IN",
+    "/AMP_OUT",
+    "Net-(U1A--)"
+  ],
+  "aggressor_nets": [
+    "Net-(R7-Pad2)",
+    "/TRIG",
+    "VBIAS"
+  ],
+  "supply_currents_ma": {
+    "+3.3V": 6.4,
+    "+5V": 13.0
+  },
+  "feedback_net": {
+    "net": "Net-(U1A--)",
+    "resistance_ohm": 12400.0
+  },
+  "noise_model": {
+    "source_ohm": 49.9,
+    "feedback_ohm": 12400.0,
+    "gain_ohm": 1000.0,
+    "gbw_hz": 120000000.0,
+    "voltage_noise_nv_sqrt_hz": 6.5,
+    "temperature_k": 300.0,
+    "baseline_v": 0.05,
+    "threshold_v": 0.1
+  },
+  "related_power_project": "hardware/power_interface/power_interface/power_interface",
+  "expect": {
+    "outline_mm": [
+      70.0,
+      70.0
+    ],
+    "minimum_edge_arcs": 4,
+    "allowed_back_footprints": [
+      "D1"
+    ],
+    "footprints": {
+      "D1": {
+        "side": "B.Cu",
+        "value_regex": "^MICROFC-60035-SMT-TR$",
+        "position_mm": [
+          35.0,
+          35.0
+        ]
+      },
+      "J1": {
+        "side": "F.Cu",
+        "value_regex": "^B10B-XH-A",
+        "position_mm": [
+          35.0,
+          8.0
+        ]
+      },
+      "H1": {
+        "value_regex": "MountingHole_3.2mm",
+        "position_mm": [
+          5.0,
+          5.0
+        ],
+        "drill_mm": 3.2
+      },
+      "H2": {
+        "value_regex": "MountingHole_3.2mm",
+        "position_mm": [
+          65.0,
+          5.0
+        ],
+        "drill_mm": 3.2
+      },
+      "H3": {
+        "value_regex": "MountingHole_3.2mm",
+        "position_mm": [
+          65.0,
+          65.0
+        ],
+        "drill_mm": 3.2
+      },
+      "H4": {
+        "value_regex": "MountingHole_3.2mm",
+        "position_mm": [
+          5.0,
+          65.0
+        ],
+        "drill_mm": 3.2
+      }
+    },
+    "pad_nets": {
+      "D1": {
+        "1": "SIPM_RAW",
+        "2": null,
+        "3": "BIAS_LOCAL",
+        "4": "GND"
+      }
+    },
+    "absent_pads": [
+      "D1:5"
+    ],
+    "pad_quadrants": [
+      {
+        "ref": "D1",
+        "pad": "1",
+        "quadrant": "-X,+Y"
+      }
+    ],
+    "proximity_checks": [
+      {
+        "name": "U1 +5 V local bypass",
+        "first": {
+          "ref": "U1",
+          "pad": "8"
+        },
+        "second": {
+          "ref": "C2",
+          "pad": "1"
+        },
+        "max_mm": 3.0
+      },
+      {
+        "name": "U1 ground return to local bypass",
+        "first": {
+          "ref": "U1",
+          "pad": "4"
+        },
+        "second": {
+          "ref": "C2",
+          "pad": "2"
+        },
+        "max_mm": 3.0
+      },
+      {
+        "name": "U2 +3.3 V local bypass",
+        "first": {
+          "ref": "U2",
+          "pad": "8"
+        },
+        "second": {
+          "ref": "C4",
+          "pad": "1"
+        },
+        "max_mm": 3.0
+      },
+      {
+        "name": "U2 ground return to local bypass",
+        "first": {
+          "ref": "U2",
+          "pad": "4"
+        },
+        "second": {
+          "ref": "C4",
+          "pad": "2"
+        },
+        "max_mm": 3.0
+      }
+    ],
+    "component_counts": [
+      {
+        "name": "exact TPH2502-SR amplifiers",
+        "value_regex": "^TPH2502-SR$",
+        "min": 2
+      },
+      {
+        "name": "exact TLV3502AIDR comparator",
+        "value_regex": "^TLV3502AIDR$",
+        "min": 1
+      },
+      {
+        "name": "SN74LVC1G123DCTR one-shot",
+        "value_regex": "^SN74LVC1G123DCTR$",
+        "min": 1
+      },
+      {
+        "name": "BAS70,215 peak diode",
+        "value_regex": "^BAS70,215$",
+        "min": 1
+      },
+      {
+        "name": "peak reset implementation",
+        "value_regex": "^(BSS138P,215|TMUX1101DCKR)$",
+        "min": 1
+      }
+    ],
+    "required_nets": [
+      "BIAS_LOCAL",
+      "COMP_RAW",
+      "TRIG_OUT",
+      "PEAK_HOLD",
+      "PEAK_OUT",
+      "PEAK_RESET"
+    ],
+    "minimum_test_points": 10,
+    "required_board_text": [
+      "OPTICAL SIDE",
+      "COMPONENT SIDE",
+      "VTH + CW"
+    ],
+    "related_component_regex": "^MCP3202-BI/SN$"
+  },
+  "simulations": []
+}
