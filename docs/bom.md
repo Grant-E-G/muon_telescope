@@ -90,9 +90,11 @@ solely because its printed nominal capacitance matches.
 | Value and dielectric | Recommended part | Design qty | Buy qty | Source |
 |---|---|---:|---:|---|
 | 100 nF, 50 V, X7R, 0805 | KEMET `C0805C104K5RACTU` | 15 (plus 2 for precision-reset variant) | 25 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C104K5RACTU) |
+| 100 nF, 100 V, X7R, 0805, head bias entry | KEMET `C0805C104K1RACTU` | 2 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C104K1RACTU) |
 | 1 uF, 16 V, X7R, 0805 | KEMET `C0805C105K4RACTU` | 6 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C105K4RACTU) |
 | 4.7 uF, 16 V, X7R, 0805 | KEMET `C0805C475K4RACTU` | 4 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C475K4RACTU) |
 | 10 uF, 10 V, X7R, 1206 | KEMET `C1206C106K8RACTU` | 1 | 2 | [DigiKey](https://www.digikey.com/en/products?keywords=C1206C106K8RACTU) |
+| 10 uF, 10 V, X5R, 0805, head 3.3 V entry | KEMET `C0805C106K8PACTU` | 2 | 5 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C106K8PACTU) |
 | 1 uF, 50 V, X7R, 1206 | KEMET `C1206C105K5RACTU` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C1206C105K5RACTU) |
 | 10 nF, 100 V, C0G, 0805 | KEMET `C0805C103J1GACTU` | 5 | 10 | [DigiKey](https://www.digikey.com/en/products?keywords=C0805C103J1GACTU) |
 | 27 pF, 50 V, C0G, 0805 | KEMET `C0805C270J5GACTU` | 2 | 5 | [DigiKey](https://www.digikey.com/en/products/detail/kemet/C0805C270J5GACTU/411113) |

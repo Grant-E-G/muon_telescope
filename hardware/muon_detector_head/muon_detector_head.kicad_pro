@@ -496,8 +496,8 @@
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.5,
-        "via_diameter": 4.5,
-        "via_drill": 2.2,
+        "via_diameter": 1.0,
+        "via_drill": 0.6,
         "wire_width": 6
       },
       {
@@ -514,8 +514,8 @@
         "priority": -1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
-        "via_diameter": 4.5,
-        "via_drill": 2.2,
+        "via_diameter": 1.0,
+        "via_drill": 0.6,
         "wire_width": 6
       }
     ],

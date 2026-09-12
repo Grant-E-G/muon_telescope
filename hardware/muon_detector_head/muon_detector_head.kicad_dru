@@ -1,6 +1,13 @@
 (version 1)
+# Head board is fabricated by PCBWay: design.md forbids anything protruding from the
+# optical side under the scintillator, so home rivet vias cannot be used on this board.
+# Standard plated vias: 1.0 mm diameter / 0.6 mm drill (set in the netclasses).
+(rule "Fine-pitch IC escape: U4 TMUX1101 (SC70-5) and U5 SN74LVC1G123 (DCT), 0.65 mm pitch"
+    (condition "A.intersectsArea('Escape U4') || B.intersectsArea('Escape U4') || A.intersectsArea('Escape U5') || B.intersectsArea('Escape U5')")
+    (constraint clearance (min 0.2mm)))
 
-(rule "Home-fabrication rivet vias"
-    (condition "A.Type == 'Via'")
-    (constraint hole_size (min 2.10mm) (max 2.30mm))
-    (constraint annular_width (min 1.00mm)))
+# The PEAK_GUARD trace is a driven guard that hugs the PEAK_HOLD island; it sits at nearly the same
+# potential as the node it guards, so a tight, deliberate spacing is correct here.
+(rule "PEAK_GUARD guard trace"
+    (condition "A.NetName == '/PEAK_GUARD' || B.NetName == '/PEAK_GUARD'")
+    (constraint clearance (min 0.2mm)))
