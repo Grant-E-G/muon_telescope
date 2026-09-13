@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "muon_sipm")(type "KiCad")(uri "${KIPRJMOD}/muon_sipm.kicad_sym")(options "")(descr ""))
   (lib (name "MuonTelescopeParts")(type "KiCad")(uri "${KIPRJMOD}/MuonTelescopeParts.kicad_sym")(options "")(descr "Project parts not in the KiCad stock library"))
+  (lib (name "Comparator")(type "KiCad")(uri "${KIPRJMOD}/Comparator.kicad_sym")(options "")(descr "Project TLV3502 symbol absent from the KiCad 9.0.9 stock library"))
 )
