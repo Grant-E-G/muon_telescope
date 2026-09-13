@@ -1,0 +1,78 @@
+(footprint "D_SOD-323EP_onsemi_CASE-477AD"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "onsemi SOD-323EP/SOD-323HE, CASE 477AD (SS13HE-SS16HE). Land pattern per onsemi 98AON13727G: cathode pad 2.00x1.10, anode pad 0.80x1.00, 0.50 gap. Pad 1 = cathode")
+	(tags "SOD-323HE SOD-323EP SS16HE schottky")
+	(property "Reference" "REF**"
+		(at 0 -1.6 0)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SS16HE"
+		(at 0 1.7 0)
+		(layer "F.Fab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.onsemi.com/pdf/datasheet/ss13he-d.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "SOD-323HE Schottky, pad 1 cathode"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -1.15 -0.7)
+		(end 1.15 0.7)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+	)
+	(fp_line (start -0.75 -0.7) (end -0.75 0.7) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+	(fp_line (start -2.0 -0.85) (end -2.0 0.85) (stroke (width 0.2) (type solid)) (layer "F.SilkS"))
+	(fp_line (start -2.0 -0.85) (end 1.2 -0.85) (stroke (width 0.12) (type solid)) (layer "F.SilkS"))
+	(fp_line (start -2.0 0.85) (end 1.2 0.85) (stroke (width 0.12) (type solid)) (layer "F.SilkS"))
+	(fp_rect
+		(start -1.95 -0.8)
+		(end 1.9 0.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+	)
+	(pad "1" smd rect (at -0.65 0) (size 2 1.1) (layers "F.Cu" "F.Paste" "F.Mask"))
+	(pad "2" smd rect (at 1.25 0) (size 0.8 1) (layers "F.Cu" "F.Paste" "F.Mask"))
+	(embedded_fonts no)
+)

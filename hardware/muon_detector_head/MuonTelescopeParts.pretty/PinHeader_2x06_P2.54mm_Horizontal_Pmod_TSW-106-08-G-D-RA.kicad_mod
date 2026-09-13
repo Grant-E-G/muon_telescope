@@ -1,0 +1,112 @@
+(footprint "PinHeader_2x06_P2.54mm_Horizontal_Pmod_TSW-106-08-G-D-RA"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Samtec TSW-106-08-G-D-RA right-angle 2x6 header with Digilent Pmod numbering: pads 1-6 inboard row, 7-12 outboard row (row nearest the mating face). Body rear face 1.50 behind the outboard row, body 2.54 thick; mating face is 4.04 in front of the outboard row. Samtec TSW drawing Fig 5 / Table 5")
+	(tags "Pmod 2x6 right angle TSW-106-08-G-D-RA")
+	(property "Reference" "REF**"
+		(at 3.3 -2.6 0)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "TSW-106-08-G-D-RA"
+		(at 3.3 15.3 0)
+		(layer "F.Fab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://suddendocs.samtec.com/prints/tsw-xxx-xx-xxx-x-xx-xxx-mkt.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Pmod JA header, Digilent numbering"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start 4.04 -1.27)
+		(end 6.58 13.97)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+	)
+	(fp_line (start 6.58 0) (end 12.14 0) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+	(fp_line (start 6.58 2.54) (end 12.14 2.54) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+	(fp_line (start 6.58 5.08) (end 12.14 5.08) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+	(fp_line (start 6.58 7.62) (end 12.14 7.62) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+	(fp_line (start 6.58 10.16) (end 12.14 10.16) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+	(fp_line (start 6.58 12.7) (end 12.14 12.7) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+	(fp_line (start 0 0) (end 4.04 0) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+	(fp_rect
+		(start 3.9 -1.4)
+		(end 6.3 14.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+	)
+	(fp_poly
+		(pts
+			(xy -1.9 -0.6) (xy -1.9 0.6) (xy -1.2 0)
+		)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+	)
+	(fp_rect
+		(start -1.2 -1.6)
+		(end 6.85 14.3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+	)
+	(pad "1" thru_hole rect (at 0 0) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "2" thru_hole circle (at 0 2.54) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "3" thru_hole circle (at 0 5.08) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "4" thru_hole circle (at 0 7.62) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "5" thru_hole circle (at 0 10.16) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "6" thru_hole circle (at 0 12.7) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "7" thru_hole circle (at 2.54 0) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "8" thru_hole circle (at 2.54 2.54) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "9" thru_hole circle (at 2.54 5.08) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "10" thru_hole circle (at 2.54 7.62) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "11" thru_hole circle (at 2.54 10.16) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(pad "12" thru_hole circle (at 2.54 12.7) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask"))
+	(embedded_fonts no)
+)

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "MuonTelescopeParts")(type "KiCad")(uri "${KIPRJMOD}/../muon_detector_head/MuonTelescopeParts.kicad_sym")(options "")(descr "Shared muon-telescope symbols (both boards)"))
+)
