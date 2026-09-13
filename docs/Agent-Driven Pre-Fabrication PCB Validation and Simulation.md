@@ -3,7 +3,7 @@
 ## Purpose
 
 Provide one repeatable, command-line pre-fabrication check for a KiCad project.
-The first target is the unfinished muon-detector head. The checker must report
+The checked targets are the detector head and power/interface board. The checker must report
 what is known, what failed, and what still needs measurement or human review. A
 passing command is evidence, not proof that a mixed-signal board will work.
 
@@ -148,23 +148,23 @@ staged injected-pulse tests remain required.
 ## Simulation boundary
 
 Do not build a nominal full-board SPICE model merely to produce a plot. The
-current head lacks the reviewed one-shot and peak circuit, and the current
-power/interface schematic lacks the ADC and bias supply. Vendor macromodels
-and the missing circuits must be checked in before simulations can represent
-the board under review.
+generic checker runs declarative ngspice jobs with numeric min/max assertions
+from each `validation.json`. The checked-in question-driven models currently
+cover front-end gain and peak acquisition, ADC reservoir settling, interface
+default logic levels, and the intact feedback-divider maximum-bias corner.
 
-The generic checker already supports declarative ngspice jobs and numeric
-min/max assertions listed in `validation.json`. When representative circuit
-netlists exist, register small, question-driven simulations for:
-
-1. SiPM pulse through the amplifier;
-2. threshold crossing and one-shot timing;
-3. peak acquisition, droop, ADC settling, and reset;
-4. bias startup, ripple, and component stress.
+The TPH2502 model is behavioral because no reviewed vendor macromodel is
+checked in. It uses datasheet bandwidth and rail limits but cannot establish
+loop stability or overload recovery. The MAX5026 calculation deliberately does
+not claim switch-loop stability, ripple, efficiency, or thermal performance.
+Those limitations are stated in the netlists and remain physical review/bench
+gates. Future models should target threshold/one-shot timing, leakage/reset
+corners, and boost startup/ripple only when their assumptions and acceptance
+criteria are sourced and reviewable.
 
 Each simulation needs sourced model assumptions, deterministic corners,
 numeric measurements, and explicit acceptance criteria from `docs/design.md`.
-Until then, the report must say `NOT IMPLEMENTED`, not `PASS`.
+Missing representative coverage must say `NOT IMPLEMENTED`, not `PASS`.
 
 ## Release boundary
 

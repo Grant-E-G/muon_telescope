@@ -55,9 +55,10 @@ record their external source and a checksum instead.
 
 - KiCad **9.0.9** is the locked hardware file-format version.
 - Run `make check` before a hardware pull request and before a fabrication
-  release. The reusable checker reads project-specific expectations from
-  `hardware/muon_detector_head/validation.json` and writes one consolidated
-  report plus top/bottom review images under `build/checks/`.
+  release. The reusable checker reads each board's co-located `validation.json`
+  and writes consolidated reports plus top/bottom review images under
+  `build/checks/`. The run includes design-intent/layout checks and focused
+  ngspice models; a clean DRC alone is not treated as validation.
 - Preserve project-owned libraries and 3D models in this repository. Use
   project-relative `${KIPRJMOD}` library paths.
 

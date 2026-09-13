@@ -134,11 +134,34 @@ def copy_project(source_base: Path, destination: Path) -> Path:
         source = source_base.parent / filename
         if source.exists():
             shutil.copy2(source, destination / filename)
+            table_text = source.read_text(encoding="utf-8")
+            for uri in re.findall(r'\(uri\s+"([^"]+)"\)', table_text):
+                prefix = "${KIPRJMOD}/"
+                if not uri.startswith(prefix):
+                    continue
+                relative = Path(uri[len(prefix) :])
+                library_source = (source_base.parent / relative).resolve()
+                library_destination = (destination / relative).resolve()
+                if (
+                    not library_destination.is_relative_to(destination.parent.resolve())
+                    or not library_source.exists()
+                    or library_destination.exists()
+                ):
+                    continue
+                library_destination.parent.mkdir(parents=True, exist_ok=True)
+                if library_source.is_dir():
+                    shutil.copytree(library_source, library_destination)
+                else:
+                    shutil.copy2(library_source, library_destination)
     for source in source_base.parent.iterdir():
         if source.is_dir() and source.name.endswith(".pretty"):
-            shutil.copytree(source, destination / source.name)
+            target = destination / source.name
+            if not target.exists():
+                shutil.copytree(source, target)
         elif source.is_file() and source.suffix == ".kicad_sym":
-            shutil.copy2(source, destination / source.name)
+            target = destination / source.name
+            if not target.exists():
+                shutil.copy2(source, target)
     return destination / source_base.with_suffix(".kicad_pcb").name
 
 
@@ -651,6 +674,13 @@ def apply_expectations(
     box = board.GetBoardEdgesBoundingBox()
     origin = (mm(box.GetX()), mm(box.GetY()))
     actual_size = (mm(box.GetWidth()), mm(box.GetHeight()))
+    y_up = expected.get("coordinate_system") == "lower_left_y_up"
+
+    def design_position(position: Any) -> tuple[float, float]:
+        x = mm(position.x) - origin[0]
+        y = mm(position.y) - origin[1]
+        return (x, actual_size[1] - y if y_up else y)
+
     wanted_size = tuple(float(value) for value in expected.get("outline_mm", actual_size))
     size_ok = all(math.isclose(actual, wanted, abs_tol=0.1) for actual, wanted in zip(actual_size, wanted_size))
     record("mechanical outline", "PASS" if size_ok else "BLOCKING", f"actual {actual_size[0]:.2f} x {actual_size[1]:.2f} mm; expected {wanted_size[0]:.2f} x {wanted_size[1]:.2f} mm")
@@ -674,11 +704,21 @@ def apply_expectations(
             failures.append(f"side {footprint.GetLayerName()} != {rule['side']}")
         if "value_regex" in rule and not re.search(str(rule["value_regex"]), footprint.GetValue(), re.IGNORECASE):
             failures.append(f"value {footprint.GetValue()!r}")
+        if "dnp" in rule and footprint.IsDNP() != bool(rule["dnp"]):
+            failures.append(f"DNP={footprint.IsDNP()} != {bool(rule['dnp'])}")
         if "position_mm" in rule:
-            position = (mm(footprint.GetPosition().x) - origin[0], mm(footprint.GetPosition().y) - origin[1])
+            position = design_position(footprint.GetPosition())
             wanted = tuple(float(value) for value in rule["position_mm"])
             if not all(math.isclose(actual, target, abs_tol=0.1) for actual, target in zip(position, wanted)):
                 failures.append(f"position ({position[0]:.2f},{position[1]:.2f}) != ({wanted[0]:.2f},{wanted[1]:.2f})")
+        if "rotation_deg" in rule:
+            actual_rotation = footprint.GetOrientationDegrees() % 360.0
+            wanted_rotation = float(rule["rotation_deg"]) % 360.0
+            difference = abs((actual_rotation - wanted_rotation + 180.0) % 360.0 - 180.0)
+            if difference > float(rule.get("rotation_tolerance_deg", 0.1)):
+                failures.append(
+                    f"rotation {actual_rotation:.1f} deg != {wanted_rotation:.1f} deg"
+                )
         if "drill_mm" in rule:
             drills = [mm(pad.GetDrillSize().x) for pad in footprint.Pads() if mm(pad.GetDrillSize().x) > 0.0]
             if not drills or not all(math.isclose(value, float(rule["drill_mm"]), abs_tol=0.05) for value in drills):
@@ -719,6 +759,8 @@ def apply_expectations(
             continue
         dx = mm(pad.GetPosition().x - footprint.GetPosition().x)
         dy = mm(pad.GetPosition().y - footprint.GetPosition().y)
+        if y_up:
+            dy = -dy
         actual = ("+" if dx > 0 else "-") + "X," + ("+" if dy > 0 else "-") + "Y"
         wanted = str(item["quadrant"])
         record("critical orientation", "PASS" if actual == wanted else "BLOCKING", f"{item['ref']} pad {item['pad']} is {actual}; expected {wanted}")
@@ -919,6 +961,21 @@ def write_report(report_path: Path, base: Path, profile_path: Path | None, resul
             "",
             "This excludes detector dark pulses, comparator noise, bias/supply ripple, environmental pickup, resistor-network noise, parasitic peaking, and nonlinear recovery. It cannot predict the measured trigger rate.",
         ]
+    if tables.get("simulations"):
+        lines += [
+            "",
+            "## Circuit simulations",
+            "",
+            "These are deterministic, question-driven engineering models. Component and model limitations are stated in the corresponding netlists; a passing behavioral model does not replace bench qualification.",
+            "",
+            "| Simulation | Status | Measurements |",
+            "|---|---|---|",
+        ]
+        for name, status, measurements in tables["simulations"]:
+            rendered = ", ".join(
+                f"`{key}`={value:.6g}" for key, value in sorted(measurements.items())
+            ) or "none"
+            lines.append(f"| {name} | {status} | {rendered} |")
 
     lines += [
         "",

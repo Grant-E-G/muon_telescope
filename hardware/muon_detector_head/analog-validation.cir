@@ -1,0 +1,52 @@
+* Revision-A detector-head question-driven behavioral validation.
+* Values mirror docs/design.md and are checked separately against KiCad by
+* validation.json. The TPH2502 model uses the archived datasheet's 120 MHz GBW,
+* 180 V/us slew-rate scale, 100 mA minimum short-circuit current, and rail swing.
+* It is not a vendor macromodel and cannot establish stability or overload
+* recovery; those remain bench gates in docs/build-and-debug.md.
+
+.option noacct
+.param VBASE=0.05 VRAIL=5 ROPEN=100k
+
+Vbase base 0 {VBASE}
+Vin sipm 0 PULSE({VBASE} {VBASE+0.01} 1u 1n 1n 100n 10u)
+Ccouple sipm amp_in 100n
+Rinput amp_in base 499
+Rgain amp_fb base 1k
+Rfeedback amp_out amp_fb 12.4k
+
+* Dominant-pole, rail-limited gain amplifier; 100k DC gain and 120 MHz GBW.
+Ggain 0 gain_state value={V(amp_in)-V(amp_fb)}
+Rgain_ol gain_state 0 {ROPEN}
+Cgain_ol gain_state 0 1.326n
+Bgain amp_out 0 V={V(gain_state)<0.03 ? 0.03 : V(gain_state)>VRAIL-0.03 ? VRAIL-0.03 : V(gain_state)}
+
+* Feedback-enclosed peak charger, 82 ohm/BAS70/220 pF stuffing values. The
+* ideal controlled switch represents diode-drop compensation by U3A; Rchg,
+* hold capacitance, the BAS70 2 pF maximum capacitance, and its 100 nA maximum
+* reverse current at 50 V remain explicit. Sub-5 V leakage is not guaranteed.
+Vsense amp_out peak_drive 0
+Rchg peak_drive diode_a 82
+Scharge diode_a peak_hold amp_out peak_hold IDEAL_DIODE
+Cdiode diode_a peak_hold 2p
+Chold peak_hold 0 220p IC={VBASE}
+Rhold_leak peak_hold base 10G
+Ireverse peak_hold 0 100n
+.model IDEAL_DIODE SW(Ron=5 Roff=10G Vt=0 Vh=0)
+
+* Independent allowed-rail stress step checks the deliberately pessimistic
+* zero-diode-drop current bound used to qualify the 82 ohm stuffing value.
+Vstress stress 0 PULSE({VBASE} 5.25 3u 1n 1n 200n 10u)
+Vstress_sense stress stress_drive 0
+Rstress stress_drive stress_a 82
+Sstress stress_a stress_hold stress stress_hold IDEAL_DIODE
+Cstress stress_hold 0 220p IC={VBASE}
+
+.tran 0.5n 4u uic
+.measure tran amp_peak MAX V(amp_out) FROM=1u TO=1.5u
+.measure tran amp_gain PARAM='(amp_peak-VBASE)/0.01'
+.measure tran hold_peak MAX V(peak_hold) FROM=1u TO=1.5u
+.measure tran acquisition_error PARAM='amp_peak-hold_peak'
+.measure tran charge_current MAX I(Vsense) FROM=1u TO=2.5u
+.measure tran worst_charge_current MAX I(Vstress_sense) FROM=3u TO=3.3u
+.end

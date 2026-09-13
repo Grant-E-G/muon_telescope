@@ -1,0 +1,38 @@
+* Revision-A power/interface deterministic corner checks.
+* This validates the passive ADC input settling, digital default networks, and
+* intact MAX5026 feedback-divider equation. It does not model converter-loop
+* stability, switch-node ringing, MLCC DC bias, or thermal behavior; those are
+* explicit bench/layout-review gates in docs/build-and-debug.md.
+
+.option noacct
+.param VDDMIN=3.2
+
+* Head-buffer full-scale step through the specified 100R cable source,
+* 1.00k/1.65k attenuator, and 1 nF ADC reservoir.
+Vpeak peak 0 PULSE(0.05 5.25 1u 1n 1n 18u 40u)
+Rhead peak cable 100
+Rseries cable adc 1k
+Rdown adc 0 1.65k
+Creservoir adc 0 1n
+
+* Worst-direction static logic dividers at the minimum local ADC rail.
+Vdd vdd 0 {VDDMIN}
+Vlogic_high logic_high 0 {VDDMIN}
+Vlogic_low logic_low 0 0
+Rhigh_series logic_high adc_high 4.70k
+Rhigh_pull adc_high 0 100k
+Rlow_series logic_low adc_low 4.70k
+Rlow_pull vdd adc_low 100k
+
+* MAX5026 normal-operation upper corner from docs/design.md: VFB and IFB max,
+* top resistor +0.1%, bottom resistor -0.1%, intact trimmer at zero ohms.
+Bbias bias_max 0 V={1.288*(1+147.147k/6.97302k)+310n*147.147k}
+
+.tran 1n 20u
+.measure tran adc_at_8us FIND V(adc) AT=9.001u
+.measure tran adc_settling_error PARAM='abs(adc_at_8us-3.15)'
+.measure tran adc_final FIND V(adc) AT=19u
+.measure tran logic_high_level FIND V(adc_high) AT=19u
+.measure tran logic_low_level FIND V(adc_low) AT=19u
+.measure tran bias_maximum FIND V(bias_max) AT=19u
+.end
