@@ -8117,7 +8117,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TPH2502"
+		(property "Value" "TPH2502-SR"
 			(at 236.22 113.0299 0)
 			(effects
 				(font
@@ -8270,7 +8270,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "BSS138P"
+		(property "Value" "BSS138P,215"
 			(at 189.23 261.62 0)
 			(effects
 				(font
@@ -8409,7 +8409,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TLV3502"
+		(property "Value" "TLV3502AIDR"
 			(at 242.57 166.3699 0)
 			(effects
 				(font
@@ -8830,7 +8830,7 @@
 				)
 			)
 		)
-		(property "Value" "TPH2502"
+		(property "Value" "TPH2502-SR"
 			(at 193.04 69.85 0)
 			(effects
 				(font
@@ -11276,7 +11276,7 @@
 				)
 			)
 		)
-		(property "Value" "TPH2502"
+		(property "Value" "TPH2502-SR"
 			(at 125.73 232.41 0)
 			(effects
 				(font
@@ -11362,7 +11362,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TPH2502"
+		(property "Value" "TPH2502-SR"
 			(at 261.874 261.62 0)
 			(effects
 				(font
@@ -11651,7 +11651,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MICROFC-60035-SMT"
+		(property "Value" "MICROFC-60035-SMT-TR"
 			(at 22.606 64.516 0)
 			(effects
 				(font
@@ -11796,7 +11796,7 @@
 				)
 			)
 		)
-		(property "Value" "TLV3502"
+		(property "Value" "TLV3502AIDR"
 			(at 252.73 72.39 0)
 			(effects
 				(font
@@ -12757,7 +12757,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SN74LVC1G123"
+		(property "Value" "SN74LVC1G123DCTR"
 			(at 309.88 152.4 0)
 			(effects
 				(font
@@ -12845,7 +12845,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SN74LVC1G123"
+		(property "Value" "SN74LVC1G123DCTR"
 			(at 331.47 123.19 0)
 			(effects
 				(font
@@ -13135,7 +13135,7 @@
 				)
 			)
 		)
-		(property "Value" "TMUX1101"
+		(property "Value" "TMUX1101DCKR"
 			(at 219.71 256.54 0)
 			(effects
 				(font
@@ -13277,7 +13277,7 @@
 				)
 			)
 		)
-		(property "Value" "BAS70"
+		(property "Value" "BAS70,215"
 			(at 153.67 236.22 0)
 			(effects
 				(font
@@ -13547,7 +13547,7 @@
 				)
 			)
 		)
-		(property "Value" "TPH2502"
+		(property "Value" "TPH2502-SR"
 			(at 222.25 234.95 0)
 			(effects
 				(font
@@ -13836,7 +13836,7 @@
 				)
 			)
 		)
-		(property "Value" "TPH2502"
+		(property "Value" "TPH2502-SR"
 			(at 147.32 110.49 0)
 			(effects
 				(font
@@ -14191,7 +14191,7 @@
 				)
 			)
 		)
-		(property "Value" "TLV3502"
+		(property "Value" "TLV3502AIDR"
 			(at 254 180.34 0)
 			(effects
 				(font

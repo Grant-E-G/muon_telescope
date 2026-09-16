@@ -11,3 +11,9 @@
 (rule "PEAK_GUARD guard trace"
     (condition "A.NetName == '/PEAK_GUARD' || B.NetName == '/PEAK_GUARD'")
     (constraint clearance (min 0.2mm)))
+
+# AMP_OUT reaches U3 pin 3 between the two R_CHG (R13) pads. The U3A output, R13 and the BAS70 anode follow
+# AMP_OUT to within a diode drop, so this short, deliberate gap only couples like signals.
+(rule "AMP_OUT between R_CHG pads"
+    (condition "(A.NetName == '/AMP_OUT' && B.intersectsCourtyard('R13')) || (B.NetName == '/AMP_OUT' && A.intersectsCourtyard('R13'))")
+    (constraint clearance (min 0.25mm)))

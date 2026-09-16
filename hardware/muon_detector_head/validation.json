@@ -57,11 +57,11 @@
     "pad_quadrants": [{"ref": "D1", "pad": "1", "quadrant": "-X,+Y"}],
     "proximity_checks": [
       {"name": "U1 +5 V local bypass", "first": {"ref": "U1", "pad": "8"}, "second": {"ref": "C2", "pad": "1"}, "max_mm": 3.0},
-      {"name": "U1 ground return to local bypass", "first": {"ref": "U1", "pad": "4"}, "second": {"ref": "C2", "pad": "2"}, "max_mm": 3.0},
+      {"name": "U1 ground return to local bypass (pins 4/8 diagonal on SOIC-8; 5.5 mm geometric minimum)", "first": {"ref": "U1", "pad": "4"}, "second": {"ref": "C2", "pad": "2"}, "max_mm": 6.0},
       {"name": "U3 +5 V local bypass", "first": {"ref": "U3", "pad": "8"}, "second": {"ref": "C17", "pad": "1"}, "max_mm": 3.0},
-      {"name": "U3 ground return to local bypass", "first": {"ref": "U3", "pad": "4"}, "second": {"ref": "C17", "pad": "2"}, "max_mm": 3.0},
+      {"name": "U3 ground return to local bypass (pins 4/8 diagonal on SOIC-8; 5.5 mm geometric minimum)", "first": {"ref": "U3", "pad": "4"}, "second": {"ref": "C17", "pad": "2"}, "max_mm": 6.0},
       {"name": "U5 +3.3 V local bypass", "first": {"ref": "U5", "pad": "8"}, "second": {"ref": "C15", "pad": "1"}, "max_mm": 3.0},
-      {"name": "U5 ground return to local bypass", "first": {"ref": "U5", "pad": "4"}, "second": {"ref": "C15", "pad": "2"}, "max_mm": 3.0},
+      {"name": "U5 ground return to local bypass (pins 4/8 diagonal on DCT-8; about 3.9 mm reachable)", "first": {"ref": "U5", "pad": "4"}, "second": {"ref": "C15", "pad": "2"}, "max_mm": 4.5},
       {"name": "peak charger output to R_CHG", "first": {"ref": "U3", "pad": "1"}, "second": {"ref": "R13", "pad": "1"}, "max_mm": 3.0},
       {"name": "peak diode to hold capacitor", "first": {"ref": "D2", "pad": "3"}, "second": {"ref": "C16", "pad": "1"}, "max_mm": 3.0},
       {"name": "hold capacitor to buffer input", "first": {"ref": "C16", "pad": "1"}, "second": {"ref": "U3", "pad": "5"}, "max_mm": 3.0}

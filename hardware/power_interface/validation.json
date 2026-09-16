@@ -71,7 +71,7 @@
       {"name": "MAX5026 local bypass supply", "first": {"ref": "U2", "pad": "5"}, "second": {"ref": "C6", "pad": "1"}, "max_mm": 3.0},
       {"name": "MAX5026 local bypass return", "first": {"ref": "U2", "pad": "2"}, "second": {"ref": "C6", "pad": "2"}, "max_mm": 3.0},
       {"name": "ADC local bypass supply", "first": {"ref": "U3", "pad": "8"}, "second": {"ref": "C12", "pad": "1"}, "max_mm": 3.0},
-      {"name": "ADC local bypass return", "first": {"ref": "U3", "pad": "4"}, "second": {"ref": "C12", "pad": "2"}, "max_mm": 3.0},
+      {"name": "ADC local bypass return (pins 4/8 diagonal on SOIC-8; 5.5 mm geometric minimum)", "first": {"ref": "U3", "pad": "4"}, "second": {"ref": "C12", "pad": "2"}, "max_mm": 6.0},
       {"name": "boost inductor to LX", "first": {"ref": "L1", "pad": "2"}, "second": {"ref": "U2", "pad": "6"}, "max_mm": 4.0},
       {"name": "LX to boost diode", "first": {"ref": "U2", "pad": "6"}, "second": {"ref": "D2", "pad": "2"}, "max_mm": 4.0},
       {"name": "boost diode to first output capacitor", "first": {"ref": "D2", "pad": "1"}, "second": {"ref": "C7", "pad": "1"}, "max_mm": 4.0},

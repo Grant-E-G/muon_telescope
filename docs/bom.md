@@ -32,7 +32,7 @@ are excluded.
 | Adjustable boost controller | ADI/Maxim `MAX5026EUT+T`; DigiKey cut-tape SKU `MAX5026EUT+TCT-ND` | SOT-23-6 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/analog-devices-inc-maxim-integrated/MAX5026EUT-T/1516355), [datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf) | $1.95 |
 | 3.3 V, 500 mA LDO | TI `TLV75533PDBVR` | SOT-23-5 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TLV75533PDBVR/9356541), [datasheet](https://www.ti.com/lit/gpn/TLV755P) | $0.75 |
 | 47 uH shielded inductor | Bourns `SRN6045-470M` | 6 x 6 mm SMT | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/bourns-inc/SRN6045-470M/2756124) | $0.60 |
-| 60 V boost Schottky | onsemi `SS16HE` | SMA | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/onsemi/SS16HE/6009714) | $0.59 |
+| 60 V boost Schottky | onsemi `SS16HE` | SOD-323HE (onsemi CASE 477AD; not SMA) | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/onsemi/SS16HE/6009714) | $0.59 |
 | 40 V input Schottky | onsemi `SS14` | SMA | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/onsemi/SS14/965474) | $0.44 |
 | 6 V, 500 mA resettable fuse | Littelfuse `1206L050YR` | 1206 | 1 | 1 | [DigiKey](https://www.digikey.com/en/products/detail/littelfuse-inc/1206L050YR/455721) | $0.64 |
 | Bias trim, 500 ohm, 10 turn | Bourns `3296W-1-501LF` | through-hole | 1 | 1 | [DigiKey](https://www.digikey.com/en/products?keywords=3296W-1-501LF) | $2.39 |
