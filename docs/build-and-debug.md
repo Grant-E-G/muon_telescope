@@ -26,21 +26,20 @@ than creating a separate form for every test.
   locations, cable exits, trimmer direction, peak/ADC topology, optical stack,
   and frame datums. Only the documented `R_CHG`/`C_HOLD` stuffing values await
   waveform characterization.
-- [ ] Create both KiCad 9.0.9 projects and project-local library tables.
-- [ ] Revise the existing power/interface KiCad project for the MCP3202, JA SPI
-  and reset nets, and ten-position head connectors; the current checked-in
-  board predates this design revision and is not electrically authoritative.
-- [ ] Add and verify the power/interface `Edge.Cuts`; KiCad 9.0.9 DRC on
-  2026-09-01 reports a malformed outline because the current PCB has no edge
-  segments.
+- [x] Create both KiCad 9.0.9 projects and project-local library tables.
+- [x] Revise the power/interface KiCad project for the MCP3202, JA SPI and reset
+  nets, and ten-position head connectors.
+- [x] Add and verify the power/interface `Edge.Cuts`.
 - [ ] Check the SiPM symbol, footprint, orientation, and no-solder center paddle
   independently against the current datasheet and physical part.
-- [ ] Add unambiguous top- and bottom-side pin-1/mating markings to all headers.
+- [x] Add unambiguous top- and bottom-side pin-1/mating markings to all headers.
 - [ ] Print each unusual footprint and connector at 1:1.
 - [ ] Model both PCB envelopes and the replaceable scintillator carrier from the
   coordinate-controlled dimensions in `docs/design.md`; a measured block-size
   mismatch changes the carrier insert, not the PCB datums.
-- [ ] Run ERC/DRC and `make check`; explain rather than hide any exception.
+- [x] Run ERC/DRC and `make check`; the 2026-09-17 run had no blocking findings,
+  and the accepted prototype-layout judgments and warnings are recorded in
+  `hardware/muon_detector_head/README.md`.
 - [ ] Complete every fabrication-release item near the end of this document.
 
 The expected work sequence is not one continuous weekend. First complete
@@ -319,8 +318,9 @@ Layout and mechanics:
 
 Outputs and order:
 
-- [ ] KiCad 9.0.9 ERC and DRC, including schematic parity, pass or have reviewed
-  written exceptions.
+- [x] KiCad 9.0.9 ERC and DRC, including schematic parity, pass or have reviewed
+  written exceptions. The accepted revision-A prototype exceptions are recorded
+  in `hardware/muon_detector_head/README.md`.
 - [ ] Gerber, drill, outline, solder-mask, paste, silkscreen, and copper layers
   are inspected in an independent viewer.
 - [ ] BOM manufacturer numbers, packages, quantities, and stock are rechecked.

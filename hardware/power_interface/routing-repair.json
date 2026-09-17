@@ -1,0 +1,1076 @@
+{
+  "input_segment_count": 527,
+  "overlap_contacts_repaired": 62,
+  "bridge_segments_added": 89,
+  "nets_repaired": [
+    "/+3V3_ADC",
+    "/+3V3_LOCAL",
+    "/+5VA",
+    "/ADC_CS_N",
+    "/ADC_MISO",
+    "/FB",
+    "/HV_RAW",
+    "/JA_MISO",
+    "/TRIG_B",
+    "GND",
+    "Net-(R3-Pad2)"
+  ],
+  "minimum_prior_overlap_margin_mm": -8.548717289613705e-15,
+  "maximum_centerline_gap_mm": 0.6000000000000085,
+  "bridges": [
+    {
+      "net_number": 1,
+      "net_name": "/+3V3_ADC",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5499999999999972,
+      "prior_overlap_margin_mm": 0.05000000000000282,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        67.3,
+        40.2
+      ],
+      "end": [
+        67.85,
+        40.2
+      ]
+    },
+    {
+      "net_number": 1,
+      "net_name": "/+3V3_ADC",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5,
+      "prior_overlap_margin_mm": 0.09999999999999998,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        74.9,
+        42.4
+      ],
+      "end": [
+        74.9,
+        41.9
+      ]
+    },
+    {
+      "net_number": 1,
+      "net_name": "/+3V3_ADC",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.6000000000000014,
+      "prior_overlap_margin_mm": -1.4432899320127035e-15,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        75.4,
+        44.5
+      ],
+      "end": [
+        75.4,
+        43.9
+      ]
+    },
+    {
+      "net_number": 1,
+      "net_name": "/+3V3_ADC",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.28284271247461296,
+      "prior_overlap_margin_mm": 0.317157287525387,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        75.6,
+        44.7
+      ],
+      "end": [
+        75.4,
+        44.5
+      ]
+    },
+    {
+      "net_number": 1,
+      "net_name": "/+3V3_ADC",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.29999999999999716,
+      "prior_overlap_margin_mm": 0.3000000000000028,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        73.3,
+        40.3
+      ],
+      "end": [
+        73.0,
+        40.3
+      ]
+    },
+    {
+      "net_number": 2,
+      "net_name": "/+3V3_LOCAL",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5,
+      "prior_overlap_margin_mm": 0.09999999999999998,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        47.3,
+        36.2
+      ],
+      "end": [
+        47.8,
+        36.2
+      ]
+    },
+    {
+      "net_number": 2,
+      "net_name": "/+3V3_LOCAL",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.3999999999999986,
+      "prior_overlap_margin_mm": 0.2000000000000014,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        63.3,
+        39.9
+      ],
+      "end": [
+        62.9,
+        39.9
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.3605551275463972,
+      "prior_overlap_margin_mm": 0.2394448724536028,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        43.7,
+        29.0
+      ],
+      "end": [
+        43.9,
+        28.7
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.30000000000000426,
+      "prior_overlap_margin_mm": 0.2999999999999957,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        40.7,
+        44.7
+      ],
+      "end": [
+        40.7,
+        44.4
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.19999999999999574,
+      "prior_overlap_margin_mm": 0.40000000000000424,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        42.7,
+        42.4
+      ],
+      "end": [
+        42.7,
+        42.2
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.29999999999999716,
+      "prior_overlap_margin_mm": 0.3000000000000028,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        42.7,
+        39.9
+      ],
+      "end": [
+        42.7,
+        39.6
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.31622776601683905,
+      "prior_overlap_margin_mm": 0.08377223398316097,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 2,
+      "start": [
+        18.0,
+        22.0
+      ],
+      "end": [
+        17.7,
+        21.9
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.3999999999999986,
+      "prior_overlap_margin_mm": 1.4432899320127035e-15,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        12.65,
+        21.5
+      ],
+      "end": [
+        12.65,
+        21.9
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.4472135954999564,
+      "prior_overlap_margin_mm": 0.1527864045000436,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        24.5,
+        43.9
+      ],
+      "end": [
+        24.7,
+        44.3
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.3999999999999986,
+      "prior_overlap_margin_mm": 0.2000000000000014,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        35.0,
+        46.5
+      ],
+      "end": [
+        34.6,
+        46.5
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.282842712474623,
+      "prior_overlap_margin_mm": 0.317157287525377,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        41.5,
+        39.9
+      ],
+      "end": [
+        41.3,
+        40.1
+      ]
+    },
+    {
+      "net_number": 3,
+      "net_name": "/+5VA",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.38890872965260415,
+      "prior_overlap_margin_mm": 0.21109127034739583,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        40.325,
+        39.974999999999994
+      ],
+      "end": [
+        40.6,
+        40.25
+      ]
+    },
+    {
+      "net_number": 7,
+      "net_name": "/ADC_CS_N",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.3605551275463981,
+      "prior_overlap_margin_mm": 0.0394448724536019,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 2,
+      "start": [
+        73.3,
+        45.9
+      ],
+      "end": [
+        73.1,
+        45.6
+      ]
+    },
+    {
+      "net_number": 7,
+      "net_name": "/ADC_CS_N",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.19999999999999574,
+      "prior_overlap_margin_mm": 0.20000000000000429,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        70.5,
+        44.3
+      ],
+      "end": [
+        70.5,
+        44.1
+      ]
+    },
+    {
+      "net_number": 7,
+      "net_name": "/ADC_CS_N",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.20000000000000284,
+      "prior_overlap_margin_mm": 0.19999999999999718,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        72.5,
+        45.2
+      ],
+      "end": [
+        72.7,
+        45.2
+      ]
+    },
+    {
+      "net_number": 8,
+      "net_name": "/ADC_MISO",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.282842712474623,
+      "prior_overlap_margin_mm": 0.11715728752537702,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        83.0,
+        43.2
+      ],
+      "end": [
+        83.2,
+        43.0
+      ]
+    },
+    {
+      "net_number": 8,
+      "net_name": "/ADC_MISO",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.28284271247460796,
+      "prior_overlap_margin_mm": 0.11715728752539206,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        79.1,
+        47.1
+      ],
+      "end": [
+        78.9,
+        47.3
+      ]
+    },
+    {
+      "net_number": 8,
+      "net_name": "/ADC_MISO",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.22360679774998216,
+      "prior_overlap_margin_mm": 0.17639320225001787,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 2,
+      "start": [
+        83.2,
+        43.0
+      ],
+      "end": [
+        83.0,
+        43.1
+      ]
+    },
+    {
+      "net_number": 12,
+      "net_name": "/FB",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.1999999999999993,
+      "prior_overlap_margin_mm": 0.20000000000000073,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        23.6,
+        18.9
+      ],
+      "end": [
+        23.8,
+        18.9
+      ]
+    },
+    {
+      "net_number": 13,
+      "net_name": "/HV_RAW",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.004999999999999005,
+      "prior_overlap_margin_mm": 0.495000000000001,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        23.8,
+        27.575
+      ],
+      "end": [
+        23.8,
+        27.57
+      ]
+    },
+    {
+      "net_number": 13,
+      "net_name": "/HV_RAW",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.22360679774998216,
+      "prior_overlap_margin_mm": 0.17639320225001787,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 2,
+      "start": [
+        26.1,
+        25.5
+      ],
+      "end": [
+        25.9,
+        25.4
+      ]
+    },
+    {
+      "net_number": 13,
+      "net_name": "/HV_RAW",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.21213203435596728,
+      "prior_overlap_margin_mm": 0.18786796564403274,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        25.9,
+        25.4
+      ],
+      "end": [
+        26.05,
+        25.55
+      ]
+    },
+    {
+      "net_number": 13,
+      "net_name": "/HV_RAW",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.0040600768567113175,
+      "prior_overlap_margin_mm": 0.49593992314328866,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 2,
+      "start": [
+        23.802369607211848,
+        27.573296844816483
+      ],
+      "end": [
+        23.8,
+        27.57
+      ]
+    },
+    {
+      "net_number": 15,
+      "net_name": "/JA_MISO",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.14142135623730648,
+      "prior_overlap_margin_mm": 0.25857864376269357,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        82.6,
+        41.9
+      ],
+      "end": [
+        82.5,
+        42.0
+      ]
+    },
+    {
+      "net_number": 15,
+      "net_name": "/JA_MISO",
+      "layer": "B.Cu",
+      "centerline_gap_mm": 0.31622776601684466,
+      "prior_overlap_margin_mm": 0.08377223398315536,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 2,
+      "start": [
+        81.8,
+        43.3
+      ],
+      "end": [
+        81.9,
+        43.6
+      ]
+    },
+    {
+      "net_number": 15,
+      "net_name": "/JA_MISO",
+      "layer": "B.Cu",
+      "centerline_gap_mm": 0.22360679774998532,
+      "prior_overlap_margin_mm": 0.1763932022500147,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 2,
+      "start": [
+        81.8,
+        43.4
+      ],
+      "end": [
+        81.9,
+        43.6
+      ]
+    },
+    {
+      "net_number": 26,
+      "net_name": "/TRIG_B",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.07071067811865073,
+      "prior_overlap_margin_mm": 0.3292893218813493,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        87.05,
+        25.85
+      ],
+      "end": [
+        87.0,
+        25.9
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.6000000000000085,
+      "prior_overlap_margin_mm": -8.548717289613705e-15,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        81.1,
+        19.0
+      ],
+      "end": [
+        81.7,
+        19.0
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.29999999999999716,
+      "prior_overlap_margin_mm": 0.3000000000000028,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        72.8,
+        42.6
+      ],
+      "end": [
+        72.5,
+        42.6
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.09999999999999432,
+      "prior_overlap_margin_mm": 0.5000000000000057,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        61.2,
+        22.5
+      ],
+      "end": [
+        61.3,
+        22.5
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.3999999999999986,
+      "prior_overlap_margin_mm": 0.2000000000000014,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        8.1,
+        47.2
+      ],
+      "end": [
+        8.1,
+        47.6
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5385164807134488,
+      "prior_overlap_margin_mm": 0.06148351928655116,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        81.4,
+        55.2
+      ],
+      "end": [
+        81.9,
+        55.4
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5099019513592787,
+      "prior_overlap_margin_mm": 0.09009804864072124,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        38.7,
+        49.3
+      ],
+      "end": [
+        39.2,
+        49.4
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.29999999999999716,
+      "prior_overlap_margin_mm": 0.3000000000000028,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        31.1,
+        35.2
+      ],
+      "end": [
+        31.4,
+        35.2
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.004999999999999005,
+      "prior_overlap_margin_mm": 0.595000000000001,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        23.8,
+        24.625
+      ],
+      "end": [
+        23.8,
+        24.62
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5385164807134515,
+      "prior_overlap_margin_mm": 0.061483519286548494,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        86.4,
+        35.3
+      ],
+      "end": [
+        86.9,
+        35.5
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5999999999999943,
+      "prior_overlap_margin_mm": 5.662137425588298e-15,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        82.8,
+        24.0
+      ],
+      "end": [
+        82.2,
+        24.0
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5099019513592774,
+      "prior_overlap_margin_mm": 0.09009804864072257,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        72.5,
+        49.0
+      ],
+      "end": [
+        72.6,
+        49.5
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5099019513592787,
+      "prior_overlap_margin_mm": 0.09009804864072124,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        70.4,
+        40.9
+      ],
+      "end": [
+        70.9,
+        41.0
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.521064484225621,
+      "prior_overlap_margin_mm": 0.07893551577437896,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        20.82262295081967,
+        18.90885245901639
+      ],
+      "end": [
+        21.3,
+        18.7
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.3201562118716442,
+      "prior_overlap_margin_mm": 0.27984378812835575,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        67.2,
+        49.75
+      ],
+      "end": [
+        67.4,
+        50.0
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5099019513592787,
+      "prior_overlap_margin_mm": 0.09009804864072124,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        66.2,
+        57.2
+      ],
+      "end": [
+        65.7,
+        57.1
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5385164807134502,
+      "prior_overlap_margin_mm": 0.061483519286549826,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        30.1,
+        31.1
+      ],
+      "end": [
+        30.3,
+        31.6
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5830951894845304,
+      "prior_overlap_margin_mm": 0.01690481051546955,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        30.3,
+        31.6
+      ],
+      "end": [
+        30.0,
+        31.1
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5099019513592787,
+      "prior_overlap_margin_mm": 0.09009804864072124,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        65.7,
+        50.1
+      ],
+      "end": [
+        66.2,
+        50.2
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5385164807134515,
+      "prior_overlap_margin_mm": 0.061483519286548494,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        69.7,
+        51.6
+      ],
+      "end": [
+        69.9,
+        51.1
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5385164807134502,
+      "prior_overlap_margin_mm": 0.061483519286549826,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        21.3,
+        18.1
+      ],
+      "end": [
+        21.5,
+        17.6
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5385164807134488,
+      "prior_overlap_margin_mm": 0.06148351928655116,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        42.3,
+        44.3
+      ],
+      "end": [
+        42.1,
+        44.8
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5999999999999943,
+      "prior_overlap_margin_mm": 5.662137425588298e-15,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        82.2,
+        12.4
+      ],
+      "end": [
+        82.8,
+        12.4
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.29999999999999716,
+      "prior_overlap_margin_mm": 0.3000000000000028,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        80.2,
+        21.5
+      ],
+      "end": [
+        79.9,
+        21.5
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5099019513592787,
+      "prior_overlap_margin_mm": 0.09009804864072124,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        36.0,
+        28.0
+      ],
+      "end": [
+        35.5,
+        28.1
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5099019513592787,
+      "prior_overlap_margin_mm": 0.09009804864072124,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        81.7,
+        53.1
+      ],
+      "end": [
+        81.2,
+        53.0
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.31622776601683794,
+      "prior_overlap_margin_mm": 0.28377223398316204,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        72.7,
+        49.2
+      ],
+      "end": [
+        72.6,
+        49.5
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.5099019513592787,
+      "prior_overlap_margin_mm": 0.09009804864072124,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 2,
+      "start": [
+        38.5,
+        28.1
+      ],
+      "end": [
+        38.0,
+        28.0
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "B.Cu",
+      "centerline_gap_mm": 0.09999999999999432,
+      "prior_overlap_margin_mm": 0.5000000000000057,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        61.2,
+        12.5
+      ],
+      "end": [
+        61.3,
+        12.5
+      ]
+    },
+    {
+      "net_number": 29,
+      "net_name": "GND",
+      "layer": "B.Cu",
+      "centerline_gap_mm": 0.09999999999999432,
+      "prior_overlap_margin_mm": 0.5000000000000057,
+      "bridge_width_mm": 0.6,
+      "bridge_segment_count": 1,
+      "start": [
+        61.3,
+        17.5
+      ],
+      "end": [
+        61.2,
+        17.5
+      ]
+    },
+    {
+      "net_number": 30,
+      "net_name": "Net-(R3-Pad2)",
+      "layer": "F.Cu",
+      "centerline_gap_mm": 0.14142135623730775,
+      "prior_overlap_margin_mm": 0.25857864376269224,
+      "bridge_width_mm": 0.4,
+      "bridge_segment_count": 1,
+      "start": [
+        22.1,
+        10.7
+      ],
+      "end": [
+        22.2,
+        10.6
+      ]
+    }
+  ]
+}

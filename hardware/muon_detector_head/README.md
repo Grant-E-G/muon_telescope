@@ -1,9 +1,11 @@
-# Open review decisions: detector head and power/interface boards
+# Accepted prototype layout judgments: detector head and power/interface boards
 
 Both boards pass `make check` with no blocking findings. The layout still
-contains three judgment calls that someone else must approve before a
-fabrication release. Each one is listed below with the reason, the
-alternatives, and what to decide.
+contains three documented judgment calls. On 2026-09-17, the project owner
+accepted all three as good enough for the revision-A engineering prototypes.
+The acceptance freezes these layouts; it does not waive the remaining
+physical-part, output-inspection, BOM, or release-package gates in
+`docs/build-and-debug.md`.
 
 Run `make check` (it needs KiCad 9.0.9 and `ngspice`) and review the reports
 and renders under `build/checks/` alongside this list.
@@ -34,7 +36,8 @@ push it to about 5.9 mm.
 the SiPM must be the only optical-side part). Or change the check to measure
 each pad's distance to its own ground via instead of pad-to-pad.
 
-**Decide:** Accept the new limits, or redefine the check.
+**Resolution:** Accepted for the revision-A engineering prototypes. Retain the
+configured limits and the measured-distance checks.
 
 ## 2. AMP_OUT passes between the R13 pads at 0.25 mm clearance
 
@@ -56,7 +59,8 @@ capability.
 - Route the chain around U3's other side. That needs the U3/C17 ground limit
   relaxed to about 7.5 mm.
 
-**Decide:** Accept the rule, or choose an alternative.
+**Resolution:** Accepted for the revision-A engineering prototypes. Retain the
+0.25 mm local clearance rule and current route.
 
 ## 3. The PEAK_HOLD guard trace is now only a short piece
 
@@ -82,12 +86,15 @@ surface leakage.
 - Move the unfitted U4/C18 alternate out of the island to free space.
 - Relax the peak-hold placement checks to make room for a full ring.
 
-**Decide:** Accept this and rely on the bench droop/leakage measurement in
-`docs/build-and-debug.md`, or request a re-layout.
+**Resolution:** Accepted for the revision-A engineering prototypes. Retain the
+compact hold node and short guard piece, and qualify droop and leakage on the
+bench as required by `docs/build-and-debug.md`.
 
 ## Other items for human review
 
-These are `make check` warnings, not blocking findings:
+These `make check` warnings were also accepted for the revision-A engineering
+prototypes; they remain visible so bring-up and any future revision can address
+measured problems rather than assuming the warnings are harmless:
 
 - **Ground-plane coverage:** some routed nets have less than 95% ground plane
   underneath (listed per net in each report).

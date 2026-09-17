@@ -276,11 +276,14 @@ head bypass. Keep U3A, `R_CHG`, the diode, `C_HOLD`, reset part, and U3B in that
 order with a very small `PEAK_HOLD` island. Flux residue and probe contamination
 can dominate the intended leakage; keep the node away from the bias rail,
 connector contamination, and solder-mask openings other than its test pad.
-Surround the hold island on the component-side surface with a narrow guard tied
-to `PEAK_GUARD`, the local U3B output before the 100 ohm resistor. Keep that guard
-clear of the fast U3A-output/diode-anode node and do not turn it into a large
-capacitive pour. The nearly equipotential driven guard reduces surface-leakage
-error; its added load is part of the U3B stability test. The 100 ohm U3B output
+Guard the hold island on the component-side surface where placement permits,
+using a narrow trace tied to `PEAK_GUARD`, the local U3B output before the 100
+ohm resistor. Revision A accepts the compact hold node and short guard segment
+documented in `hardware/muon_detector_head/README.md`; bench droop and leakage
+qualification is mandatory. Keep the guard clear of the fast
+U3A-output/diode-anode node and do not turn it into a large capacitive pour. The
+nearly equipotential driven guard reduces surface-leakage error; its added load
+is part of the U3B stability test. The 100 ohm U3B output
 resistor isolates cable capacitance and is outside the peak feedback loop.
 
 The added U3A input is a branch load on `AMP_OUT`, even though comparator-path
