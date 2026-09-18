@@ -7,6 +7,11 @@
 		(legacy_teardrops no)
 	)
 	(paper "A4")
+	(title_block
+		(title "Muon Detector Head")
+		(date "2026-09-18")
+		(rev "v0")
+	)
 	(layers
 		(0 "F.Cu" signal)
 		(2 "B.Cu" signal)
@@ -12003,6 +12008,17 @@
 			)
 		)
 	)
+	(gr_text "HEAD v0 2026-09-18"
+		(at 67 33.5 90)
+		(layer "F.SilkS")
+		(uuid "cbd1d2e4-7002-41ed-863f-23607334ad59")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
 	(gr_text "VTH + CW"
 		(at 57.4 5.4 0)
 		(layer "F.SilkS")
@@ -12094,6 +12110,18 @@
 			(font
 				(size 0.8 0.8)
 				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(gr_text "HEAD v0 2026-09-18"
+		(at 47.5 2.8 0)
+		(layer "B.SilkS")
+		(uuid "9abbc709-1b01-4fda-b3ae-cb3d205a5f58")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.18)
 			)
 			(justify mirror)
 		)

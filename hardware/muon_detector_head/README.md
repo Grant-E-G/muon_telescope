@@ -1,5 +1,9 @@
 # Accepted prototype layout judgments: detector head and power/interface boards
 
+The physical prototype release is **v0**, dated **2026-09-18**. Both sides of
+both boards carry that identifier; the electrical design intent remains
+revision A.
+
 Both boards pass `make check` with no blocking findings. The layout still
 contains three documented judgment calls. On 2026-09-17, the project owner
 accepted all three as good enough for the revision-A engineering prototypes.

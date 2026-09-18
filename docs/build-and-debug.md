@@ -37,9 +37,11 @@ than creating a separate form for every test.
 - [ ] Model both PCB envelopes and the replaceable scintillator carrier from the
   coordinate-controlled dimensions in `docs/design.md`; a measured block-size
   mismatch changes the carrier insert, not the PCB datums.
-- [x] Run ERC/DRC and `make check`; the 2026-09-17 run had no blocking findings,
+- [x] Run ERC/DRC and `make check`; the 2026-09-18 v0 run had no blocking findings,
   and the accepted prototype-layout judgments and warnings are recorded in
   `hardware/muon_detector_head/README.md`.
+- [x] Mark both sides of both PCBs with `v0` and `2026-09-18`, and record the
+  same release identifier and date in each KiCad PCB title block.
 - [ ] Complete every fabrication-release item near the end of this document.
 
 The expected work sequence is not one continuous weekend. First complete

@@ -1,5 +1,10 @@
 # Revision A design specification
 
+Prototype release marking: **v0**, dated **2026-09-18**. This release label is
+printed on both sides of both PCBs and recorded in each board's KiCad title
+block. `Revision A` remains the electrical/design-intent revision; `v0` is the
+physical prototype and fabrication-file identifier.
+
 Status: **engineering prototype; not released for fabrication**. This document
 is the reviewed design intent. Values are defaults for the first PCB unless a
 measured result and review change them here and in KiCad together.

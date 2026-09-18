@@ -84,7 +84,7 @@
     ],
     "required_nets": ["+5VA_PRELINK", "+5VA", "+3V3_LOCAL", "+3V3_ADC", "LX", "HV_RAW", "FB", "BIAS_27V", "ADC_A", "ADC_B", "ADC_CS_N", "ADC_SCLK", "ADC_MOSI", "ADC_MISO", "PEAK_RESET_A", "PEAK_RESET_B"],
     "minimum_test_points": 10,
-    "required_board_text": ["CENTER +", "BIAS + CW", "JA 1", "HEAD A", "HEAD B", "1:27V", "3:5V", "5:3.3V"]
+    "required_board_text": ["MUON TELESCOPE POWER / INTERFACE v0 2026-09-18", "CENTER +", "BIAS + CW", "JA 1", "HEAD A", "HEAD B", "1:27V", "3:5V", "5:3.3V"]
   },
   "simulations": [{
     "name": "ADC settling, logic defaults, and bias corner",

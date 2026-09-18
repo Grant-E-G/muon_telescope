@@ -1,4 +1,7 @@
-# Muon Telescope Power / Interface PCB — Rev A1 Routing Review
+# Muon Telescope Power / Interface PCB — v0 Routing Review
+
+Release date: **2026-09-18**. The `v0` fabrication label corresponds to the
+revision-A electrical design intent in `docs/design.md`.
 
 ## Decision
 
@@ -10,7 +13,7 @@ several were tangent contacts with effectively zero margin. Two of the
 zero/low-margin cases are on `+3V3_ADC` and `+5VA`, so an etch or geometry
 edge case could become a functional open circuit.
 
-The Rev A1 board repairs all 62 contacts with 89 short, explicit bridge
+The v0 board repairs all 62 contacts with 89 short, explicit bridge
 segments. No footprint, pad, via, zone, board-outline, schematic, or existing
 track was moved or deleted.
 

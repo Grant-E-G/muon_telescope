@@ -74,7 +74,7 @@
     ],
     "required_nets": ["BIAS_LOCAL", "COMP_RAW", "TRIG", "PEAK_HOLD", "PEAK_GUARD", "PEAK_OUT", "PEAK_RESET"],
     "minimum_test_points": 20,
-    "required_board_text": ["OPTICAL SIDE", "COMPONENT SIDE", "VTH + CW", "1:27V", "3:5V", "5:3.3V"],
+    "required_board_text": ["OPTICAL SIDE", "COMPONENT SIDE", "HEAD v0 2026-09-18", "VTH + CW", "1:27V", "3:5V", "5:3.3V"],
     "related_component_regex": "^MCP3202-BI/SN$"
   },
   "simulations": [{
