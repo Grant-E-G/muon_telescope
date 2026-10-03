@@ -805,7 +805,10 @@ Set the stopped distance from the polished scintillator face to the PCB optical
 side to the measured installed SiPM height plus `0.05 +/- 0.03`. Light springs
 or compliant washers keep the PCB seated on those stops; the stops, not the
 SiPM package, carry clamp load. Fill the resulting nominal 0.05 optical gap
-with a thin, bubble-free EJ-550 layer. Cut a centered 7.5 x 7.5 opening in the
+with a thin, bubble-free Silicone Solutions SS-988 non-curing optical coupling
+gel layer. SS-988 replaces EJ-550 for procurement; its reported refractive index
+is 1.466 with high transmission at 400 and 450 nm. Verify material compatibility
+on a small area before final assembly; the nominal gap and clamp load are unchanged. Cut a centered 7.5 x 7.5 opening in the
 reflective and opaque layers at the sensor and electrically insulate any
 conductive reflector from the PCB.
 

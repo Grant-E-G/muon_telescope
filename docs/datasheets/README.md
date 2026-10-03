@@ -67,6 +67,7 @@ inspection requirement.
 | Selected item | Local document | Primary source |
 |---|---|---|
 | Bicron/Luxium BC-408; purchased seller-cut model `BC408-505010-1FP`, 50 x 50 x 10 mm, one face polished | [BC-400/404/408/412/416 datasheet](luxium-bc400-bc416.pdf) | [Luxium](https://luxiumsolutions.com/files/1691/download); [purchased cut-geometry listing](https://www.ebay.com/itm/254751779655) (no manufacturer drawing exists for the seller-cut geometry) |
+| Silicone Solutions `SS-988`, 0.4 oz tube | [Manufacturer TDS](silicone-solutions-ss988.pdf), retrieved 2026-10-02 | [TDS](https://siliconesolutions.com/media/pdf/SS-988TDS.pdf); [current sizes and pricing](https://siliconesolutions.com/ss-988.html) |
 | Eljen `EJ-550` optical coupling compound | [EJ-550/EJ-552 datasheet](eljen-ej550-ej552.pdf) | [Eljen](https://eljentechnology.com/images/products/data_sheets/EJ-550_EJ-552.pdf) |
 | Digilent Cora Z7-07S | [schematic](digilent-cora-z7-schematic.pdf); [07S master XDC](digilent-cora-z7-07s-master.xdc); [Pmod interface specification](digilent-pmod-interface-specification-1.3.0.pdf) | [Digilent reference manual](https://digilent.com/reference/programmable-logic/cora-z7/reference-manual); [Digilent XDC repository](https://github.com/Digilent/digilent-xdc/blob/master/Cora-Z7-07S-Master.xdc); [Digilent product page](https://digilent.com/shop/cora-z7-zynq-7000-single-core-for-arm-fpga-soc-development/) |
 

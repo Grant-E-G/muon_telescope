@@ -191,10 +191,19 @@ so two are spares. Twenty precrimp leads make the two cables; five are spares.
 
 ## Scintillator, optical, mechanical, and fabrication
 
+Optical couplant updated 2026-10-02 to Silicone Solutions SS-988, sold online
+with a published price. Buy one 0.4 oz tube; this is ample for two thin SiPM
+interfaces. The non-curing optical silicone gel has reported refractive index
+1.466 and 99.99% transmission at 400 and 450 nm through 1 cm. These properties
+support selection for blue scintillator coupling; compatibility with the exact
+BC-408 and SiPM package materials has not been independently qualified.
+Check a small area before final assembly. Store sealed below 70 F for the
+manufacturer's 545-day shelf-life guarantee. Checkout controls delivery.
+
 | Item | Qty | Checked source or requirement | Planning cost |
 |---|---:|---|---:|
 | Purchased BC-408 block, 50 x 50 x 10 mm, one face polished | 2 | [Purchased listing](https://www.ebay.com/itm/254751779655); seller model `BC408-505010-1FP`, $25 each or $22.50 each at quantity two when checked. The seller describes virgin BC-408 water-saw cut from a large block; one 50 x 50 mm face is polished and the other face and sides are smooth cut. See [manufacturer BC-408 properties](https://luxiumsolutions.com/radiation-detection-scintillators/plastic-scintillators/bc400-bc404-bc408-bc412-bc416). | $45 |
-| EJ-550 optical coupling compound | 1 | [Surplus listing](https://www.ebay.com/itm/157806378831), $16.50 when checked; [technical sheet](https://www-eng.lbl.gov/~shuman/NEXT/MATERIALS%26COMPONENTS/WLS_materials/optical-grease_EJ550.pdf) | $16.50 |
+| Silicone Solutions `SS-988` non-curing optical coupling gel, 0.4 oz tube | 1 | [Manufacturer online checkout](https://siliconesolutions.com/ss-988.html), checked 2026-10-02 | $44.08 |
 | Reflective foil and opaque wrap/tape | 1 set | Local consumable; document the actual material used | $10 |
 | Rigid adjustable frame and fasteners | 1 | Design under `hardware/mechanical/`; use existing stock where practical | $10-25 |
 | Five 70 x 70 mm detector-head plus five 96 x 64 mm power/interface PCBs | 10 boards | Frozen revision A outlines are in `docs/design.md`; quote the chosen fabricator from the reviewed KiCad boards. The [JLCPCB quote tool](https://jlcpcb.com/quote) is a planning reference, not a selected supplier | $35-55 |
@@ -234,19 +243,19 @@ and a third SiPM are excluded. No electronics are assumed already purchased.
 
 | Category | Recommended order subtotal |
 |---|---:|
-| Active/power parts and trimmers, including spares | $110.13 |
-| Resistors, including stuffing/debug options | $8.61 |
-| Capacitors, including stuffing/debug options | $27.71 |
+| Active/power parts and trimmers, including spares | $111.15 |
+| Resistors, including stuffing/debug options | $8.81 |
+| Capacitors, including stuffing/debug options | $29.61 |
 | Adapter, connectors, cables, headers and shunts | $38.98 |
-| One syringe lead-free paste | $15.95 |
-| **DigiKey merchandise estimate** | **$201.38** |
-| Optical compound and wrapping, retained allowance | $26.50 |
+| One syringe lead-free paste | $16.95 |
+| **DigiKey merchandise estimate** | **$206.38** |
+| SS-988 ($44.08) and wrapping allowance ($10) | $54.08 |
 | Frame and fasteners, retained allowance | $10-25 |
 | PCB fabrication, retained allowance | $35-55 |
 | Optional stencil, separate allowance | $0-15 |
-| **Remaining purchases before shipping/tax/tariffs** | **$272.88-$322.88** |
+| **Remaining purchases before shipping/tax/tariffs** | **$305.46-$355.46** |
 | Already-purchased scintillators, historical listing cost | $45.00 |
-| **Whole-project parts cost including scintillators** | **$317.88-$367.88** |
+| **Whole-project parts cost including scintillators** | **$350.46-$400.46** |
 
 The non-DigiKey rows remain planning allowances, not fresh supplier quotes.
 The oven, Cora, instruments, cleaning/profiling equipment, and bench wire are
