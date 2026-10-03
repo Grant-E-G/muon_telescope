@@ -84,6 +84,54 @@ Use a scope-verified 0-3.3 V pulse source; never put 5 V logic on JA.
 Gate: the logged counts must agree with generator counts and timing cases before
 a detector cable is connected.
 
+## Reflow and cleaning
+
+The 2026-10-02 shopping list selects one Chip Quik `SMDLTLFP` syringe:
+lead-free Sn42/Bi57.6/Ag0.4, no-clean T3 paste. Its 138 deg C melting point
+and approximately 165 deg C profile peak offer a lower-temperature starting
+point for the owned T-962. This is a prototype process choice, not an oven
+qualification or an onsemi endorsement of this particular alloy.
+
+- [ ] Follow the current paste technical sheet linked in the
+  [datasheet index](datasheets/README.md). Refrigerate at 3-8 deg C; do not
+  freeze. Allow four hours to reach room temperature before use.
+- [ ] Identify the actual Amazon oven's maker, voltage, firmware, and profile
+  controls from its label/manual. The archived Puhui T962 manual is a reference
+  for the model family, not proof of the purchased unit's variant. Do not
+  assume a factory curve number matches this paste.
+- [ ] Profile a scrap/coupon board with contact thermocouples at representative
+  joints and the sensor location, using the intended board load. Match the
+  paste manufacturer's temperature/time curve, including soak and cooling;
+  record actual board temperature rather than relying on the oven display or
+  an IR thermometer. Do not use the SiPMs to tune the oven. If the unit cannot
+  reproduce the low-temperature curve, resolve the process before assembly.
+- [ ] Practice paste deposition and inspect wetting/bridges under magnification.
+  Keep all solder and pre-tinning lead-free; do not mix bismuth paste with
+  leaded solder. Preserve board supports and cable strain relief.
+- [ ] Preserve staged electrical bring-up below. Reflow the head's component
+  side without the SiPM, clean the peak-hold island, and pass injected-pulse
+  tests before installing the optical-side sensor. Plan a supported second
+  pass/local controlled process so previously soldered parts cannot drop or
+  shift; do not simply invert a populated board unsupported. Keep through-hole
+  plastics, trimmers, cables, scintillator, grease, and wrapping out of the oven.
+  Hand-solder through-hole parts with existing lead-free wire after oven work;
+  if temporary test headers/trimmers are needed for staged testing, remove them
+  before the second pass or qualify a controlled local sensor process.
+- [ ] Follow onsemi AND9788/D for the SiPM's moisture handling and maximum two
+  reflow passes. Use the delivered moisture-barrier-bag label and exposure
+  history; the note distinguishes cut tape/partial reels from full reels.
+  Do not infer unlimited floor life from the lower paste temperature.
+- [ ] Deposit no paste on the SiPM pin-5 center paddle. Maintain the reviewed
+  pin-4 ground joint and unused pin-2 connection state. Inspect after cooling.
+
+"No-clean" does not waive the peak-hold leakage test. Clean that circuitry
+before the SiPM is installed. **Do not wash the assembled SiPM in concentrated
+IPA or ordinary flux remover**: onsemi AND9788/D warns of permanent damage to
+the clear molded package. Its cleaning guidance permits 20% IPA solution when
+necessary; protect the optical surface and let the assembly cool first. Use
+that sensor-specific guidance rather than the paste sheet's general stencil
+cleaning advice. Recheck droop and baseline after any cleaning or rework.
+
 ## Stage 2: power/interface assembly
 
 Assemble by functional island so a bad rail cannot damage every IC.

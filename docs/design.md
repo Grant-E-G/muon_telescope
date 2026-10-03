@@ -220,7 +220,11 @@ PEAK_HOLD -- Q_RESET or U_RESET ------ VBASE
 PEAK_RESET -- 100 kohm -- GND
 ```
 
-Use Nexperia `BAS70,215`, pin 1 anode, pin 3 cathode, with pin 2 unconnected.
+Use Nexperia `BAS70,215` or packing-equivalent `BAS70,235`, pin 1 anode,
+pin 3 cathode, with pin 2 unconnected. The 2026-10-02 shopping list selects
+`,235` cut tape because `,215` is backordered; both are the same BAS70 SOT23
+device. The existing schematic value retains `,215`; record the purchased
+packing suffix in the assembly record.
 Its Schottky construction avoids stored-charge recovery when the charging
 amplifier output falls; its specified reverse leakage is still part of the hold
 error and must be measured. A low-leakage junction diode with microsecond
@@ -359,7 +363,7 @@ Generate an adjustable threshold of approximately 0-0.53 V:
 ```text
 +3V3_LOCAL -- 4.70 kohm --+-- 1.00 kohm -- GND
                            +-- 1 uF -- GND
-                           +-- top of 10 kohm 10-turn pot
+                           +-- top of 10 kohm 25-turn pot
 pot bottom -- GND; pot wiper -- VTH; VTH -- 10 nF -- GND
 ```
 
@@ -451,7 +455,7 @@ margin after the input Schottky diode and 5 V source tolerance.)
 | Boost diode | 60 V Schottky, >=0.5 A pulse capability |
 | Raw output | 2 x 1 uF / 50 V X7R, 1206 |
 | Feedback top | 147 kohm, 0.1% |
-| Feedback bottom | 6.98 kohm, 0.1%, 25 ppm/deg C, plus 500 ohm 10-turn rheostat |
+| Feedback bottom | 6.98 kohm, 0.1%, 25 ppm/deg C, plus 500 ohm 25-turn rheostat |
 | Distribution filter | 100 ohm, then 1 uF / 50 V and 10 nF / 100 V |
 | Discharge | 1 Mohm from filtered bias to ground |
 

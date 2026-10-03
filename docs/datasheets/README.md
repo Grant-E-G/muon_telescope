@@ -22,7 +22,7 @@ references, not substitutes for electrical or mechanical documentation.
 | TI `TLV3502AIDR` | [TLV3501/TLV3502 datasheet](ti-tlv3501-tlv3502.pdf) | [TI](https://www.ti.com/lit/gpn/TLV3502) |
 | TI `SN74LVC1G123DCTR` | [SN74LVC1G123 datasheet](ti-sn74lvc1g123.pdf) | [TI](https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf) |
 | Microchip `MCP3202-BI/SN` | [MCP3202 datasheet](microchip-mcp3202.pdf) | [Microchip](https://ww1.microchip.com/downloads/en/DeviceDoc/21034F.pdf) |
-| Nexperia `BAS70,215` | [BAS70 datasheet](nexperia-bas70.pdf) | [Nexperia](https://assets.nexperia.com/documents/data-sheet/BAS70.pdf) |
+| Nexperia `BAS70,215`, `BAS70,235` | [BAS70 datasheet](nexperia-bas70.pdf), re-retrieved unchanged 2026-10-02; [`235` packing drawing](nexperia-sot23-235-packing.pdf), retrieved 2026-10-02 | [Nexperia datasheet](https://assets.nexperia.com/documents/data-sheet/BAS70.pdf); [packing](https://assets.nexperia.com/documents/packing-information/SOT23_235.pdf); [exact ordering numbers](https://www.nexperia.com/chemical-content/BAS70.html) |
 | Nexperia `BSS138P,215` | [BSS138P datasheet](nexperia-bss138p.pdf) | [Nexperia](https://assets.nexperia.com/documents/data-sheet/BSS138P.pdf) |
 | TI `TMUX1101DCKR` (precision reset alternate) | [TMUX1101/TMUX1102 datasheet](ti-tmux1101.pdf) | [TI](https://www.ti.com/lit/ds/symlink/tmux1101.pdf) |
 | ADI/Maxim `MAX5026EUT+T` | [MAX5025-MAX5028 datasheet](adi-max5025-max5028.pdf) | [Analog Devices](https://www.analog.com/media/en/technical-documentation/data-sheets/max5025-max5028.pdf) |
@@ -40,7 +40,9 @@ references, not substitutes for electrical or mechanical documentation.
 | Bourns `3296W-1-501LF`, `3296W-1-103LF` | [3296 trimmer datasheet](bourns-3296.pdf) | [Bourns](https://www.bourns.com/pdfs/3296.pdf) |
 | Panasonic `ERA-6AEB1473V`, `ERA-6AEB6981V` | [ERA-A resistor datasheet](panasonic-era-a-resistors.pdf) | [Panasonic](https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C307.pdf) |
 | Yageo `RC0805JR-070RL`, `RC0805FR-0710RL`, `RC0805FR-0722RL`, `RC0805FR-0749R9L`, `RC0805FR-0756RL`, `RC0805FR-0782RL`, `RC0805FR-07100RL`, `RC0805FR-07220RL`, `RC0805FR-07499RL`, `RC0805FR-071KL`, `RC0805FR-071K65L`, `RC0805FR-072KL`, `RC0805FR-074K7L`, `RC0805FR-0710KL`, `RC0805FR-0712K4L`, `RC0805FR-07100KL`, `RC0805FR-07130KL`, `RC0805FR-07330KL`, `RC0805FR-071ML` | [RC_L resistor datasheet](yageo-rc-l-resistors.pdf) | [Yageo](https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L) |
-| KEMET `C0805C104K5RACTU`, `C0805C105K4RACTU`, `C0805C475K4RACTU`, `C1206C106K8RACTU`, `C1206C105K5RACTU` | [X7R MLCC datasheet](kemet-x7r-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD) |
+| KEMET `C0805C104K1RACTU`, `C0805C104K5RACTU`, `C0805C105K4RACTU`, `C0805C475K4RACTU`, `C1206C106K8RACTU`, `C1206C105K5RACTU` | [X7R MLCC datasheet](kemet-x7r-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD) |
+| KEMET `C0805C106K8PAC7210` | [Exact-part specification](kemet-c0805c106k8pac7210.pdf), retrieved 2026-10-02 | [KEMET](https://search.kemet.com/download/specsheet/C0805C106K8PAC7210) |
+| KEMET `C0805C106K8PACTU` | [X5R MLCC datasheet](kemet-x5r-mlcc.pdf), retrieved 2026-10-02 | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1006_X5R_SMD) |
 | KEMET `C0805C103J1GACTU`, `C0805C270J5GACTU`, `C0805C101J5GACTU`, `C0805C221J5GACTU`, `C0805C471J5GACTU`, `C0805C102J5GACTU`, `C0805C229C5GACTU` | [C0G MLCC datasheet](kemet-c0g-mlcc.pdf) | [Yageo/KEMET](https://yageogroup.com/content/datasheet/asset/file/KEM_C1003_C0G_SMD) |
 
 ## Connectors, cables, and external power
@@ -71,6 +73,28 @@ inspection requirement.
 The Cora reference manual is a maintained web document rather than a published
 downloadable file. The release-critical schematic, XDC, and interface
 specification are archived here; the current manual remains linked above.
+
+## Reflow consumable and equipment
+
+| Exact manufacturer item | Local document | Primary source and retrieval |
+|---|---|---|
+| Chip Quik `SMDLTLFP`, 15 g / 5 cc T3 Sn42/Bi57.6/Ag0.4 paste | [Manufacturer TDS revision 1.2, unmodified RS mirror](chipquik-smdltlfp-r1.2.pdf) | Retrieved 2026-10-02 from [RS](https://docs.rs-online.com/1b69/0900766b815e83bd.pdf); [current manufacturer TDS revision 1.4](https://www.chipquik.com/datasheets/SMDLTLFP.pdf), reviewed online 2026-10-02 |
+| onsemi `MICROFC-60035-SMT-TR` assembly process | [AND9788/D molded-leadframe handling/soldering guide](onsemi-and9788-sipm-handling.pdf) | [onsemi](https://www.onsemi.com/download/application-notes/pdf/and9788-d.pdf), retrieved 2026-10-02 |
+| Puhui `T962` model-family reference for the owned Amazon T-962 | [Manufacturer manual](puhui-t962-manual.pdf) | [Puhui](https://www.puhuit.com/videos/700MBCD/T962/INFRARED%20IC%20HEATER%20T-962%20User%20Manual.pdf), retrieved 2026-10-02; actual purchased brand/voltage/firmware not yet identified |
+
+The paste archive is explicitly **revision 1.2, not the current revision 1.4**:
+the manufacturer PDF was readable online but its file download was blocked
+by the host. The unmodified RS copy agrees on the selected alloy, T3 size,
+138 deg C melting point, 165 deg C profile peak, and storage/warm-up guidance.
+Revision 1.4 adds transport guidance and updates compliance/test statements;
+use the current linked document and delivered lot instructions for assembly,
+and replace the older archive when a current file download is available.
+The older AMTECH NC-31 distributor document is not used as the current Chip
+Quik formulation specification.
+
+The Puhui manual's mains-voltage and preset descriptions do not establish the
+identity of an Amazon-branded variant. Check the actual unit's label and
+manual before applying its operating instructions.
 
 ## Independent home PCB fabrication process
 
